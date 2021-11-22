@@ -2,6 +2,8 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 
+
+  
 const RegisterPage = (props) => {
   const RegisterPageStyle = {
     margin: "32px auto 37px",
@@ -11,6 +13,7 @@ const RegisterPage = (props) => {
     borderRadius: "10px",
     boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.15)",
   };
+ 
   const { touched, errors } = props;
   return (
     <React.Fragment>
@@ -22,7 +25,7 @@ const RegisterPage = (props) => {
               To <a href="./login">Login</a>
             </p>
           </div>
-          <Form className="form-container">
+          <Form className="form-container" >
             <div className="form-group mt-3 ">
               <label htmlFor="email">
                 Email Address <span className="text-danger">*</span>
@@ -57,7 +60,7 @@ const RegisterPage = (props) => {
               <label htmlFor="Company-name">Company Name</label>
               <Field
                 type="text"
-                name="Company-name"
+                name="company_name"
                 className="form-control"
                 placeholder="Company-name"
               />
@@ -68,7 +71,7 @@ const RegisterPage = (props) => {
               </label>
               <Field
                 type="text"
-                name="gstNumber"
+                name="gst_number"
                 className="form-control"
                 placeholder="GST-number"
               />
@@ -79,7 +82,7 @@ const RegisterPage = (props) => {
               </label>
               <Field
                 type="text"
-                name="Contact-person-name"
+                name="contact_person"
                 className="form-control"
                 placeholder="Contact-person-name"
               />
@@ -88,7 +91,7 @@ const RegisterPage = (props) => {
               <label htmlFor="Address">Address</label>
               <Field
                 type="text"
-                name="Address"
+                name="address"
                 className="form-control"
                 placeholder="Address"
               />
@@ -97,7 +100,7 @@ const RegisterPage = (props) => {
               <label htmlFor="District">District</label>
               <Field
                 type="text"
-                name="District"
+                name="district"
                 className="form-control"
                 placeholder="District"
               />
@@ -106,7 +109,7 @@ const RegisterPage = (props) => {
               <label htmlFor="State">State</label>
               <Field
                 type="text"
-                name="State"
+                name="state"
                 className="form-control"
                 placeholder="State"
               />
@@ -115,7 +118,7 @@ const RegisterPage = (props) => {
               <label htmlFor="Zip">Zip</label>
               <Field
                 type="text"
-                name="Zip"
+                name="zip"
                 className="form-control"
                 placeholder="Zip"
               />
@@ -126,7 +129,7 @@ const RegisterPage = (props) => {
               </label>
               <Field
                 type="text"
-                name="Phone-number"
+                name="phone"
                 className="form-control"
                 placeholder="Phone-number"
               />
@@ -135,7 +138,7 @@ const RegisterPage = (props) => {
               <label htmlFor="Alternate-number">Alternate Phone Number</label>
               <Field
                 type="text"
-                name="Alternate-number"
+                name="alternate_number"
                 className="form-control"
                 placeholder="Alternate-number"
               />
@@ -151,6 +154,7 @@ const RegisterPage = (props) => {
 };
 
 const Register = withFormik({
+  
   mapPropsToValues: (props) => {
     return {
       email: props.email || "",
@@ -161,11 +165,16 @@ const Register = withFormik({
     email: Yup.string().email("Email not valid").required("Email is required"),
     password: Yup.string().required("Password is required"),
   }),
+
   handleSubmit: (values) => {
     console.log(values);
-    const REST_API_URL = "REST_API_URL";
+    const REST_API_URL = "http://localhost/aapple-php/api/index.php";
     fetch(REST_API_URL, {
+      mode: 'no-cors',
       method: "post",
+      headers: {
+        "Content-Type": "application/json"
+   },
       body: JSON.stringify(values),
     })
       .then((response) => {
