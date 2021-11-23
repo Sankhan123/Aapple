@@ -74,7 +74,11 @@ const RegisterPage = (props) => {
                 name="gst_number"
                 className="form-control"
                 placeholder="GST-number"
-              />
+              /> {touched.gst_number && errors.gst_number && (
+                <span className="help-block text-danger">
+                  {errors.gst_number}
+                </span>
+              )}
             </div>
             <div className="form-group  mt-3 ">
               <label htmlFor="Contact-person-name">
@@ -85,7 +89,11 @@ const RegisterPage = (props) => {
                 name="contact_person"
                 className="form-control"
                 placeholder="Contact-person-name"
-              />
+              /> {touched.contact_person && errors.contact_person && (
+                <span className="help-block text-danger">
+                  {errors.contact_person}
+                </span>
+              )}
             </div>
             <div className="form-group  mt-3 ">
               <label htmlFor="Address">Address</label>
@@ -132,7 +140,11 @@ const RegisterPage = (props) => {
                 name="phone"
                 className="form-control"
                 placeholder="Phone-number"
-              />
+              /> {touched.phone && errors.phone && (
+                <span className="help-block text-danger">
+                  {errors.phone}
+                </span>
+              )}
             </div>
             <div className="form-group  mt-3 ">
               <label htmlFor="Alternate-number">Alternate Phone Number</label>
@@ -164,6 +176,9 @@ const Register = withFormik({
   validationSchema: Yup.object().shape({
     email: Yup.string().email("Email not valid").required("Email is required"),
     password: Yup.string().required("Password is required"),
+    gst_number: Yup.string().required("GST number is required"),
+    contact_person: Yup.string().required("Contact Number is required"),
+    phone: Yup.string().required("phone Number is required"),
   }),
 
   handleSubmit: (values) => {
