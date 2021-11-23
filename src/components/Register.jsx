@@ -171,6 +171,9 @@ const Register = withFormik({
     return {
       email: props.email || "",
       password: props.password || "",
+      gst_number: props.gst_number || "",
+      contact_person : props.contact_person || "",
+      phone : props.phone || "",
     };
   },
   validationSchema: Yup.object().shape({
