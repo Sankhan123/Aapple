@@ -1,7 +1,7 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-
+import axios from "axios";
 
   
 const RegisterPage = (props) => {
@@ -25,7 +25,7 @@ const RegisterPage = (props) => {
               To <a href="./login">Login</a>
             </p>
           </div>
-          <Form className="form-container" >
+          <Form className="form-container" method="post">
             <div className="form-group mt-3 ">
               <label htmlFor="email">
                 Email Address <span className="text-danger">*</span>
@@ -102,6 +102,15 @@ const RegisterPage = (props) => {
                 name="address"
                 className="form-control"
                 placeholder="Address"
+              />
+            </div>
+            <div className="form-group  mt-3 ">
+              <label htmlFor="City">City</label>
+              <Field
+                type="text"
+                name="city"
+                className="form-control"
+                placeholder="City"
               />
             </div>
             <div className="form-group  mt-3 ">
@@ -186,31 +195,23 @@ const Register = withFormik({
 
   handleSubmit: (values) => {
     console.log(values);
-    const REST_API_URL = "http://localhost/aapple-php/api/index.php";
-    fetch(REST_API_URL, {
-      mode: 'no-cors',
-      method: "post",
-      headers: {
-        "Content-Type": "application/json"
-   },
-      body: JSON.stringify(values),
+    const REST_API_URL = "http://localhost/Aapple/aapple-php/api/register.php";
+    axios({
+        method: 'post',
+        url: REST_API_URL,
+        data: {
+          ...values
+        },
+        config: { headers: {'Content-Type': 'application/json' }}
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          // HANDLE ERROR
-          throw new Error("Something went wrong");
-        }
-      })
-      .then((data) => {
-        // HANDLE RESPONSE DATA
-        console.log(data);
-      })
-      .catch((error) => {
-        // HANDLE ERROR
-        console.log(error);
-      });
+    .then(function (response) {
+      console.log(response);
+      alert(response.data.message);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+    
   },
 })(RegisterPage);
 export default Register;

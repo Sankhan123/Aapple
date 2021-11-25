@@ -1,7 +1,8 @@
 import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
-
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const LoginPage = (props) => {
   const loginPageStyle = {
     margin: "32px auto 37px",
@@ -76,22 +77,23 @@ const Login = withFormik({
   }),
   handleSubmit: (values) => {
     console.log(values);
-    const REST_API_URL = "REST_API_URL";
-    fetch(REST_API_URL, {
-      method: "post",
-      body: JSON.stringify(values),
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          // HANDLE ERROR
-          throw new Error("Something went wrong");
-        }
-      })
-      .then((data) => {
+    const REST_API_URL = "http://localhost/Aapple/aapple-php/api/login.php";
+  
+    axios({
+      method: 'post',
+      url: REST_API_URL,
+      data: {
+        ...values
+      },
+      config: { headers: {'Content-Type': 'application/json' }}
+  })
+      .then((response,props) => {
         // HANDLE RESPONSE DATA
-        console.log(data);
+        console.log(response);
+      
+
+          (response.data.status==="ok")? alert(response.data.message) : alert(response.data.message)
+        
       })
       .catch((error) => {
         // HANDLE ERROR
