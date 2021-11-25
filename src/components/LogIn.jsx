@@ -3,6 +3,7 @@ import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"
 const LoginPage = (props) => {
   const loginPageStyle = {
     margin: "32px auto 37px",
@@ -20,7 +21,7 @@ const LoginPage = (props) => {
           <h2>Login Page</h2>
           <div>
             <p>
-              To <a href="./register">Register</a>
+              To <Link to="/register">Register</Link>
             </p>
           </div>
           <Form className="form-container">
