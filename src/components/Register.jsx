@@ -2,6 +2,8 @@ import React from "react";
 import { withFormik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import { Link } from "react-router-dom"
+
 
   
 const RegisterPage = (props) => {
@@ -22,7 +24,7 @@ const RegisterPage = (props) => {
           <h2>Register Page</h2>
           <div>
             <p>
-              To <a href="./login">Login</a>
+              To <Link to="/login">Login</Link>
             </p>
           </div>
           <Form className="form-container" method="post">
