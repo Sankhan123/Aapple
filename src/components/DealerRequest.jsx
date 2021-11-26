@@ -3,69 +3,103 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const DealerRequest = () => {
-  const [falseDatas, setFalseDatas] = useState([]);
-  const [trueDatas, setTrueDatas] = useState([]);
+  const [ requests, setRequests] = useState(null);
+  const [ users, setUsers] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
       .then((response) => {
-        console.log(response.data);
+        let arrData = response.data.filter((data) => (data.user_status === "false"));
+        console.log(arrData);
+        setRequests(arrData);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
+
   return (
     <section>
-      <h1 className="display-5">Dealer Request</h1>
-      <DealerTable data={falseDatas}/>
-      <DealerTable data={trueDatas}/>
+      {/* requests table */}
+      <section className="requests-table-wrapper mt-4 pt-4">
+      <div className="card ">
+        <h5 className="card-header bg-primary text-white display-6 fw-normal">
+          Dealer Requests
+        </h5>
+        <div className="card-body">
+          <table className="table table-striped">
+            <thead>
+              <tr className="table-dark">
+                <th scope="col">Sno</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone no</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {requests && requests.map((data, index) => {
+                return (data.user_status === 'false') && <Dealer key={index+1} data={data} id={index+1} acceptRequests={setUsers} removeRequests={setRequests}/>;
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </section>
+      {/* users table */}
+      <section className="users-table-wrapper mt-4 pt-4">
+      <div className="card">
+        <h5 className="card-header bg-primary text-white display-6 fw-normal">
+          Users
+        </h5>
+        <div className="card-body">
+          <table className="table table-striped">
+            <thead>
+              <tr className="table-dark">
+                <th scope="col">Sno</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Address</th>
+                <th scope="col">Phone no</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users && users.map((data, index) => {
+                return <Dealer key={index+1} data={data} id={index+1} />;
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      </section>
     </section>
   );
 };
 
-const DealerTable = (props) => {
+const Dealer = (props) => {
+  const acceptInvitation = () => {
+    props.data.user_status = "true"
+    props.acceptRequests((prevdata) => ([...prevdata, props.data]))
+  }
   return (
-    <section>
-      <ul className="list-group">
-        <li className="list-group-item active" aria-current="true">
-          New Request
-        </li>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Sno</th>
-              <th scope="col">Name</th>
-              <th scope="col">Email</th>
-              <th scope="col">Address</th>
-              <th scope="col">Phone no</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>@mdo</td>
-              <td>
-                <button className="btn btn-primary">Accept</button>
-                <button className="btn btn-danger">Decline</button>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colSpan="2">Larry the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
-      </ul>
-    </section>
+    <tr>
+      <th scope="row">{props.id}</th>
+      <td>{props.data.contact_person}</td>
+      <td>{props.data.email}</td>
+      <td>{props.data.address}</td>
+      <td>{props.data.phone}</td>
+      {props.data.user_status === "false" &&
+      <td className="d-flex gap-1">
+        <h2>
+          <button className="btn btn-primary" onClick={acceptInvitation}>Accept</button>
+          <button className="btn btn-danger">Decline</button>
+        </h2>
+      </td>
+      } 
+      
+    </tr>
   );
 };
 export default DealerRequest;
