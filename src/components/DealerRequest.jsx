@@ -3,23 +3,25 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 const DealerRequest = () => {
-  const [state, setstate] = useState(true);
-
+  const [falseDatas, setFalseDatas] = useState([]);
+  const [trueDatas, setTrueDatas] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost/Aapple/aapple-php/api/dealersrequest.php").then((response) => {
-      console.log(response.data);
-    });
+    axios
+      .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
+      .then((response) => {
+        console.log(response.data);
+      });
   }, []);
   return (
     <section>
       <h1 className="display-5">Dealer Request</h1>
-      <DealerTable />
-      <DealerTable />
+      <DealerTable data={falseDatas}/>
+      <DealerTable data={trueDatas}/>
     </section>
   );
 };
 
-const DealerTable = () => {
+const DealerTable = (props) => {
   return (
     <section>
       <ul className="list-group">

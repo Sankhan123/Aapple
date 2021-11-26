@@ -22,7 +22,7 @@ const DashboardNav = () => {
         <h1 className="fs-1 text-capitalize fw-normal ">dashboard</h1>
         <h2 className="fs-3 text-uppercase fw-light">admin</h2>
       </div>
-      <ul class="list-group flex gap-2 mt-4 pt-4 text-center">
+      <ul className="list-group flex gap-2 mt-4 pt-4 text-center">
         <Link to="./dealer-request" className="text-decoration-none link-dark">
           <li className="list-group-item rounded">Dealer Request</li>
         </Link>
