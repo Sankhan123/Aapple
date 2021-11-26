@@ -24,18 +24,18 @@ const DashboardNav = () => {
       </div>
       <ul class="list-group flex gap-2 mt-4 pt-4 text-center">
         <Link to="./dealer-request" className="text-decoration-none link-dark">
-          <li class="list-group-item rounded">Dealer Request</li>
+          <li className="list-group-item rounded">Dealer Request</li>
         </Link>
         <Link to="./new-orders" className="text-decoration-none link-dark">
-          <li class="list-group-item rounded">New Orders</li>
+          <li className="list-group-item rounded">New Orders</li>
         </Link>
         <Link to="./all-orders" className="text-decoration-none link-dark">
-          <li class="list-group-item rounded">All Orders</li>
+          <li className="list-group-item rounded">All Orders</li>
         </Link>
         <Link to="./product-panel" className="text-decoration-none link-dark">
-          <li class="list-group-item rounded">Product Panel</li>
+          <li className="list-group-item rounded">Product Panel</li>
         </Link>
-        <button class="list-group-item bg-warning rounded shadow-sm mt-3">
+        <button className="list-group-item bg-warning rounded shadow-sm mt-3">
           Logout
         </button>
       </ul>

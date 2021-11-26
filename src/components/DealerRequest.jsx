@@ -1,14 +1,18 @@
 import React from "react";
-import { usestate } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const DealerRequest = () => {
-    const {state, setstate} = usestate(true);
-    const changeState = () => {
-        setstate(state => !state);
-    }
+  const [state, setstate] = useState(true);
+
+  useEffect(() => {
+    axios.get("http://localhost/Aapple/aapple-php/api/dealersrequest.php").then((response) => {
+      console.log(response.data);
+    });
+  }, []);
   return (
     <section>
-      <h1 onClick={changeState} className="display-5">Dealer Request</h1>
+      <h1 className="display-5">Dealer Request</h1>
       <DealerTable />
       <DealerTable />
     </section>
@@ -18,11 +22,11 @@ const DealerRequest = () => {
 const DealerTable = () => {
   return (
     <section>
-      <ul class="list-group">
-        <li class="list-group-item active" aria-current="true">
+      <ul className="list-group">
+        <li className="list-group-item active" aria-current="true">
           New Request
         </li>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Sno</th>
@@ -53,7 +57,7 @@ const DealerTable = () => {
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
+              <td colSpan="2">Larry the Bird</td>
               <td>@twitter</td>
             </tr>
           </tbody>
