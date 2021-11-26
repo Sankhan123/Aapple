@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2021 at 07:47 AM
+-- Generation Time: Nov 26, 2021 at 11:43 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -40,16 +40,17 @@ CREATE TABLE `user_register` (
   `state` varchar(255) DEFAULT NULL,
   `zip` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
-  `alternate_number` varchar(255) DEFAULT NULL
+  `alternate_number` varchar(255) DEFAULT NULL,
+  `user_status` varchar(255) NOT NULL DEFAULT 'false'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user_register`
 --
 
-INSERT INTO `user_register` (`reg_id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`) VALUES
-(1, 'san@gmail.com', 'san', 'as', 'as', 'ds', 'da', 'eew', 'w', 'e', 'f', '21', '23'),
-(7, 'ravi@gmail.com', 'ravi', 'dsd', 'sd', 'sds', 'sd', 'sd', 'sds', 'sds', 'sds', 'sds', 'sa');
+INSERT INTO `user_register` (`reg_id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`) VALUES
+(1, 'san@gmail.com', 'san', 'as', 'as', 'ds', 'da', 'eew', 'w', 'e', 'f', '21', '23', 'false'),
+(7, 'ravi@gmail.com', 'ravi', 'dsd', 'sd', 'sds', 'sd', 'sd', 'sds', 'sds', 'sds', 'sds', 'sa', 'false');
 
 --
 -- Indexes for dumped tables
