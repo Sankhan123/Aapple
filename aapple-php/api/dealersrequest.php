@@ -14,21 +14,10 @@ $query = "select * from user_register";
         $result = $row->fetchAll(PDO::FETCH_ASSOC);
         
         $count = $row->rowCount();
-        
-        if ($count > 0) {
-            
-            return $result = array(
-                'status' => 'success',
-                'data' => $result
-            );
-             
-        } else {
-            
-            return $result = array(
-                'status' => 'noresult',
-                'message' => 'There Is No Data'
-            );
-        }
 
-        echo json_encode($result);
+        if($count) {
+            echo json_encode($result);
+        } else {
+            echo "failed";
+        }
 ?>
