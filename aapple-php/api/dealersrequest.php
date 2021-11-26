@@ -9,7 +9,7 @@ header("Content-type:application/json");
 
 $query = "select * from user_register";
         
-        $row = $this->conn->query($query);
+        $row = $conn->query($query);
         
         $result = $row->fetchAll(PDO::FETCH_ASSOC);
         
