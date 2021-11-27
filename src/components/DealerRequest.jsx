@@ -109,6 +109,17 @@ const Dealer = (props) => {
         console.error('There was an error!', error);
     });
   };
+  const deleteInvitation = () => {
+    alert("Are you sure to want to delete..?")
+    props.data.user_status = 'null';
+    props.removeRequests((prevdata) => [...prevdata, props.data]);
+    const deleteData = {reg_id: props.data.reg_id };
+    axios.put('http://localhost/Aapple/aapple-php/api/deletedealer.php', deleteData)
+    .then(response => { console.log(response) })
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
+  };
   return (
     <tr>
       <th scope="row">{props.id}</th>
@@ -121,7 +132,7 @@ const Dealer = (props) => {
           <button className="btn btn-primary" onClick={acceptInvitation}>
             Accept
           </button>
-          <button className="btn btn-danger">Decline</button>
+          <button className="btn btn-danger" onClick={deleteInvitation}>Decline</button>
         </td>
       )}
     </tr>
