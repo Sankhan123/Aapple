@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLocation } from "react-router-dom";
 
 const Dashboard = () => {
+  let location = useLocation();
   return (
     <main className="container-fluid">
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
+        {(location.pathname === "/dashboard/") && (<h1>hello world</h1>)}
           <Outlet />
         </section>
       </div>
