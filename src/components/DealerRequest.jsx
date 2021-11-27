@@ -4,7 +4,6 @@ import axios from "axios";
 
 const DealerRequest = () => {
   const [requests, setRequests] = useState(null);
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -14,15 +13,11 @@ const DealerRequest = () => {
           (data) => data.user_status === "false"
         );
         setRequests(falseData);
-        let trueData = response.data.filter(
-          (data) => data.user_status === "true"
-        );
-        setUsers(trueData);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [ requests ]);
 
   return (
     <section>
@@ -53,39 +48,9 @@ const DealerRequest = () => {
                           key={index + 1}
                           data={data}
                           id={index + 1}
-                          acceptRequests={setUsers}
                           removeRequests={setRequests}
                         />
                       )
-                    );
-                  })}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-      {/* users table */}
-      <section className="users-table-wrapper mt-4 pt-4">
-        <div className="card">
-          <h5 className="card-header bg-primary text-white display-6 fw-normal">
-            Users
-          </h5>
-          <div className="card-body">
-            <table className="table table-striped">
-              <thead>
-                <tr className="table-dark">
-                  <th scope="col">Sno</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Address</th>
-                  <th scope="col">Phone no</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users &&
-                  users.map((data, index) => {
-                    return (
-                      <Dealer key={index + 1} data={data} id={index + 1} />
                     );
                   })}
               </tbody>
@@ -99,8 +64,7 @@ const DealerRequest = () => {
 
 const Dealer = (props) => {
   const acceptInvitation = () => {
-    props.data.user_status = "true";
-    props.acceptRequests((prevdata) => [...prevdata, props.data]);
+  props.data.user_status = "true";
   const updateData = { user_status: props.data.user_status, reg_id: props.data.reg_id };
   console.log(updateData);
     axios.put('http://localhost/Aapple/aapple-php/api/updatedealer.php', updateData)
