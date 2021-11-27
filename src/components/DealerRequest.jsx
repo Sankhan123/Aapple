@@ -98,6 +98,13 @@ const Dealer = (props) => {
   const acceptInvitation = () => {
     props.data.user_status = "true";
     props.acceptRequests((prevdata) => [...prevdata, props.data]);
+  const updateData = { user_status: props.data.user_status, reg_id: props.data.reg_id };
+  console.log(updateData);
+    axios.put('http://localhost/Aapple/aapple-php/api/updatedealer.php', updateData)
+    .then(response => { console.log(response) })
+    .catch(error => {
+        console.error('There was an error!', error);
+    });
   };
   return (
     <tr>

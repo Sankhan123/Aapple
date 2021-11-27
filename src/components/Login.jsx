@@ -91,7 +91,6 @@ const Login = withFormik({
         // HANDLE RESPONSE DATA
         console.log(response);
       
-
           (response.data.status==="ok")? alert(response.data.message) : alert(response.data.message)
         
       })

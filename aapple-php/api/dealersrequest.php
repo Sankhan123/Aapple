@@ -7,7 +7,7 @@ header("Content-type:application/json");
 
     require_once('config.php');
 
-$query = "select * from user_register";
+        $query = "select * from user_register";
         
         $row = $conn->query($query);
         
