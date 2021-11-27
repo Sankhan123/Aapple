@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet,Link } from "react-router-dom";
+import { Outlet, Link } from "react-router-dom";
 
 const Dashboard = () => {
   return (
@@ -14,7 +14,6 @@ const Dashboard = () => {
   );
 };
 
-
 const DashboardNav = () => {
   return (
     <nav className="col col-3 bg-info text-light">
@@ -23,14 +22,17 @@ const DashboardNav = () => {
         <h2 className="fs-3 text-uppercase fw-light">admin</h2>
       </div>
       <ul className="list-group flex gap-2 mt-4 pt-4 text-center">
+        <Link to="./" className="text-decoration-none link-dark">
+          <li className="list-group-item rounded">Dashboard</li>
+        </Link>
         <Link to="./dealer-request" className="text-decoration-none link-dark">
           <li className="list-group-item rounded">Dealer Request</li>
         </Link>
+        <Link to="./all-dealers" className="text-decoration-none link-dark">
+          <li className="list-group-item rounded">All Dealers</li>
+        </Link>
         <Link to="./new-orders" className="text-decoration-none link-dark">
           <li className="list-group-item rounded">New Orders</li>
-        </Link>
-        <Link to="./all-orders" className="text-decoration-none link-dark">
-          <li className="list-group-item rounded">All Orders</li>
         </Link>
         <Link to="./product-panel" className="text-decoration-none link-dark">
           <li className="list-group-item rounded">Product Panel</li>
