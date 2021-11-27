@@ -10,11 +10,14 @@ const DealerRequest = () => {
     axios
       .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
       .then((response) => {
-        let arrData = response.data.filter(
+        let falseData = response.data.filter(
           (data) => data.user_status === "false"
         );
-        console.log(arrData);
-        setRequests(arrData);
+        setRequests(falseData);
+        let trueData = response.data.filter(
+          (data) => data.user_status === "true"
+        );
+        setUsers(trueData);
       })
       .catch((err) => {
         console.log(err);
