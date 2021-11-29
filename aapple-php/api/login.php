@@ -46,7 +46,7 @@ $data = json_decode(file_get_contents("php://input"));
     }else{
         $response = array(
             'status' => 'fail',
-            'message' => 'Invalid username and password'
+            'message' => 'Invalid username or password'
         );
     }
     

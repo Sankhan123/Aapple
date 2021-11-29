@@ -57,16 +57,15 @@ const Register = () => {
             .then((response, props) => {
               // HANDLE RESPONSE DATA
               console.log(response);
-
-              response.data.status === "ok"
-                && alert(response.data.message)
-                
+              if (response.data.status === "ok") {
+                alert(response.data.message);
+                Navigate("/login");
+              }
             })
             .catch((error) => {
               // HANDLE ERROR
               console.log(error);
             });
-          Navigate("/login", { replace: true });
         }}
       >
         {({ errors, touched }) => (
@@ -207,9 +206,7 @@ const Register = () => {
                   placeholder="Contact Number"
                 />
                 {touched.phone && errors.phone && (
-                  <span className="help-block text-danger">
-                    {errors.phone}
-                  </span>
+                  <span className="help-block text-danger">{errors.phone}</span>
                 )}
               </div>
               <div className="form-group  mt-3 ">

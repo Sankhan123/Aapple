@@ -44,25 +44,26 @@ const Login = () => {
             .then((response, props) => {
               // HANDLE RESPONSE DATA
               console.log(response);
-
-              response.data.status === "ok"
-                ? alert(response.data.message)
-                : alert(response.data.message);
+              if (response.data.status === "ok") {
+                Navigate("/dashboard");
+              } else {
+                alert(response.data.message);
+                Navigate("/");
+              }
             })
             .catch((error) => {
               // HANDLE ERROR
               console.log(error);
             });
-          Navigate("/login", { replace: true });
         }}
       >
         {({ errors, touched }) => (
           <Form>
             <div className="login-wrapper" style={loginPageStyle}>
-              <h2>Register Page</h2>
+              <h2>Login Page</h2>
               <div>
                 <p>
-                  To <Link to="/login">Login</Link>
+                  To <Link to="/register">Register</Link>
                 </p>
               </div>
               <div className="form-group mt-3 ">

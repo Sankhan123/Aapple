@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, Link, useLocation } from "react-router-dom";
+import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   let location = useLocation();
@@ -8,15 +8,15 @@ const Dashboard = () => {
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
-        {(location.pathname === "/dashboard/") && (<h1>hello world</h1>)}
+          {location.pathname === "/dashboard/" && <h1>hello world</h1>}
           <Outlet />
         </section>
       </div>
     </main>
   );
 };
-
 const DashboardNav = () => {
+  let Navigate = useNavigate();
   return (
     <nav className="col col-3 bg-info text-light">
       <div className="text-center mt-3 border-bottom pb-2 border-2 border-light">
@@ -39,7 +39,10 @@ const DashboardNav = () => {
         <Link to="./product-panel" className="text-decoration-none link-dark">
           <li className="list-group-item rounded">Product Panel</li>
         </Link>
-        <button className="list-group-item bg-warning rounded shadow-sm mt-3">
+        <button
+          className="list-group-item bg-warning rounded shadow-sm mt-3"
+          onClick={() => Navigate("/login")}
+        >
           Logout
         </button>
       </ul>
