@@ -13,7 +13,7 @@ const SignupSchema = Yup.object().shape({
   contact_person: Yup.string().required("Required"),
   phone: Yup.string().required("Required"),
 });
-const loginPageStyle = {
+const RegisterPageStyle = {
   margin: "32px auto 37px",
   maxWidth: "530px",
   background: "#fff",
@@ -57,21 +57,20 @@ const Register = () => {
             .then((response, props) => {
               // HANDLE RESPONSE DATA
               console.log(response);
-
-              response.data.status === "ok"
-                && alert(response.data.message)
-                
+              if (response.data.status === "ok") {
+                alert(response.data.message);
+                Navigate("/login");
+              }
             })
             .catch((error) => {
               // HANDLE ERROR
               console.log(error);
             });
-          Navigate("/login", { replace: true });
         }}
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="login-wrapper" style={loginPageStyle}>
+            <div className="login-wrapper" style={RegisterPageStyle}>
               <h2>Register Page</h2>
               <div>
                 <p>
@@ -207,9 +206,7 @@ const Register = () => {
                   placeholder="Contact Number"
                 />
                 {touched.phone && errors.phone && (
-                  <span className="help-block text-danger">
-                    {errors.phone}
-                  </span>
+                  <span className="help-block text-danger">{errors.phone}</span>
                 )}
               </div>
               <div className="form-group  mt-3 ">
