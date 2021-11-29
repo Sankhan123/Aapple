@@ -28,7 +28,7 @@ $data = json_decode(file_get_contents("php://input"));
 
         $smt1 = $conn->query($sql1);
 
-        $result = $row->fetchAll(PDO::FETCH_ASSOC);
+        $result = $smt1->fetchAll(PDO::FETCH_ASSOC);
 
         $count1 = $smt1->rowCount();
 
@@ -36,7 +36,7 @@ $data = json_decode(file_get_contents("php://input"));
             $response = array(
                 'status' => 'ok',
                 'message' => 'Login Success',
-                'role' => $result['user_role']
+                'role' => $result[0]['user_role']
             );
         }
         else{
