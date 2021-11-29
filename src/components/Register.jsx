@@ -4,14 +4,14 @@ import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 const SignupSchema = Yup.object().shape({
-  gstNumber: Yup.string().required("Required"),
+  gst_number: Yup.string().required("Required"),
   password: Yup.string()
     .min(6, "Too Short! Password must be atleast 6 characters")
     .max(50, "Too Long!")
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
-  contactPerson: Yup.string().required("Required"),
-  contactNumber: Yup.string().required("Required"),
+  contact_person: Yup.string().required("Required"),
+  phone: Yup.string().required("Required"),
 });
 const loginPageStyle = {
   margin: "32px auto 37px",
@@ -29,16 +29,16 @@ const Register = () => {
         initialValues={{
           email: "",
           password: "",
-          contactPerson: "",
-          gstNumber: "",
-          contactNumber: "",
-          companyName: "",
+          contact_person: "",
+          gst_number: "",
+          phone: "",
+          company_name: "",
           address: "",
           district: "",
           city: "",
           state: "",
           zip: "",
-          alternateNumber: "",
+          alternate_number: "",
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
@@ -59,8 +59,8 @@ const Register = () => {
               console.log(response);
 
               response.data.status === "ok"
-                ? alert(response.data.statusText)
-                : alert(response.data.statusText);
+                && alert(response.data.message)
+                
             })
             .catch((error) => {
               // HANDLE ERROR
@@ -114,7 +114,7 @@ const Register = () => {
                 <label htmlFor="companyName">Company Name</label>
                 <Field
                   type="text"
-                  name="companyName"
+                  name="company_name"
                   className={" form-control"}
                   placeholder="Company Name"
                 />
@@ -125,13 +125,13 @@ const Register = () => {
                 </label>
                 <Field
                   type="text"
-                  name="gstNumber"
+                  name="gst_number"
                   className=" form-control"
                   placeholder="GST Number"
                 />
-                {errors.gstNumber && touched.gstNumber ? (
+                {errors.gst_number && touched.gst_number ? (
                   <div className="help-block text-danger">
-                    {errors.gstNumber}
+                    {errors.gst_number}
                   </div>
                 ) : null}
               </div>
@@ -141,13 +141,13 @@ const Register = () => {
                 </label>
                 <Field
                   type="text"
-                  name="contactPerson"
+                  name="contact_person"
                   className=" form-control"
-                  placeholder="GST Number"
+                  placeholder="Contact Person Name"
                 />
-                {touched.contactPerson && errors.contactPerson && (
+                {touched.contact_person && errors.contact_person && (
                   <span className="help-block text-danger">
-                    {errors.contactPerson}
+                    {errors.contact_person}
                   </span>
                 )}
               </div>
@@ -202,13 +202,13 @@ const Register = () => {
                 </label>
                 <Field
                   type="text"
-                  name="contactNumber"
+                  name="phone"
                   className="form-control"
                   placeholder="Contact Number"
                 />
-                {touched.contactNumber && errors.contactNumber && (
+                {touched.phone && errors.phone && (
                   <span className="help-block text-danger">
-                    {errors.contactNumber}
+                    {errors.phone}
                   </span>
                 )}
               </div>
@@ -216,7 +216,7 @@ const Register = () => {
                 <label htmlFor="alternateNumber">Alternate Number</label>
                 <Field
                   type="text"
-                  name="alternateNumber"
+                  name="alternate_number"
                   className={"form-control"}
                   placeholder="Alternate Number"
                 />

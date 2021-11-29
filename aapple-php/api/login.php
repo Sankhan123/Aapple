@@ -14,7 +14,7 @@ $data = json_decode(file_get_contents("php://input"));
     $password = $data->password;
     
 
-    $sql = "SELECT * FROM `user_register` WHERE `email`='$email' and `password`='$password'";
+    $sql = "SELECT * FROM `user_register` WHERE `email`='$email' and `password`='$password' and `user_status`='true'";
 
     $smt = $conn->query($sql);
 
