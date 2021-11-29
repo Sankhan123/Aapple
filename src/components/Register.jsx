@@ -13,7 +13,7 @@ const SignupSchema = Yup.object().shape({
   contactPerson: Yup.string().required("Required"),
   contactNumber: Yup.string().required("Required"),
 });
-const loginPageStyle = {
+const RegisterPageStyle = {
   margin: "32px auto 37px",
   maxWidth: "530px",
   background: "#fff",
@@ -71,7 +71,7 @@ const Register = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="login-wrapper" style={loginPageStyle}>
+            <div className="login-wrapper" style={RegisterPageStyle}>
               <h2>Register Page</h2>
               <div>
                 <p>
