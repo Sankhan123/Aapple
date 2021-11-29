@@ -32,6 +32,13 @@ const Register = () => {
           contactPerson: "",
           gstNumber: "",
           contactNumber: "",
+          companyName: "",
+          address: "",
+          district: "",
+          city: "",
+          state: "",
+          zip: "",
+          alternateNumber: "",
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
