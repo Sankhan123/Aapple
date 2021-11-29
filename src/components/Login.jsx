@@ -45,7 +45,11 @@ const Login = () => {
               // HANDLE RESPONSE DATA
               console.log(response);
               if (response.data.status === "ok") {
-                Navigate("/dashboard");
+                if (response.data.role === "admin") {
+                  Navigate("/dashboard");
+                } else {
+                  alert("you are not a admin");
+                }
               } else {
                 alert(response.data.message);
                 Navigate("/");
