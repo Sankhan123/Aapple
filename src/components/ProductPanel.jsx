@@ -44,9 +44,9 @@ const ProductPanel = () => {
 const Product = (props) => {
   return(
     <tr>
-      <td ><span class="badge bg-primary">{props.id}</span></td>
+      <td ><span className="badge bg-primary">{props.id}</span></td>
       <td>{props.prod.cat_name}</td>
-      <td><span class="badge rounded-pill bg-success">Available</span></td>
+      <td><span className="badge rounded-pill bg-success">Available</span></td>
     </tr>
   );
 };
