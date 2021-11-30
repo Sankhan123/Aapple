@@ -30,6 +30,7 @@ const ProductPanel = () => {
       {products&&products.map((data,index)=>{
         return(
           <Product 
+          key={index+1}
           id={index+1}
           prod={data}
           />
