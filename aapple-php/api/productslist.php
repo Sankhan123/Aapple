@@ -6,7 +6,7 @@
     
         require_once('config.php');
     
-            $query = "SELECT * FROM products";
+            $query = "SELECT * FROM product_category";
             
             $row = $conn->query($query);
             
@@ -19,5 +19,4 @@
             } else {
                 echo "failed";
             }
-    ?>
 ?>
