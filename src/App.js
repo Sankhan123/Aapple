@@ -8,6 +8,12 @@ import NewOrders from "./components/NewOrders";
 import AllDealers from "./components/AllDealers";
 import ProductPanel from "./components/ProductPanel";
 
+//user dashboard
+
+import UserDashboard from "./user-dashboard/userDashboard";
+import Purchase from "./user-dashboard/Purchase";
+import Transaction from "./user-dashboard/Transaction";
+
 function App() {
   return (
     <Router>
@@ -20,6 +26,11 @@ function App() {
           <Route path="all-dealers" element={<AllDealers />} />
           <Route path="new-orders" element={<NewOrders />} />
           <Route path="product-panel" element={<ProductPanel />} />
+        </Route>
+        <Route path="/user-dashboard" element={<UserDashboard />}>
+          <Route path="purchase" element={<Purchase />} />
+          <Route path="transaction" element={<Transaction />} />
+          
         </Route>
         </Routes>
       </>
