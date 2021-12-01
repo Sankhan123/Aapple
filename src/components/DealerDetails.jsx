@@ -40,7 +40,7 @@ function DealerDetails() {
         </ul>
       </div>
       <div className = "mt-4 text-center">
-        <Link to=".." className="btn btn-danger">Back</Link>
+        <Link to=".." className="btn btn-danger">All dealers</Link>
       </div>
     </section>
   );
