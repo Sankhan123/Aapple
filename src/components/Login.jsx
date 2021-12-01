@@ -47,8 +47,8 @@ const Login = () => {
               if (response.data.status === "ok") {
                 if (response.data.role === "admin") {
                   Navigate("/dashboard");
-                } else {
-                  alert("you are not a admin");
+                } else if(response.data.role === "user") {
+                  Navigate("/user-dashboard");
                 }
               } else {
                 alert(response.data.message);
