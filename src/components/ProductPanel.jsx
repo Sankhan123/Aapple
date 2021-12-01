@@ -18,7 +18,7 @@ const ProductPanel = () => {
 
     return <section className="container">
         <h1 className="alert alert-info mb-3 p-2">Product Panel</h1>
-        <table className="table">
+        <table className="table table-hover">
     <thead className="table-dark">
       <tr>
       <th scope="col">S.No</th>
