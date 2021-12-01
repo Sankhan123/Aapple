@@ -10,6 +10,7 @@ const Dashboard = () => {
         <section className="col bg-light">
           {location.pathname === "/dashboard/" && <h1>hello world</h1>}
           <Outlet />
+          <h1 className= "bg-blue-700">hglsa</h1>
         </section>
       </div>
     </main>
