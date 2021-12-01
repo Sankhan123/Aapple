@@ -7,6 +7,7 @@ import DealerRequest from "./components/DealerRequest";
 import NewOrders from "./components/NewOrders";
 import AllDealers from "./components/AllDealers";
 import ProductPanel from "./components/ProductPanel";
+import DealerDetails from "./components/DealerDetails";
 
 //user dashboard
 
@@ -23,7 +24,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route path="dealer-request" element={<DealerRequest />} />
-          <Route path="all-dealers" element={<AllDealers />} />
+          <Route path="all-dealers" element={<AllDealers />} >
+            <Route path=":id"element={<DealerDetails />}/>  
+          </ Route>
           <Route path="new-orders" element={<NewOrders />} />
           <Route path="product-panel" element={<ProductPanel />} />
         </Route>

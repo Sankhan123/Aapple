@@ -1,10 +1,11 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useLocation, Outlet, useNavigate } from "react-router";
 
 const AllDealers = () => {
   const [users, setUsers] = useState(null);
-
+  let location = useLocation();
   useEffect(() => {
     axios
       .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
@@ -22,13 +23,14 @@ const AllDealers = () => {
   return (
     <section>
       {/* requests table */}
-      <section className="requests-table-wrapper mt-4 pt-4">
-        <div className="card ">
-          <h5 className="card-header bg-primary text-white display-6 fw-normal">
-            Dealer Requests
-          </h5>
-          <div className="card-body">
-            <table className="table table-striped">
+      <Outlet />
+      {location.pathname === "/dashboard/all-dealers" && (
+        <section className="requests-table-wrapper mt-4 pt-4">
+          <div className="container">
+            <h5 className="alert alert-primary display-6 fw-normal">
+              All Dealers
+            </h5>
+            <table className="table table-hover">
               <thead>
                 <tr className="table-dark">
                   <th scope="col">Sno</th>
@@ -43,23 +45,23 @@ const AllDealers = () => {
                 {users &&
                   users.map((user, index) => {
                     return (
-                      <Dealer
-                        key={index + 1}
-                        userData = {user}
-                        id={index + 1}
-                      />
+                      <Dealer key={index + 1} userData={user} id={index + 1} />
                     );
                   })}
               </tbody>
             </table>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </section>
   );
 };
 
 const Dealer = (props) => {
+  let Navigate = useNavigate();
+  const navigateToUser = () => {
+    Navigate(`${props.id}`, { state: props.userData });
+  };
   return (
     <tr>
       <th scope="row">{props.id}</th>
@@ -68,11 +70,11 @@ const Dealer = (props) => {
       <td>{props.userData.address}</td>
       <td>{props.userData.phone}</td>
       <td className="d-flex gap-2">
-          <button className="btn btn-success" >
-            Details
-          </button>
-          <button className="btn btn-info">Transaction</button>
-        </td>
+        <button className="btn btn-success" onClick={navigateToUser}>
+          Details
+        </button>
+        <button className="btn btn-info">Transaction</button>
+      </td>
     </tr>
   );
 };
