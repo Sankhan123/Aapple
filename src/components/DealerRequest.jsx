@@ -23,12 +23,11 @@ const DealerRequest = () => {
     <section>
       {/* requests table */}
       <section className="requests-table-wrapper mt-4 pt-4">
-        <div className="card ">
-          <h5 className="card-header bg-primary text-white display-6 fw-normal">
+        <div className="container">
+          <h5 className="alert alert-primary display-6 fw-normal">
             Dealer Requests
           </h5>
-          <div className="card-body">
-            <table className="table table-striped">
+            <table className="table table-hover">
               <thead>
                 <tr className="table-dark">
                   <th scope="col">Sno</th>
@@ -56,7 +55,6 @@ const DealerRequest = () => {
               </tbody>
             </table>
           </div>
-        </div>
       </section>
     </section>
   );
