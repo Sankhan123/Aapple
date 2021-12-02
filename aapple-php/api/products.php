@@ -60,8 +60,8 @@ header("Content-type:application/json");
                 "message" => "Can't fetch product details"
             );
         }
-        //echo json_encode($response);
-                echo "<pre>";
-                print_r($response);
-                echo "</pre>";
+        echo json_encode($response);
+                // echo "<pre>";
+                // print_r($response);
+                // echo "</pre>";
 ?>
