@@ -8,7 +8,7 @@ const UserDashboard = () => {
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
-          {location.pathname === "/user-dashboard" && <h1>hello world</h1>}
+          {location.pathname === "/user-dashboard" && <h1>User DashBoard</h1>}
           <Outlet />
          
         </section>
