@@ -26,8 +26,6 @@ header("Content-type:application/json");
 				$p_row = $conn->query($sub_query);
 
                 $p_result = $p_row->fetchAll(PDO::FETCH_ASSOC);
-
-		        $count_sub = $p_row->rowCount();
 				
 				$c_result[$key]['products']=$p_result;
 
@@ -61,7 +59,5 @@ header("Content-type:application/json");
             );
         }
         echo json_encode($response);
-                // echo "<pre>";
-                // print_r($response);
-                // echo "</pre>";
+    
 ?>
