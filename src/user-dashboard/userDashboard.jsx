@@ -8,7 +8,7 @@ const UserDashboard = () => {
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
-          {location.pathname === "/dashboard/" && <h1>hello world</h1>}
+          {location.pathname === "/user-dashboard" && <h1>hello world</h1>}
           <Outlet />
          
         </section>
@@ -25,7 +25,7 @@ const DashboardNav = () => {
         <h2 className="fs-2 text-uppercase fw-light">user</h2>
       </div>
       <ul className="list-group flex gap-2 mt-4 pt-4 text-center">
-        <Link to="./" className="text-decoration-none link-dark">
+        <Link to="." className="text-decoration-none link-dark">
           <li className="list-group-item rounded">Dashboard</li>
         </Link>
         <Link to="./purchase" className="text-decoration-none link-dark">
