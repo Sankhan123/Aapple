@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ const SigninSchema = Yup.object().shape({
 });
 
 function Transaction() {
-  let Navigate = useNavigate();
+  // let Navigate = useNavigate();
   return (
 
     <React.Fragment>
