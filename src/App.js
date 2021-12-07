@@ -1,8 +1,8 @@
 import "./App.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
+import Login from "./screens/Login";
+import Register from "./screens/Register";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./screens/Dashboard";
 import DealerRequest from "./components/DealerRequest";
 import NewOrders from "./components/NewOrders";
 import AllDealers from "./components/AllDealers";
@@ -11,9 +11,9 @@ import DealerDetails from "./components/DealerDetails";
 
 //user dashboard
 
-import UserDashboard from "./user-dashboard/userDashboard";
-import Purchase from "./user-dashboard/Purchase";
-import Transaction from "./user-dashboard/Transaction";
+import UserDashboard from "./screens/userDashboard";
+import Purchase from "./components/Purchase";
+import Transaction from "./components/Transaction";
 
 function App() {
   return (
