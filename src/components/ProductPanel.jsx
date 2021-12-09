@@ -6,15 +6,21 @@ const ProductPanel = () => {
   const [products, setProducts] = useState(null);
    useEffect(() => {
 
-    const res = axios.get("http://127.0.0.1:8000/api/getcategory");
+    async function get_list(){
+      const res =await axios.get("http://127.0.0.1:8000/api/getcategory");
 
     if(res){
-      console.log(res);
-      let productList = res.data;
+      console.log(res.data);
+      let productList = res.data.category;
+      console.log(typeof productList);
       setProducts(productList);
     }
+    }
+
+    get_list();
 
   }, []);
+
   
     return <section className="container">
         <h1 className="alert alert-info mb-3 p-2">Product Panel</h1>
