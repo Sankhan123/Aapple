@@ -7,7 +7,7 @@ const DealerRequest = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
+      .get("http://127.0.0.1:8000/api/dealersrequest")
       .then((response) => {
         let falseData = response.data.filter(
           (data) => data.user_status === "false"

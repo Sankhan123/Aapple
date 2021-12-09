@@ -4,18 +4,18 @@ import axios from "axios";
 
 const ProductPanel = () => {
   const [products, setProducts] = useState(null);
-  useEffect(() => {
-    axios
-      .get("http://localhost/Aapple/aapple-php/api/productslist.php")
-      .then((response) => {
-        let productList = response.data;
-        setProducts(productList);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+   useEffect(() => {
 
+    const res = axios.get("http://127.0.0.1:8000/api/getcategory");
+
+    if(res){
+      console.log(res);
+      let productList = res.data;
+      setProducts(productList);
+    }
+
+  }, []);
+  
     return <section className="container">
         <h1 className="alert alert-info mb-3 p-2">Product Panel</h1>
         <table className="table table-hover">

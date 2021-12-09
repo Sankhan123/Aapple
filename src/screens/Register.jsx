@@ -43,30 +43,19 @@ const Register = () => {
         validationSchema={SignupSchema}
         onSubmit={(values) => {
           console.log(values);
-          const REST_API_URL =
-            "http://localhost/Aapple/aapple-php/api/register.php";
-
-          axios({
-            method: "post",
-            url: REST_API_URL,
-            data: {
-              ...values,
-            },
-            config: { headers: { "Content-Type": "application/json" } },
-          })
-            .then((response, props) => {
+          const response = axios.post('http://127.0.0.1:8000/api/dealer-register',values);
+            
               // HANDLE RESPONSE DATA
               console.log(response);
-              if (response.data.status === "ok") {
+              if (response.data.status === 200) {
                 alert(response.data.message);
+                console.log(response.data.message);
                 Navigate("/login");
+              }else{
+                alert("Something went wrong");
               }
-            })
-            .catch((error) => {
-              // HANDLE ERROR
-              console.log(error);
-            });
-        }}
+         
+        }} 
       >
         {({ errors, touched }) => (
           <Form>

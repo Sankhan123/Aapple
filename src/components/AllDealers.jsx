@@ -8,7 +8,7 @@ const AllDealers = () => {
   let location = useLocation();
   useEffect(() => {
     axios
-      .get("http://localhost/Aapple/aapple-php/api/dealersrequest.php")
+      .get("http://127.0.0.1:8000/api/dealersrequest")
       .then((response) => {
         let trueData = response.data.filter(
           (data) => data.user_status === "true"
