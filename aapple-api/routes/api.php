@@ -19,6 +19,11 @@ Route::post('/dealer-register',[DealerController::class,'register']);
 
 Route::get('/dealersrequest',[DealerController::class,'get_dealer_requests']);
 
+Route::put('/update-dealer/{id}',[DealerController::class,'update_dealer_status']);
+
+Route::delete('/delete-dealer/{id}',[DealerController::class,'delete_dealer']);
+
+
 Route::get('/getcategory',[ProductController::class,'get_categry_list']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

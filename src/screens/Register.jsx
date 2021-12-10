@@ -41,15 +41,15 @@ const Register = () => {
           alternate_number: "",
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values) => {
+        onSubmit={async(values) => {
           console.log(values);
-          const response = axios.post('http://127.0.0.1:8000/api/dealer-register',values);
+          const response =await axios.post('http://127.0.0.1:8000/api/dealer-register',values);
             
               // HANDLE RESPONSE DATA
-              console.log(response);
+              //console.log(response);
               if (response.data.status === 200) {
                 alert(response.data.message);
-                console.log(response.data.message);
+               // console.log(response.data.message);
                 Navigate("/login");
               }else{
                 alert("Something went wrong");

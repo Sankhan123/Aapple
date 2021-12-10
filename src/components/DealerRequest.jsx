@@ -6,18 +6,18 @@ const DealerRequest = () => {
   const [requests, setRequests] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/dealersrequest")
-      .then((response) => {
-        let falseData = response.data.filter(
-          (data) => data.user_status === "false"
-        );
-        setRequests(falseData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [ requests ]);
+
+    async function getrequest(){
+      const res =await axios.get("http://127.0.0.1:8000/api/dealersrequest");
+
+    if(res){
+      console.log(res.data);
+      let DealerList = res.data.dealers;
+      setRequests(DealerList);
+    }
+    }
+    getrequest();
+  }, []);
 
   return (
     <section>
@@ -61,26 +61,28 @@ const DealerRequest = () => {
 };
 
 const Dealer = (props) => {
-  const acceptInvitation = () => {
-  props.data.user_status = "true";
-  const updateData = { user_status: props.data.user_status, reg_id: props.data.reg_id };
-  console.log(updateData);
-    axios.put('http://localhost/Aapple/aapple-php/api/updatedealer.php', updateData)
-    .then(response => { console.log(response) })
-    .catch(error => {
-        console.error('There was an error!', error);
-    });
+  const acceptInvitation = async() => {
+  const updateId = props.data.id ;
+
+  console.log(updateId);
+
+  const res =await axios.put(`http://127.0.0.1:8000/api/update-dealer/${updateId}`);
+
+  if(res){
+    console.log(res);
+  }
+
   };
-  const deleteInvitation = () => {
+  const deleteInvitation = async() => {
     alert("Are you sure to want to delete..?")
     props.data.user_status = 'null';
     props.removeRequests((prevdata) => [...prevdata, props.data]);
-    const deleteData = {reg_id: props.data.reg_id };
-    axios.put('http://localhost/Aapple/aapple-php/api/deletedealer.php', deleteData)
-    .then(response => { console.log(response) })
-    .catch(error => {
-        console.error('There was an error!', error);
-    });
+    const deleteId = props.data.id;
+    alert(deleteId);
+    const res =await axios.delete(`http://127.0.0.1:8000/api/delete-dealer/${deleteId}`)
+    if(res){
+      console.log(res);
+    }
   };
   return (
     <tr>

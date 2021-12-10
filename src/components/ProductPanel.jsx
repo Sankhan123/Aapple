@@ -12,7 +12,7 @@ const ProductPanel = () => {
     if(res){
       console.log(res.data);
       let productList = res.data.category;
-      console.log(typeof productList);
+      console.log(productList);
       setProducts(productList);
     }
     }

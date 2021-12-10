@@ -7,17 +7,18 @@ const AllDealers = () => {
   const [users, setUsers] = useState(null);
   let location = useLocation();
   useEffect(() => {
-    axios
-      .get("http://127.0.0.1:8000/api/dealersrequest")
-      .then((response) => {
-        let trueData = response.data.filter(
-          (data) => data.user_status === "true"
-        );
-        setUsers(trueData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+
+    async function getdealers(){
+      const res =await axios.get("http://127.0.0.1:8000/api/dealersrequest");
+
+    if(res){
+      //console.log(res.data);
+      let trueData = res.data.ondealers;
+      setUsers(trueData);
+    }
+    }
+    getdealers();
+
   }, []);
 
   return (

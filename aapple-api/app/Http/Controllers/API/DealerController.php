@@ -33,12 +33,38 @@ class DealerController extends Controller
 
     public function get_dealer_requests(){
 
-        
-        $dealer_requests = Dealer::all();
+        $dealer_requests = Dealer::where('user_role','=','user')->where('user_status','=','false')->get();
+
+        $dealer_list = Dealer::where('user_role','=','user')->where('user_status','=','true')->get();
 
         return response()->json([
             'status' => 200,
-            'data' => $dealer_requests,
+            'dealers' => $dealer_requests,
+            'ondealers' => $dealer_list,
         ]);
     }
+
+    public function update_dealer_status($id){
+
+        $update_status = Dealer::where("id", $id)->update(["user_status" => "true"]);
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Dealer status updated',
+        ]);
+
+    }
+
+    public function delete_dealer($id){
+
+        $dealer = Dealer::find($id);
+        $dealer -> delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Dealer deleted successfully',
+        ]);
+
+    }
+
 }
