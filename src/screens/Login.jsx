@@ -28,37 +28,33 @@ const Login = () => {
           password: "",
         }}
         validationSchema={SigninSchema}
-        onSubmit={(values) => {
-          console.log(values);
-          const REST_API_URL =
-            "http://localhost/Aapple/aapple-php/api/login.php";
+        onSubmit={async(values) => {
 
-          axios({
-            method: "post",
-            url: REST_API_URL,
-            data: {
-              ...values,
-            },
-            config: { headers: { "Content-Type": "application/json" } },
-          })
-            .then((response, props) => {
-              // HANDLE RESPONSE DATA
-              console.log(response);
-              if (response.data.status === "ok") {
-                if (response.data.role === "admin") {
-                  Navigate("/dashboard");
-                } else if(response.data.role === "user") {
-                  Navigate("/user-dashboard");
-                }
-              } else {
-                alert(response.data.message);
-                Navigate("/");
+          console.log(values);
+          const email = values.email;
+          const password = values.password;
+
+          const response = await axios.get(`http://127.0.0.1:8000/api/getlogin/${email}/${password}`);
+
+          console.log(response);
+
+          if (response.data.status === 200 ) {
+            if(response.data.data.user_status === "true"){
+
+              if (response.data.data.user_role === "admin" ) {
+                Navigate("/dashboard");
               }
-            })
-            .catch((error) => {
-              // HANDLE ERROR
-              console.log(error);
-            });
+              else{
+                Navigate("/user-dashboard");
+              }
+            }else{
+              alert("Sorry! Cannot login, please wait for admin approval or contact admin..");
+            }
+          }
+          else {
+            alert(response.data.message);
+            Navigate("/login");
+          }
         }}
       >
         {({ errors, touched }) => (

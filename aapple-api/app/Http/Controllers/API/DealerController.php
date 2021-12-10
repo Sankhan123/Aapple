@@ -67,4 +67,23 @@ class DealerController extends Controller
 
     }
 
+    public function check_login($email,$password){
+
+        $login_request = Dealer::where('email','=',$email)->where('password','=',$password)->get()->first();
+
+        if ($login_request) { 
+            return response()->json([
+                'status' => 200,
+                'data' => $login_request,
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 'fail',
+                'message' => 'Username and password incorrect',
+            ]);
+        }
+        
+    }
+
 }
