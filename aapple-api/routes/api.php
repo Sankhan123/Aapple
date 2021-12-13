@@ -25,6 +25,7 @@ Route::delete('/delete-dealer/{id}',[DealerController::class,'delete_dealer']);
 
 Route::get('getlogin/{val1}/{val2}',[DealerController::class,'check_login']);
 
+Route::get('get-products',[ProductController::class,'get_products']);
 
 Route::get('/getcategory',[ProductController::class,'get_categry_list']);
 

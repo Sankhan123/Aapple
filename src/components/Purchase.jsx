@@ -1,7 +1,24 @@
+import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 
 
 function Purchase() {
+
+  useEffect(() => {
+    async function getproducts(){
+      const response = await axios.get("http://127.0.0.1:8000/api/get-products");
+
+      if(response){
+        console.log(response);
+      }
+    }
+
+    getproducts();
+   
+  }, [])
+
+
     return(
         <>
             <PurchaseCategory catagoryId = {1}/>
@@ -15,10 +32,10 @@ function PurchaseCategory({catagoryId}) {
   return (
     <>
       <section>
-        <div class="alert alert-primary" role="alert">
+        <div className="alert alert-primary" role="alert">
           Product Catagory {catagoryId}
         </div>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">Product</th>
