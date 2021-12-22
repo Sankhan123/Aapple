@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TestMail;
 use App\Models\Dealer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class DealerController extends Controller
 {
@@ -24,6 +26,13 @@ class DealerController extends Controller
         $dealer->alternate_number = $request->input('alternate_number');
 
         $dealer->save();
+
+        $details = [
+            'title' => $request->input('email'),
+            'body' => 'This is for testing new dealer notifications'
+        ];
+
+        Mail::to($request->input('email'))->send(new TestMail($details));
 
         return response()->json([
             'status' => 200,
