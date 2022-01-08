@@ -23,9 +23,7 @@ const AllDealers = () => {
 
   return (
     <section>
-      {/* requests table */}
-      <Outlet />
-      {location.pathname === "/dashboard/all-dealers" && (
+      {location.pathname === "/admin-dashboard/all-dealers" && (
         <section className="requests-table-wrapper mt-4 pt-4">
           <div className="container">
             <h5 className="alert alert-primary display-6 fw-normal">
@@ -54,6 +52,8 @@ const AllDealers = () => {
           </div>
         </section>
       )}
+      {/* requests table */}
+      <Outlet />
     </section>
   );
 };

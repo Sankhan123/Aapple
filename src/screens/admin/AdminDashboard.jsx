@@ -8,7 +8,7 @@ const AdminDashboard = () => {
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
-          {location.pathname === "/dashboard" && <h1>Admin DashBoard</h1>}
+          {location.pathname === "/admin-dashboard" && <h1>Admin DashBoard</h1>}
           <Outlet />
         </section>
       </div>
