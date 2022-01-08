@@ -1,7 +1,7 @@
 import React from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const AdminDashboard = () => {
   let location = useLocation();
   return (
     <main className="container-fluid">
@@ -49,4 +49,4 @@ const DashboardNav = () => {
     </nav>
   );
 };
-export default Dashboard;
+export default AdminDashboard;
