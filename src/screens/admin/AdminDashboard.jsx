@@ -1,14 +1,14 @@
 import React from "react";
 import { Outlet, Link, useLocation, useNavigate } from "react-router-dom";
 
-const Dashboard = () => {
+const AdminDashboard = () => {
   let location = useLocation();
   return (
     <main className="container-fluid">
       <div className="row vh-100">
         <DashboardNav />
         <section className="col bg-light">
-          {location.pathname === "/dashboard" && <h1>Admin DashBoard</h1>}
+          {location.pathname === "/admin-dashboard" && <h1>Admin DashBoard</h1>}
           <Outlet />
         </section>
       </div>
@@ -49,4 +49,4 @@ const DashboardNav = () => {
     </nav>
   );
 };
-export default Dashboard;
+export default AdminDashboard;
