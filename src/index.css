@@ -1,2 +1,4 @@
-
-
+.form-control::placeholder {
+    font-weight: 500 !important;
+    padding-left: 10px !important;
+  }
