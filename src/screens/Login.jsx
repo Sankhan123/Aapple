@@ -28,7 +28,7 @@ const Login = () => {
           password: "",
         }}
         validationSchema={SigninSchema}
-        onSubmit={async(values) => {
+        onSubmit={async (values) => {
 
           console.log(values);
           const email = values.email;
@@ -38,16 +38,16 @@ const Login = () => {
 
           console.log(response);
 
-          if (response.data.status === 200 ) {
-            if(response.data.data.user_status === "true"){
+          if (response.data.status === 200) {
+            if (response.data.data.user_status === "true") {
 
-              if (response.data.data.user_role === "admin" ) {
+              if (response.data.data.user_role === "admin") {
                 Navigate("/dashboard");
               }
-              else{
+              else {
                 Navigate("/user-dashboard");
               }
-            }else{
+            } else {
               alert("Sorry! Cannot login, please wait for admin approval or contact admin..");
             }
           }
@@ -59,17 +59,19 @@ const Login = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="login-wrapper" style={loginPageStyle}>
-              <h2>Login Page</h2>
-              <div>
-                <p>
-                  To <Link to="/register">Register</Link>
-                </p>
-              </div>
-              <div className="form-group mt-3 ">
-                <label htmlFor="email">
-                  Email <span className="text-danger">*</span>
-                </label>
+            
+            <div className="d-flex  flex-column justify-content-center align-items-center min-vh-100">
+            <div className="card  p-2 " style={{width: 400}}>
+              <div className="container">
+              <h3 className="my-3 text-center ">LOG IN</h3>
+                <div className="row">
+
+               
+
+                
+
+                <div className="mt-3  col-sm-12  form-group  ">
+               
                 <div>
                   <Field
                     type="text"
@@ -81,11 +83,10 @@ const Login = () => {
                     <div className="help-block text-danger">{errors.email}</div>
                   ) : null}
                 </div>
-              </div>
-              <div className="form-group  mt-3 ">
-                <label htmlFor="password">
-                  Password <span className="text-danger">*</span>
-                </label>
+              </div>  
+
+              <div className="form-group  col-sm-12  mt-3 ">
+               
                 <Field
                   type="password"
                   name="password"
@@ -98,10 +99,27 @@ const Login = () => {
                   </div>
                 ) : null}
               </div>
-              <button type="submit" className="btn mt-3 btn-primary">
-                Login
+
+                  <div className="mt-3  col-sm-12">
+                  <button type="submit" className="btn my-3 co">
+                LOG IN
               </button>
+                  </div>
+                  <div className="text-center py-3 fw-bold">
+               <p>Don't have an account? <Link to="/register">Register</Link></p>
+               </div>
+
+
+                  </div>
+                </div>
+              </div>
             </div>
+
+
+
+
+
+          
           </Form>
         )}
       </Formik>
