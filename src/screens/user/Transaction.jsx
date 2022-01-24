@@ -7,19 +7,19 @@ import axios from "axios";
 const SigninSchema = Yup.object().shape({
   mode: Yup.string()
     .required("Required"),
-    date: Yup.string()
+  date: Yup.string()
     .required("Required"),
   payment: Yup.number().required("Required").min(0, 'Min value 0.'),
 });
 
-function Transaction() {
+export default  function Transaction() {
   // let Navigate = useNavigate();
   return (
 
     <React.Fragment>
       <Formik
         initialValues={{
-          date:"",
+          date: "",
           mode: "",
           payment: "",
         }}
@@ -50,46 +50,47 @@ function Transaction() {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="login-wrapper col">
-              <h5 className="alert alert-primary display-7 fw-normal text-center">
+            <div className="login-wrapper my-3 col">
+              <h5 className="alert co display-7  text-center">
                 Dealer Transaction
               </h5>
-              <div className="form-group row">
-                <div className="col-lg-6">
+              <div className="form-group row my-4">
+                <div className="col-lg-6 px-4 fw-bold col-md-6 col-sm-12">
                   Dealer Name:
                 </div>
-                <div className="col-lg-6 text-right">
+                <div className="col-lg-6 px-4 fw-bold pr-1 col-md-6 col-sm-12 text-right">
                   Credit Balance : Rs.________________
                 </div>
               </div>
-              <div className="container mt-2 card p-3">
-                <h5 className="text-center">New Transaction</h5>
-                <div className="form-group">
 
-                  <div className="form-group row mb-3 mt-2 text-right">
-
-                    <div className="col-lg-8">
-                    </div>
-                    <label htmlFor="date" className="col-lg-2">Date :</label>
-                    <div className="col-lg-2">
-                      <Field
-                        name="date"
-                        type="date"
-                        defaultValue=""
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                      {errors.date && touched.date ? (
-                        <div className="help-block text-danger">{errors.date}</div>
-                      ) : null}
-                    </div>
+              <div className="container mt-3 card p-3">
+                <div className="row">
+                  <div className="col-12">
+                  <h4 className="mt-3 text-center ">New Transaction</h4>
                   </div>
+                  <div className="d-flex  flex-column justify-content-center align-items-center ">
+                    <div className="mt-3  col-sm-12  form-group ">
+                      <div className="row d-flex justify-content-center align-items-center">
 
-                  <div className="form-group row mb-3 mt-2">
-                    <label htmlFor="Mode" className="col-lg-2">Mode of Transaction:</label>
-                    <div className="col-lg-4">
-                      <Field
+                        <div className="col-3 mt-4"><span className="fw-bold">Date :</span></div>
+                        <div className="col-9 mt-4">
+                 
+                          <Field style={{ border:"1px solid #b3b3b39d"}}
+                            className='p-1 rounded-3'
+                            name="date"
+                            type="date"
+                            defaultValue=""
+                            InputLabelProps={{
+                              shrink: true,
+                            }}
+                          />
+                          {errors.date && touched.date ? (
+                            <div className="help-block  text-danger">{errors.date}</div>
+                          ) : null}
+                        </div>
+                        <div className="col-3 mt-4 "><span className="fw-bold">Mode of Transaction : </span></div>
+                        <div className="col-9 mt-4">
+                        <Field
                         type="text"
                         name="mode"
                         className={"form-control"}
@@ -98,30 +99,41 @@ function Transaction() {
                       {errors.mode && touched.mode ? (
                         <div className="help-block text-danger">{errors.mode}</div>
                       ) : null}
-                    </div>
-                    <label htmlFor="payment" className="col-lg-2">
-                      Amount of payment :
-                    </label>
-                    <div className="col-lg-4">
-                      <Field
+                        </div>
+
+
+
+                        <div className="col-3 mt-4"><span className="fw-bold"> Amount of payment : </span></div>
+                        <div className=" mt-4 col-9">
+                        <Field
                         type="text"
                         name="payment"
                         className={" form-control"}
                         placeholder="Payment"
                       />
                       {errors.payment && touched.payment ? (
-                        <div className="help-block text-danger">{errors.payment}</div>
+                        <div className="help-block  text-danger">{errors.payment}</div>
                       ) : null}
+                        </div>
+
+                        <div className="mt-3 text-center col-sm-12">
+                  <button type="submit" className="btn my-3 co">
+                  SUBMIT
+              </button>
+                  </div>
+
+                      </div>
+                      </div>
                     </div>
                   </div>
-                  <div className="text-right">
-                    <button type="submit" className="btn mt-3 btn-primary ">
-                      Submit
-                    </button>
-                  </div>
+
                 </div>
+
+               
+
+
+
               </div>
-            </div>
           </Form>
         )}
       </Formik>
@@ -130,4 +142,5 @@ function Transaction() {
   )
 }
 
-export default Transaction;
+
+
