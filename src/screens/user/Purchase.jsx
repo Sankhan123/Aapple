@@ -31,7 +31,7 @@ function Purchase() {
 function PurchaseCategory({catagoryId}) {
   return (
     <>
-      <section>
+      <section className="col">
         <div className="alert alert-primary" role="alert">
           Product Catagory {catagoryId}
         </div>
