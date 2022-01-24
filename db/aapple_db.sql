@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 09, 2021 at 05:57 AM
+-- Generation Time: Jan 24, 2022 at 06:57 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -85,7 +85,19 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(1, 'san@gmail.com', 'san123', NULL, 'sds', 'sdww', NULL, NULL, NULL, NULL, NULL, '112345678', NULL, 'false', 'user', 0, '2021-12-08 04:58:13', '2021-12-08 04:58:13');
+(1, 'san@gmail.com', 'san123', NULL, 'sds', 'sdww', NULL, NULL, NULL, NULL, NULL, '112345678', NULL, 'true', 'user', 0, '2021-12-08 04:58:13', '2022-01-21 04:50:36'),
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 03:57:41', '2022-01-24 00:16:52'),
+(3, 'saran@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'false', 'user', 0, '2021-12-09 04:01:58', '2021-12-09 07:32:29'),
+(4, 'pavi@gmail.com', 'pavi123', 'sdsd', 'ffrgyt', 'ytyt', 'tyty', 'tyt', 'tyt', 'tyty', 'tyt', 'tyty', 'tyty', 'true', 'user', 0, '2021-12-09 04:03:54', '2021-12-09 09:56:32'),
+(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'false', 'admin', 0, '2021-12-09 04:04:54', '2021-12-09 04:04:54'),
+(7, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:31', '2022-01-21 04:57:59'),
+(8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-21 05:21:18'),
+(9, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'false', 'user', 0, '2021-12-22 00:33:25', '2022-01-21 05:22:16'),
+(10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-21 05:22:46'),
+(11, 'sasa@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'false', 'user', 0, '2021-12-22 00:39:00', '2022-01-23 23:41:17'),
+(12, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:43:32', '2022-01-23 23:42:40'),
+(13, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:47:34', '2022-01-23 23:46:40'),
+(14, 'kanism33@gmail.com', 'sdf2323232', 'dsdfdfd', 'dfdfdf', 'dfdfdf', 'dfdfd', 'fdfd', 'dfdfd', 'fdfdf', 'dfdf', 'dfdf', 'dfdf', 'false', 'user', 0, '2021-12-22 02:44:58', '2022-01-24 00:01:39');
 
 -- --------------------------------------------------------
 
@@ -321,13 +333,21 @@ INSERT INTO `sizes` (`id`, `size_name`, `size_status`, `created_at`, `updated_at
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reg_id` int(111) DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'user',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `reg_id`, `email`, `password`, `user_role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'sds', 2, 'ravi@gmail.com', '$2y$10$z7LPsxtqmMHQuUJi/hpe3ewzf7ElRNKGkjOz4N5HlPEzJ7AeU/yDK', 'user', NULL, '2022-01-24 00:16:52', '2022-01-24 00:16:52');
 
 --
 -- Indexes for dumped tables
@@ -406,7 +426,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `dealers`
 --
 ALTER TABLE `dealers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -442,7 +462,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
