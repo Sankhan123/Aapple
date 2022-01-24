@@ -50,7 +50,7 @@ function Transaction() {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="login-wrapper">
+            <div className="login-wrapper col">
               <h5 className="alert alert-primary display-7 fw-normal text-center">
                 Dealer Transaction
               </h5>

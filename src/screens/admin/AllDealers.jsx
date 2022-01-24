@@ -22,7 +22,7 @@ const AllDealers = () => {
   }, []);
 
   return (
-    <section>
+    <section className="col">
       {location.pathname === "/admin-dashboard/all-dealers" && (
         <section className="requests-table-wrapper mt-4 pt-4">
           <div className="container">

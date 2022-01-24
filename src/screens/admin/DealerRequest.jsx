@@ -20,7 +20,7 @@ const DealerRequest = () => {
   }, []);
 
   return (
-    <section>
+    <section className="col">
       {/* requests table */}
       <section className="requests-table-wrapper mt-4 pt-4">
         <div className="container">

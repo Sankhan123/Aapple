@@ -10,14 +10,7 @@ const SigninSchema = Yup.object().shape({
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
-const loginPageStyle = {
-  margin: "32px auto 37px",
-  maxWidth: "530px",
-  background: "#fff",
-  padding: "30px",
-  borderRadius: "10px",
-  boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.15)",
-};
+
 const Login = () => {
   let Navigate = useNavigate();
   return (
@@ -65,12 +58,7 @@ const Login = () => {
               <div className="container">
               <h3 className="my-3 text-center ">LOG IN</h3>
                 <div className="row">
-
-               
-
-                
-
-                <div className="mt-3  col-sm-12  form-group  ">
+             <div className="mt-3  col-sm-12  form-group  ">
                
                 <div>
                   <Field
