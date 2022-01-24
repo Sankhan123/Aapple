@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use App\Models\Dealer;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -56,6 +57,15 @@ class DealerController extends Controller
     public function update_dealer_status($id){
 
         $update_status = Dealer::where("id", $id)->update(["user_status" => "true"]);
+        $get_data = Dealer::where('id', $id)->get();
+        $reg_id = $get_data[0]['id'];
+        $name = $get_data[0]['company_name'];
+        $email = $get_data[0]['email'];
+        $password = $get_data[0]['password'];
+
+        $user = User::create(array_merge(
+            ['reg_id' => $reg_id, 'name' => $name, 'email' => $email,'password' => bcrypt($password)]
+        ));
 
         return response()->json([
             'status' => 200,
