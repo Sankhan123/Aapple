@@ -232,7 +232,7 @@ const Register = () => {
                 />
               </div>
 <div className="col-12 d-grid">
-<button type="submit" className="fw-bold  btn mt-3 btn-primary">
+<button type="submit" className="fw-bold  btn mt-3 co">
                Register
                </button>
 </div>
