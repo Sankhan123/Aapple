@@ -1,19 +1,26 @@
 import axios from "axios";
 import React from "react";
-import { useEffect } from "react";
-
+import { useEffect,useState } from "react";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 function Purchase() {
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
+    
     async function getproducts(){
-      const response = await axios.get("http://127.0.0.1:8000/api/get-products");
-
-      if(response){
-        console.log(response);
+      try{
+        const res = await axios.get(`${REACT_APP_API_URL}/get-products`,{ headers: authHeader() });
+      if(res){
+        let productList = res.data.products;
+        setProducts(productList);
       }
-    }
+      }catch(e){
+        console.log(e);
+      }
 
+    }
     getproducts();
    
   }, [])

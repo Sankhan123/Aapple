@@ -73,7 +73,7 @@ const Dealer = (props) => {
 
   console.log(updateId);
 
-  const res =await axios.put(`http://127.0.0.1:8000/api/update-dealer/${updateId}`);
+  const res =await axios.put(`${REACT_APP_API_URL}/update-dealer/${updateId}`);
 
   if(res){
     console.log(res);
@@ -86,7 +86,7 @@ const Dealer = (props) => {
     props.removeRequests((prevdata) => [...prevdata, props.data]);
     const deleteId = props.data.id;
     alert(deleteId);
-    const res =await axios.delete(`http://127.0.0.1:8000/api/delete-dealer/${deleteId}`)
+    const res =await axios.delete(`${REACT_APP_API_URL}/delete-dealer/${deleteId}`)
     if(res){
       console.log(res);
     }
