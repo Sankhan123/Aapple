@@ -1,6 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 const DealerRequest = () => {
   const [requests, setRequests] = useState(null);
@@ -8,13 +10,18 @@ const DealerRequest = () => {
   useEffect(() => {
 
     async function getrequest(){
-      const res =await axios.get("http://127.0.0.1:8000/api/dealersrequest");
 
-    if(res){
-      console.log(res.data);
-      let DealerList = res.data.dealers;
-      setRequests(DealerList);
-    }
+      try{
+        const res = await axios.get(`${REACT_APP_API_URL}/dealersrequest`,{ headers: authHeader() });
+      if(res){
+        let DealerList = res.data.dealers;
+        setRequests(DealerList);
+        
+      }
+      }catch(e){
+        console.log(e);
+      }
+
     }
     getrequest();
   }, []);

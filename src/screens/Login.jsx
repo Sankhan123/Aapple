@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import REACT_APP_API_URL from "../assets/header/env";
 const SigninSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Too Short! Password must be atleast 6 characters")
@@ -23,31 +24,31 @@ const Login = () => {
         validationSchema={SigninSchema}
         onSubmit={async (values) => {
 
-          console.log(values);
-          const email = values.email;
-          const password = values.password;
+          let data = {
+            email : values.email,
+            password : values.password,
+        }
+        try{
 
-          const response = await axios.get(`http://127.0.0.1:8000/api/getlogin/${email}/${password}`);
+          const response = await axios.post(`${REACT_APP_API_URL}/login`,data);
 
-          console.log(response);
-
-          if (response.data.status === 200) {
-            if (response.data.data.user_status === "true") {
-
-              if (response.data.data.user_role === "admin") {
+          if (response) {
+            alert("Login Success");
+            sessionStorage.setItem("user",JSON.stringify(response.data));
+              if (response.data.user.user_role === "admin") {
                 Navigate("/dashboard");
               }
               else {
                 Navigate("/user-dashboard");
               }
-            } else {
-              alert("Sorry! Cannot login, please wait for admin approval or contact admin..");
-            }
+
           }
-          else {
-            alert(response.data.message);
-            Navigate("/login");
-          }
+      
+      }catch(e){
+          alert(" Invalid username or password");
+
+      }
+                  
         }}
       >
         {({ errors, touched }) => (

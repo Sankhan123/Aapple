@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 06:57 AM
+-- Generation Time: Jan 25, 2022 at 08:55 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -102,22 +102,6 @@ INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `failed_jobs`
---
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `migrations`
 --
 
@@ -139,19 +123,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2021_12_08_090402_create_dealers_table', 2),
 (6, '2021_12_08_123202_create_categories_table', 3),
 (7, '2021_12_08_123728_create_sizes_table', 3),
-(8, '2021_12_08_145252_create_products_table', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+(8, '2021_12_08_145252_create_products_table', 4),
+(10, '2022_01_25_070935_create_size_table', 5);
 
 -- --------------------------------------------------------
 
@@ -296,6 +269,76 @@ INSERT INTO `products` (`id`, `cat_id`, `product_name`, `product_status`, `creat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `size`
+--
+
+CREATE TABLE `size` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `cat_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `size_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size_status` int(11) NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `size`
+--
+
+INSERT INTO `size` (`id`, `cat_id`, `size_name`, `size_status`, `created_at`, `updated_at`) VALUES
+(1, 1, '50 ML', 1, NULL, NULL),
+(2, 1, '100 ML', 1, NULL, NULL),
+(3, 1, '200 ML', 1, NULL, NULL),
+(4, 1, '500 ML', 1, NULL, NULL),
+(5, 1, '1 LTR', 1, NULL, NULL),
+(6, 1, '4 LTR', 1, NULL, NULL),
+(7, 1, '20 LTR', 1, NULL, NULL),
+(8, 2, '500 ML', 1, NULL, NULL),
+(9, 2, '1 LTR', 1, NULL, NULL),
+(10, 2, '4 LTR', 1, NULL, NULL),
+(11, 3, '200 ML', 1, NULL, NULL),
+(12, 3, '500 ML', 1, NULL, NULL),
+(13, 3, '1 LTR', 1, NULL, NULL),
+(14, 3, '4 LTR', 1, NULL, NULL),
+(15, 3, '20 LTR', 1, NULL, NULL),
+(16, 4, '200 ML', 1, NULL, NULL),
+(17, 4, '500 ML', 1, NULL, NULL),
+(18, 4, '1 LTR', 1, NULL, NULL),
+(19, 4, '4 LTR', 1, NULL, NULL),
+(20, 4, '20 LTR', 1, NULL, NULL),
+(21, 5, '200 ML', 1, NULL, NULL),
+(22, 5, '500 ML', 1, NULL, NULL),
+(23, 5, '1 LTR', 1, NULL, NULL),
+(24, 5, '4 LTR', 1, NULL, NULL),
+(25, 5, '20 LTR', 1, NULL, NULL),
+(26, 6, '500 ML', 1, NULL, NULL),
+(27, 6, '1 LTR', 1, NULL, NULL),
+(28, 6, '4 LTR', 1, NULL, NULL),
+(29, 6, '20 LTR', 1, NULL, NULL),
+(30, 7, '500 ML', 1, NULL, NULL),
+(31, 7, '1 LTR', 1, NULL, NULL),
+(32, 7, '4 LTR', 1, NULL, NULL),
+(33, 7, '20 LTR', 1, NULL, NULL),
+(34, 8, '1 LTR', 1, NULL, NULL),
+(35, 8, '1.5 LTR', 1, NULL, NULL),
+(36, 8, '4 LTR', 1, NULL, NULL),
+(37, 8, '20 LTR', 1, NULL, NULL),
+(38, 9, '1 LTR', 1, NULL, NULL),
+(39, 9, '1.5 LTR', 1, NULL, NULL),
+(40, 9, '4 LTR', 1, NULL, NULL),
+(41, 9, '10 LTR', 1, NULL, NULL),
+(42, 9, '20 LTR', 1, NULL, NULL),
+(43, 10, '1 LTR', 1, NULL, NULL),
+(44, 10, '4 LTR', 1, NULL, NULL),
+(45, 10, '10 LTR', 1, NULL, NULL),
+(46, 10, '20 LTR', 1, NULL, NULL),
+(47, 11, '1 KG', 1, NULL, NULL),
+(48, 12, '1 KG', 1, NULL, NULL),
+(49, 12, '5 KG', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `sizes`
 --
 
@@ -366,23 +409,10 @@ ALTER TABLE `dealers`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
-
---
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -398,6 +428,13 @@ ALTER TABLE `personal_access_tokens`
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products_cat_id_index` (`cat_id`);
+
+--
+-- Indexes for table `size`
+--
+ALTER TABLE `size`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `size_cat_id_index` (`cat_id`);
 
 --
 -- Indexes for table `sizes`
@@ -429,16 +466,10 @@ ALTER TABLE `dealers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `failed_jobs`
---
-ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -451,6 +482,12 @@ ALTER TABLE `personal_access_tokens`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+
+--
+-- AUTO_INCREMENT for table `size`
+--
+ALTER TABLE `size`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -473,6 +510,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_cat_id_foreign` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `size`
+--
+ALTER TABLE `size`
+  ADD CONSTRAINT `size_cat_id_foreign` FOREIGN KEY (`cat_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

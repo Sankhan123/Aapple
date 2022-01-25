@@ -6,15 +6,31 @@ import {
      CDBSidebarMenu,
      CDBSidebarMenuItem,
    } from 'cdbreact';
-
-import { Link,NavLink } from 'react-router-dom';
-
-
-
-
+import axios from 'axios';
+import { Link,NavLink,useNavigate } from 'react-router-dom';
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 
 const Sidebar = () => {
+  let Navigate = useNavigate();
+
+async function logout(){
+
+  try{
+    const res = await axios.get(`${REACT_APP_API_URL}/logout`,{ headers: authHeader() });
+  if(res){
+    console.log(res);
+    sessionStorage.removeItem('user');
+    Navigate("/");
+    
+  }
+  }catch(e){
+    console.log(e);
+  }
+  
+}
+
     return (
       <div className='' style={{ display: 'flex', minHeight: '100vh',padding:0}}>
         <CDBSidebar textColor="#fff" backgroundColor="#2B207F">
@@ -51,7 +67,7 @@ const Sidebar = () => {
           <CDBSidebarFooter className="mb-5"  >
             
           <NavLink exact to="/login" style={{ textDecoration: 'none', color: 'white',fontWeight:"500", }} activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="sign-out-alt">Log Out</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem icon="sign-out-alt" onClick={() => logout() }>Log Out</CDBSidebarMenuItem>
               </NavLink>
           
             
