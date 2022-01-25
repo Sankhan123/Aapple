@@ -8,7 +8,6 @@ const DealerRequest = () => {
   const [requests, setRequests] = useState(null);
 
   useEffect(() => {
-
     async function getrequest(){
 
       try{
@@ -70,13 +69,14 @@ const DealerRequest = () => {
 const Dealer = (props) => {
   const acceptInvitation = async() => {
   const updateId = props.data.id ;
-
-  console.log(updateId);
-
-  const res =await axios.put(`${REACT_APP_API_URL}/update-dealer/${updateId}`);
-
-  if(res){
-    console.log(res);
+  alert("Are you sure to want to accept..?")
+  try{
+    const res =await axios.put(`${REACT_APP_API_URL}/update-dealer/${updateId}`);
+    if(res){
+      console.log('New dealer added');
+    }
+  }catch(e){
+    console.log(e);
   }
 
   };
@@ -85,11 +85,16 @@ const Dealer = (props) => {
     props.data.user_status = 'null';
     props.removeRequests((prevdata) => [...prevdata, props.data]);
     const deleteId = props.data.id;
-    alert(deleteId);
-    const res =await axios.delete(`${REACT_APP_API_URL}/delete-dealer/${deleteId}`)
-    if(res){
-      console.log(res);
+
+    try{
+      const res =await axios.delete(`${REACT_APP_API_URL}/delete-dealer/${deleteId}`);
+      if(res){
+        console.log('Request removed');
+      }
+    }catch(e){
+      console.log(e);
     }
+   
   };
   return (
     <tr>
