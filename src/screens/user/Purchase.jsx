@@ -1,45 +1,53 @@
 import axios from "axios";
 import React from "react";
-import { purchaseData } from "../../components/purchase";
 
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
 
 function Purchase() {
-  const [products, setProducts] = useState(null);
-
+  const [purchaseData, setProducts] = useState(null);
+  const [cartData, setData] = useState([]);
+  const [total, setTotal] = useState(0);
   useEffect(() => {
-    
-    async function getproducts(){
-      try{
-        const res = await axios.get(`${REACT_APP_API_URL}/get-products`,{ headers: authHeader() });
-      if(res){
-        let productList = res.data.products;
-        setProducts(productList);
-      }
-      }catch(e){
+    async function getproducts() {
+      try {
+        const res = await axios.get(`${REACT_APP_API_URL}/get-products`, {
+          headers: authHeader(),
+        });
+        if (res) {
+          let productList = res.data.products;
+          setProducts(productList);
+        }
+      } catch (e) {
         console.log(e);
       }
-
     }
     getproducts();
   }, []);
-
   return (
     <>
-      <PurchaseCategory
-        catagoryId={purchaseData.category[0].id}
-        data={purchaseData}
-      />
+      {purchaseData && purchaseData.map((purchaseData) => (
+        <PurchaseTable
+          catagoryName={purchaseData.cat_name}
+          data={purchaseData}
+          cartData={cartData}
+          setData={setData}
+          setTotal={setTotal}
+        />
+        ))}
+      <div className="alert alert-secondary text-end">
+        <button>Submit</button>
+        <span>Total Product : </span>
+        <span>
+          <b>{total}</b>
+        </span>
+      </div>
     </>
   );
 }
 
-function PurchaseCategory({ catagoryId, data }) {
-  const [cartData, setData] = useState([]);
-  const [total, setTotal] = useState(0);
-
+function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   useEffect(() => {
     if (cartData.length > 0) {
       let total = 0;
@@ -88,54 +96,49 @@ function PurchaseCategory({ catagoryId, data }) {
     }
     setData(data);
   }
-  console.log(cartData);
-
   return (
     <>
       <section className="col">
         <div className="alert alert-primary" role="alert">
-          Product Catagory {catagoryId}
+          {catagoryName}
         </div>
         <table className="table">
           <thead>
             <tr>
               <th scope="col">Product</th>
-              {data.category[0].sizes.map((size) => {
-                return <th>{size.size_name}</th>;
-              })}
+              {data &&
+                data.size.map((size) => {
+                  return <th>{size.size_name}</th>;
+                })}
             </tr>
           </thead>
           <tbody>
-            {data.category[0].product.map((pro) => {
-              return (
-                <tr>
-                  <th scope="row">{pro.product_name}</th>
-                  {data.category[0].sizes.map((size) => {
-                    return (
-                      <td>
-                        <input
-                          type="number"
-                          name={size.id}
-                          min="0"
-                          max="100"
-                          onChange={(e) => {
-                            handleChange(e, pro.id, size.id, pro.cat_id);
-                          }}
-                        />
-                      </td>
-                    );
-                  })}
-                </tr>
-              );
-            })}
+            {data &&
+              data.product.map((pro) => {
+                return (
+                  <tr>
+                    <th scope="row">{pro.product_name}</th>
+                    {data &&
+                      data.size.map((size) => {
+                        return (
+                          <td>
+                            <input
+                              type="number"
+                              name={size.id}
+                              min="0"
+                              max="100"
+                              onChange={(e) => {
+                                handleChange(e, pro.id, size.id, pro.cat_id);
+                              }}
+                            />
+                          </td>
+                        );
+                      })}
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
-        <div className="alert alert-secondary text-end">
-          <span>Total Product : </span>
-          <span>
-            <b>{total}</b>
-          </span>
-        </div>
       </section>
     </>
   );
