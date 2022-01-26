@@ -11,17 +11,17 @@ class ProductController extends Controller
 {
     public function get_categry_list(){
 
-        $getlist = Category::all();
+        $products = Category::with('product')->with('size')->get();
         
         return response()->json([
             'status' => 200,
-            'category' => $getlist,
+            'category' => $products,
         ]);
     }
 
     public function get_products(){
 
-        $getlist = Products::all();
+        $getlist = Category::with('product')->with('size')->get();
 
         if($getlist){
 

@@ -1,20 +1,25 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 const ProductPanel = () => {
   const [products, setProducts] = useState(null);
    useEffect(() => {
 
     async function get_list(){
-      const res =await axios.get("http://127.0.0.1:8000/api/getcategory");
+      try{
+        const res = await axios.get(`${REACT_APP_API_URL}/getcategory`,{ headers: authHeader() });
+      if(res){
+        let productList = res.data.category;
+        setProducts(productList);
+        
+      }
+      }catch(e){
+        console.log(e);
+      }
 
-    if(res){
-      console.log(res.data);
-      let productList = res.data.category;
-      console.log(productList);
-      setProducts(productList);
-    }
     }
 
     get_list();

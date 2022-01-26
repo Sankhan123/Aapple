@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation, Outlet, useNavigate } from "react-router";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 const AllDealers = () => {
   const [users, setUsers] = useState(null);
@@ -9,13 +11,17 @@ const AllDealers = () => {
   useEffect(() => {
 
     async function getdealers(){
-      const res =await axios.get("http://127.0.0.1:8000/api/dealersrequest");
-
-    if(res){
-      //console.log(res.data);
-      let trueData = res.data.ondealers;
+      try{
+        const res = await axios.get(`${REACT_APP_API_URL}/dealersrequest`,{ headers: authHeader() });
+      if(res){
+        let trueData = res.data.ondealers;
       setUsers(trueData);
-    }
+        
+      }
+      }catch(e){
+        console.log(e);
+      }
+
     }
     getdealers();
 
