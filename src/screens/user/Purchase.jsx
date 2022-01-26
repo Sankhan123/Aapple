@@ -1,15 +1,7 @@
 import axios from "axios";
 import React from "react";
-// import { purchaseData } from "../../components/purchase";
-// function Purchase() {
-//   useEffect(() => {
-//     async function getproducts() {
-//       const response = await axios.get(
-//         "http://127.0.0.1:8000/api/get-products"
-//       );
+import { purchaseData } from "../../components/purchase";
 
-//       if (response) {
-//         console.log(response);
 import { useEffect,useState } from "react";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
@@ -96,6 +88,7 @@ function PurchaseCategory({ catagoryId, data }) {
     }
     setData(data);
   }
+  console.log(cartData);
 
   return (
     <>
