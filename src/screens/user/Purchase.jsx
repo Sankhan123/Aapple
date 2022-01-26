@@ -1,6 +1,5 @@
 import axios from "axios";
 import React from "react";
-
 import { useEffect, useState } from "react";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
@@ -9,6 +8,7 @@ function Purchase() {
   const [purchaseData, setProducts] = useState(null);
   const [cartData, setData] = useState([]);
   const [total, setTotal] = useState(0);
+  const [count, setCount] = useState(0);
   useEffect(() => {
     async function getproducts() {
       try {
@@ -27,17 +27,31 @@ function Purchase() {
   }, []);
   return (
     <>
-      {purchaseData && purchaseData.map((purchaseData) => (
+      {purchaseData && (
         <PurchaseTable
-          catagoryName={purchaseData.cat_name}
-          data={purchaseData}
+          catagoryName={purchaseData[count].cat_name}
+          data={purchaseData[count]}
           cartData={cartData}
           setData={setData}
           setTotal={setTotal}
         />
-        ))}
+      )}
       <div className="alert alert-secondary text-end">
+        <button
+          onClick={() => {
+            count > 0 ? setCount(count - 1) : setCount(11);
+          }}
+        >
+          {"<"}
+        </button>
         <button>Submit</button>
+        <button
+          onClick={() => {
+            count < purchaseData.length - 1 ? setCount(count + 1) : setCount(0);
+          }}
+        >
+          {">"}
+        </button>
         <span>Total Product : </span>
         <span>
           <b>{total}</b>
@@ -56,7 +70,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
       });
       setTotal(total);
     }
-  }, [cartData]);
+  }, [cartData,setTotal]);
   function handleChange(e, productId, sizeId, catId) {
     let data = JSON.parse(JSON.stringify(cartData));
     if (data.length === 0) {
@@ -107,21 +121,21 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
             <tr>
               <th scope="col">Product</th>
               {data &&
-                data.size.map((size) => {
-                  return <th>{size.size_name}</th>;
+                data.size.map((size, index) => {
+                  return <th key={index}>{size.size_name}</th>;
                 })}
             </tr>
           </thead>
           <tbody>
             {data &&
-              data.product.map((pro) => {
+              data.product.map((pro, index) => {
                 return (
-                  <tr>
+                  <tr key={index}>
                     <th scope="row">{pro.product_name}</th>
                     {data &&
-                      data.size.map((size) => {
+                      data.size.map((size, index) => {
                         return (
-                          <td>
+                          <td key={index}>
                             <input
                               type="number"
                               name={size.id}

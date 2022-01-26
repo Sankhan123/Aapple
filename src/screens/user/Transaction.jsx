@@ -79,10 +79,6 @@ export default  function Transaction() {
                             className='p-1 rounded-3'
                             name="date"
                             type="date"
-                            defaultValue=""
-                            InputLabelProps={{
-                              shrink: true,
-                            }}
                           />
                           {errors.date && touched.date ? (
                             <div className="help-block  text-danger">{errors.date}</div>
