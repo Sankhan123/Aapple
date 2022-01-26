@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\DealerController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('login', [ApiController::class, 'authenticate']);
 Route::post('/dealer-register',[DealerController::class,'register']);
+Route::post('/add-order',[OrderController::class,'add_order']);
 Route::put('/update-dealer/{id}',[DealerController::class,'update_dealer_status']);
 Route::delete('/delete-dealer/{id}',[DealerController::class,'delete_dealer']);
 
