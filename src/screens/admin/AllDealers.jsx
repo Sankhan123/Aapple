@@ -30,12 +30,13 @@ const AllDealers = () => {
   return (
     <section className="col">
       {location.pathname === "/admin-dashboard/all-dealers" && (
-        <section className="requests-table-wrapper mt-4 pt-4">
+        <section className="requests-table-wrapper my-3">
           <div className="container">
-            <h5 className="alert alert-primary display-6 fw-normal">
-              All Dealers
-            </h5>
-            <table className="table table-hover">
+          <h5 className="alert co fw-bold display-7  text-center">
+          All Dealers
+              </h5>
+           
+            <table className="table table-hover  border">
               <thead>
                 <tr className="table-dark">
                   <th scope="col">Sno</th>
@@ -43,7 +44,7 @@ const AllDealers = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Address</th>
                   <th scope="col">Phone no</th>
-                  <th scope="col">Actions</th>
+                  <th  scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -70,17 +71,17 @@ const Dealer = (props) => {
     Navigate(`${props.id}`, { state: props.userData });
   };
   return (
-    <tr>
+    <tr className=" pt-4 " >
       <th scope="row">{props.id}</th>
-      <td>{props.userData.contact_person}</td>
-      <td>{props.userData.email}</td>
-      <td>{props.userData.address}</td>
-      <td>{props.userData.phone}</td>
-      <td className="d-flex gap-2">
-        <button className="btn btn-success" onClick={navigateToUser}>
+      <td className="fw-bold">{props.userData.contact_person}</td>
+      <td className="fw-bold">{props.userData.email}</td>
+      <td className="fw-bold">{props.userData.address}</td>
+      <td className="fw-bold">{props.userData.phone}</td>
+      <td className="d-flex text-center gap-4">
+        <button className=" fw-bold btn co btn-sm " onClick={navigateToUser}>
           Details
         </button>
-        <button className="btn btn-info">Transaction</button>
+        <button className="fw-bold btn btn-success btn-sm">Transaction</button>
       </td>
     </tr>
   );
