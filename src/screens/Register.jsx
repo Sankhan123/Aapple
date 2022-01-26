@@ -231,7 +231,7 @@ const Register = () => {
                   placeholder="Alternate Number"
                 />
               </div>
-<div className="col-12 d-grid">
+<div className="col-12 text-center">
 <button type="submit" className="fw-bold  btn mt-3 co">
                Register
                </button>
