@@ -27,10 +27,13 @@ const ProductPanel = () => {
   }, []);
 
   
-    return <section className="container">
-        <h1 className="alert alert-info mb-3 p-2">Product Panel</h1>
-        <table className="table table-hover">
-    <thead className="table-dark">
+    return <section className="container my-2">
+      {/* <h5 className="alert co fw-bold display-7  text-center">
+      Product Panel
+              </h5> */}
+       
+        <table className="table border table-hover">
+    <thead className="co ">
       <tr>
       <th scope="col">S.No</th>
         <th scope="col">Product Name</th>

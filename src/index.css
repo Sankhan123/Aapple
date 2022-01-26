@@ -3,14 +3,21 @@
     padding-left: 10px !important;
   }
 
-.btn{
-  width: 360px;
+.wit{
+  width: 360px !important;
+}
+.tbtn{
+  padding: 5px 10px !important;
 }
 .co{
   background-color:  #2B207F !important;
   color:white !important;
   font-weight: 500 !important;
   border: none !important;
+}
+.bg-war{
+  background-color: #dfdbff48;
+  height: 100vh;
 }
 
 .err{

@@ -13,7 +13,7 @@ import { Link,NavLink } from 'react-router-dom';
 
 
 export default function Sidebar() {
-  return( <div style={{ display: 'flex', minHeight: '100vh',padding:0}}>
+  return( <div className='sticky-top' style={{ display: 'flex', height: '100vh',padding:0}}>
 
 
 <CDBSidebar textColor="#fff" backgroundColor="#2B207F">

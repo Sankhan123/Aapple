@@ -90,7 +90,7 @@ const Login = () => {
               </div>
 
                   <div className="mt-3  col-sm-12">
-                  <button type="submit" className="btn my-3 co">
+                  <button type="submit" className="btn wit my-3 co">
                 LOG IN
               </button>
                   </div>

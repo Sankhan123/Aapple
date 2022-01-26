@@ -232,7 +232,7 @@ const Register = () => {
                 />
               </div>
 <div className="col-12 text-center">
-<button type="submit" className="fw-bold  btn mt-3 co">
+<button type="submit" className="fw-bold wit  btn mt-3 co">
                Register
                </button>
 </div>

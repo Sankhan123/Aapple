@@ -28,12 +28,13 @@ const DealerRequest = () => {
   return (
     <section className="col">
       {/* requests table */}
-      <section className="requests-table-wrapper mt-4 pt-4">
+      <section className="requests-table-wrapper  py-3">
         <div className="container">
-          <h5 className="alert alert-primary display-6 fw-normal">
-            Dealer Requests
-          </h5>
-            <table className="table table-hover">
+        <h5 className="alert co display-7 fw-bold  text-center">
+        Dealer Requests
+              </h5>
+          
+            <table className="table table-hover border">
               <thead>
                 <tr className="table-dark">
                   <th scope="col">Sno</th>
@@ -98,17 +99,18 @@ const Dealer = (props) => {
   };
   return (
     <tr>
-      <th scope="row">{props.id}</th>
-      <td>{props.data.contact_person}</td>
-      <td>{props.data.email}</td>
-      <td>{props.data.address}</td>
-      <td>{props.data.phone}</td>
+      
+      <th scope="row fw-bolder">{props.id}</th>
+      <td className="fw-bold">{props.data.contact_person}</td>
+      <td className="fw-bold">{props.data.email}</td>
+      <td className="fw-bold">{props.data.address}</td>
+      <td className="fw-bold">{props.data.phone}</td>
       {props.data.user_status === "false" && (
         <td className="d-flex gap-2">
-          <button className="btn btn-primary" onClick={acceptInvitation}>
+          <button className="btn fw-bold co btn-primary btn-sm" onClick={acceptInvitation}>
             Accept
           </button>
-          <button className="btn btn-danger" onClick={deleteInvitation}>Decline</button>
+          <button className="btn fw-bold btn-danger btn-sm" onClick={deleteInvitation}>Decline</button>
         </td>
       )}
     </tr>
