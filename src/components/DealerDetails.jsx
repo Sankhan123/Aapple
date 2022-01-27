@@ -3,7 +3,6 @@ import { useLocation,Link } from "react-router-dom";
 function DealerDetails() {
   let Location = useLocation();
   const data = Location.state;
-  console.log(data);
   return (
     <div className=" py-3 min-100vh bg-war col">
        <h5 className=" mt-3 alert co display-7  text-center">
@@ -38,7 +37,7 @@ function DealerDetails() {
       <h5>Address <span className="fw-bold pl-5 ">:   {data.address}</span></h5>
       </div>
       <div className = "my-4 text-center">
-        <Link to=".." className="btn wit co  btn-danger">All dealers</Link>
+        <Link to=".." className="btn wit co  btn-danger"><span>Go Back</span><i className="arrow right"></i></Link>
       </div>
           </div>
        

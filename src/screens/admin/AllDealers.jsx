@@ -30,7 +30,7 @@ const AllDealers = () => {
   return (
     <section className="col">
       {location.pathname === "/admin-dashboard/all-dealers" && (
-        <section className="requests-table-wrapper my-3">
+        <section className="container my-3">
           <div className="container">
           <h5 className="alert co fw-bold display-7  text-center">
           All Dealers

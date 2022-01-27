@@ -28,7 +28,7 @@ const DealerRequest = () => {
   return (
     <section className="col">
       {/* requests table */}
-      <section className="requests-table-wrapper  py-3">
+      <section className="container  py-3">
         <div className="container">
         <h5 className="alert co display-7 fw-bold  text-center">
         Dealer Requests
