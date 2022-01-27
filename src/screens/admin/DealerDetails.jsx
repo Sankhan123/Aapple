@@ -5,44 +5,52 @@ function DealerDetails() {
   const data = Location.state;
   console.log(data);
   return (
-    <section className="mt-5 container bg-light">
-      <h3 className="alert alert-primary">User Details</h3>
-      <div className="bg-white text-dark p-3 mt-3 rounded-2">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            <span>User name : </span>
-            {data.contact_person}
-          </li>
-          <li class="list-group-item">
-            <span>Company Name : </span>
-            {data.company_name}
-          </li>
-          <li class="list-group-item">
-            <span>Email : </span>
-            {data.email}
-          </li>
-          <li class="list-group-item">
-            <span>Contact no : </span>
-            {data.phone}
-          </li>
-          <li class="list-group-item">
-            <span>Alternate No : </span>
-            {data.alternate_number}
-          </li>
-          <li class="list-group-item">
-            <span>GST no : </span>
-            {data.gst_number}
-          </li>
-          <li class="list-group-item">
-            <span>Address : </span>
-            {data.address}
-          </li>
-        </ul>
+    <div className=" py-3 min-100vh bg-war col">
+       <h5 className=" mt-3 alert co display-7  text-center">
+       User Details
+      </h5>
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6 col-lg-6 col-sm-12">
+          <div className="bg-white text-dark  p-3 my-2 rounded-2">      
+      <h5>User name <span className="fw-bold pl-3"> : {data.contact_person}</span></h5>
       </div>
-      <div className = "mt-4 text-center">
-        <Link to=".." className="btn btn-danger">All dealers</Link>
+      <div className="bg-white text-dark p-3 my-2 rounded-2">      
+      <h5>Email <span className="fw-bold pl-5 ml-3"> : {data.email}</span></h5>
       </div>
-    </section>
+      <div className="bg-white text-dark p-3 my-2 rounded-2">      
+      <h5>Contact no <span className="fw-bold pl-3"> :  {data.phone}</span></h5>
+      </div>
+          </div>
+          <div className="col-md-6 col-lg-6 col-sm-12">
+          <div className="bg-white text-dark  p-3 my-2 rounded-2">      
+      <h5>Company Name <span className="fw-bold pl-3"> :  {data.company_name}</span></h5>
+      </div>
+      <div className="bg-white text-dark p-3 my-2 rounded-2">      
+      <h5>Alternate No <span className="fw-bold pl-5 "> : {data.alternate_number}</span></h5>
+      </div>
+      <div className="bg-white text-dark p-3 my-2 rounded-2">      
+      <h5>GST No <span className="fw-bold pl-5 ml-5"> :  {data.gst_number}</span></h5>
+      </div>
+          </div>
+          <div className="col-12">
+          <div className="bg-white text-dark p-3 my-1 rounded-2">      
+      <h5>Address <span className="fw-bold pl-5 ">:   {data.address}</span></h5>
+      </div>
+      <div className = "my-4 text-center">
+        <Link to=".." className="btn wit co  btn-danger">All dealers</Link>
+      </div>
+          </div>
+       
+        </div>
+      </div>
+     
+     
+
+
+
+    </div>
+
   );
 }
 

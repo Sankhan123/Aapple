@@ -3,6 +3,8 @@ import { Formik, Form, Field } from "formik";
 import { useNavigate, Link } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import REACT_APP_API_URL from "../assets/header/env";
+
 const SignupSchema = Yup.object().shape({
   gst_number: Yup.string().required("Required"),
   password: Yup.string()
@@ -35,20 +37,17 @@ const Register = () => {
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values) => {
-          console.log(values);
-          const response = await axios.post(
-            "http://127.0.0.1:8000/api/dealer-register",
-            values
-          );
-
-          // HANDLE RESPONSE DATA
-          console.log(response);
-          if (response.data.status === 200) {
-            alert(response.data.message);
-            // console.log(response.data.message);
-            Navigate("/login");
-          } else {
-            alert("Something went wrong");
+          try {
+            const response = await axios.post(
+              `${REACT_APP_API_URL}/dealer-register`,
+              values
+            );
+            if (response.data.status === 200) {
+              alert(response.data.message);
+              Navigate("/login");
+            }
+          } catch (err) {
+            console.log(err);
           }
         }}
       >
@@ -218,9 +217,19 @@ const Register = () => {
                         />
                       </div>
                       <div className="col-12 text-center">
-                        <button type="submit" className="fw-bold  btn mt-3 co">
+                        <button
+                          type="submit"
+                          className="fw-bold wit  btn mt-3 co"
+                        >
                           Register
                         </button>
+                      </div>
+
+                      <div className="text-center py-3 fw-bold">
+                        <p>
+                          Already have an account?{" "}
+                          <Link to="/login"> Login</Link>
+                        </p>
                       </div>
 
                       <div className="text-center py-3 fw-bold">

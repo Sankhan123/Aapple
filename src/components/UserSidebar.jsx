@@ -28,7 +28,7 @@ export default function Sidebar() {
     }
   }
   return (
-    <div style={{ display: "flex", minHeight: "100vh", padding: 0 }}>
+    <div className='sticky-top' style={{ display: 'flex', height: '100vh',padding:0}}>
       <CDBSidebar textColor="#fff" backgroundColor="#2B207F">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <Link

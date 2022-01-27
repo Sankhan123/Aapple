@@ -31,7 +31,7 @@ async function logout(){
 }
 
     return (
-      <div className='' style={{ display: 'flex', minHeight: '100vh',padding:0}}>
+      <div className='sticky-top' style={{ display: 'flex', height: '100vh'}}>
         <CDBSidebar textColor="#fff" backgroundColor="#2B207F">
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
             <Link to="." className="text-decoration-none" style={{ color: 'inherit' }}>
