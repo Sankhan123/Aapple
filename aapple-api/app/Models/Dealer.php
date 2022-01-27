@@ -9,7 +9,7 @@ class Dealer extends Model
 {
     use HasFactory;
     protected $table = 'dealers';
-    //protected $hidden = ['password'];
+    protected $hidden = ['password'];
     protected $fillable = [
         
          'email',

@@ -29,6 +29,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/dealersrequest',[DealerController::class,'get_dealer_requests']);
     Route::get('/getcategory',[ProductController::class,'get_categry_list']);
     Route::get('get-products',[ProductController::class,'get_products']);
+    Route::get('get-orders',[OrderController::class,'get_orders']);
    
 });
 

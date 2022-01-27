@@ -34,4 +34,12 @@ class OrderController extends Controller
             'message' => 'Ordered successfully',
         ]);
      }
+
+     public function get_orders(){
+       $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->get();
+            return response()->json([
+                'status' => 200,
+                'orders' => $getlist,
+            ]);
+     }
 }
