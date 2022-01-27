@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import Sidebar from "../../components/UserSidebar";
 
 const UserDashboard = () => {
   let location = useLocation();

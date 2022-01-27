@@ -23,37 +23,32 @@ const Login = () => {
         }}
         validationSchema={SigninSchema}
         onSubmit={async (values) => {
-
           let data = {
-            email : values.email,
-            password : values.password,
-        }
-        try{
+            email: values.email,
+            password: values.password,
+          };
+          try {
+            const response = await axios.post(
+              `${REACT_APP_API_URL}/login`,
+              data
+            );
 
-          const response = await axios.post(`${REACT_APP_API_URL}/login`,data);
-
-          if (response) {
-            alert("Login Success");
-            sessionStorage.setItem("user",JSON.stringify(response.data));
+            if (response) {
+              alert("Login Success");
+              sessionStorage.setItem("user", JSON.stringify(response.data));
               if (response.data.user.user_role === "admin") {
-                Navigate("/dashboard");
-              }
-              else {
+                Navigate("/admin-dashboard");
+              } else {
                 Navigate("/user-dashboard");
               }
-
+            }
+          } catch (e) {
+            alert(" Invalid username or password");
           }
-      
-      }catch(e){
-          alert(" Invalid username or password");
-
-      }
-                  
         }}
       >
         {({ errors, touched }) => (
           <Form>
-            
             <div className="d-flex  flex-column justify-content-center align-items-center min-vh-100">
             <div className="card  p-2 " style={{width: 400}}>
               <div className="container">
@@ -103,12 +98,6 @@ const Login = () => {
                 </div>
               </div>
             </div>
-
-
-
-
-
-          
           </Form>
         )}
       </Formik>
