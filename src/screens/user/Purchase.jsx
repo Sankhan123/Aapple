@@ -8,7 +8,6 @@ function Purchase() {
   const [purchaseData, setProducts] = useState(null);
   const [cartData, setData] = useState([]);
   const [total, setTotal] = useState(0);
-  const [count, setCount] = useState(0);
 
   let dealer_id='';
         if(sessionStorage.length){
@@ -51,31 +50,17 @@ let data = {
   }
   return (
     <>
-      {purchaseData && (
+      {purchaseData && purchaseData.map((purchaseData)=>(
         <PurchaseTable
-          catagoryName={purchaseData[count].cat_name}
-          data={purchaseData[count]}
+          catagoryName={purchaseData.cat_name}
+          data={purchaseData}
           cartData={cartData}
           setData={setData}
           setTotal={setTotal}
         />
-      )}
+        ))}
       <div className="alert alert-secondary text-end">
-        <button
-          onClick={() => {
-            count > 0 ? setCount(count - 1) : setCount(11);
-          }}
-        >
-          {"<"}
-        </button>
         <button>Submit</button>
-        <button
-          onClick={() => {
-            count < purchaseData.length - 1 ? setCount(count + 1) : setCount(0);
-          }}
-        >
-          {">"}
-        </button>
         <button onClick={addOrder}>Submit</button>
         <span>Total Product : </span>
         <span>
