@@ -231,13 +231,6 @@ const Register = () => {
                           <Link to="/login"> Login</Link>
                         </p>
                       </div>
-
-                      <div className="text-center py-3 fw-bold">
-                        <p>
-                          Already have an account?{" "}
-                          <Link to="/login"> Login</Link>
-                        </p>
-                      </div>
                     </div>
                   </div>
                 </div>
