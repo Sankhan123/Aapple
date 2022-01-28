@@ -81,13 +81,16 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
       setTotal(total);
     }
   }, [cartData,setTotal]);
-  function handleChange(e, productId, sizeId, catId) {
+  function handleChange(e, productId, sizeId, catId,productName,sizeName,catagoryName) {
     let data = JSON.parse(JSON.stringify(cartData));
     if (data.length === 0) {
       data.push({
         cat_id: catId,
+        cat_name:catagoryName,
         size_id: sizeId,
+        size_name:sizeName,
         product_id: productId,
+        product_name:productName,
         value: parseInt(e.target.value),
       });
     } else {
@@ -105,16 +108,22 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
       if (rowIndex === -1) {
         data.push({
           cat_id: catId,
-          size_id: sizeId,
-          product_id: productId,
-          value: parseInt(e.target.value),
+        cat_name:catagoryName,
+        size_id: sizeId,
+        size_name:sizeName,
+        product_id: productId,
+        product_name:productName,
+        value: parseInt(e.target.value),
         });
       } else {
         data[rowIndex] = {
           cat_id: catId,
-          size_id: sizeId,
-          product_id: productId,
-          value: parseInt(e.target.value),
+        cat_name:catagoryName,
+        size_id: sizeId,
+        size_name:sizeName,
+        product_id: productId,
+        product_name:productName,
+        value: parseInt(e.target.value),
         };
       }
     }
@@ -152,7 +161,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
                               min="0"
                               max="100"
                               onChange={(e) => {
-                                handleChange(e, pro.id, size.id, pro.cat_id);
+                                handleChange(e, pro.id, size.id, pro.cat_id,pro.product_name,size.size_name,catagoryName);
                               }}
                             />
                           </td>
