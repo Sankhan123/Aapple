@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2022 at 08:55 AM
+-- Generation Time: Jan 28, 2022 at 11:47 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -85,19 +85,13 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(1, 'san@gmail.com', 'san123', NULL, 'sds', 'sdww', NULL, NULL, NULL, NULL, NULL, '112345678', NULL, 'true', 'user', 0, '2021-12-08 04:58:13', '2022-01-21 04:50:36'),
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 03:57:41', '2022-01-24 00:16:52'),
-(3, 'saran@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'false', 'user', 0, '2021-12-09 04:01:58', '2021-12-09 07:32:29'),
-(4, 'pavi@gmail.com', 'pavi123', 'sdsd', 'ffrgyt', 'ytyt', 'tyty', 'tyt', 'tyt', 'tyty', 'tyt', 'tyty', 'tyty', 'true', 'user', 0, '2021-12-09 04:03:54', '2021-12-09 09:56:32'),
-(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'false', 'admin', 0, '2021-12-09 04:04:54', '2021-12-09 04:04:54'),
-(7, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:31', '2022-01-21 04:57:59'),
-(8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-21 05:21:18'),
-(9, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'false', 'user', 0, '2021-12-22 00:33:25', '2022-01-21 05:22:16'),
-(10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-21 05:22:46'),
-(11, 'sasa@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'false', 'user', 0, '2021-12-22 00:39:00', '2022-01-23 23:41:17'),
-(12, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:43:32', '2022-01-23 23:42:40'),
-(13, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:47:34', '2022-01-23 23:46:40'),
-(14, 'kanism33@gmail.com', 'sdf2323232', 'dsdfdfd', 'dfdfdf', 'dfdfdf', 'dfdfd', 'fdfd', 'dfdfd', 'fdfdf', 'dfdf', 'dfdf', 'dfdf', 'false', 'user', 0, '2021-12-22 02:44:58', '2022-01-24 00:01:39');
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 03:57:41', '2022-01-25 06:54:48'),
+(3, 'saran@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-01-25 07:16:44'),
+(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-27 05:01:03'),
+(8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-25 07:18:25'),
+(10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-25 07:20:25'),
+(11, 'sasa@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:39:00', '2022-01-25 07:21:33'),
+(13, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'false', 'user', 0, '2021-12-22 00:47:34', '2022-01-25 07:31:13');
 
 -- --------------------------------------------------------
 
@@ -124,7 +118,88 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2021_12_08_123202_create_categories_table', 3),
 (7, '2021_12_08_123728_create_sizes_table', 3),
 (8, '2021_12_08_145252_create_products_table', 4),
-(10, '2022_01_25_070935_create_size_table', 5);
+(10, '2022_01_25_070935_create_size_table', 5),
+(15, '2022_01_26_104701_create_orders_table', 6),
+(16, '2022_01_26_111716_create_orders_data_table', 6);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dealer_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `pro_count` int(11) DEFAULT NULL,
+  `order_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `total` bigint(20) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `dealer_id`, `pro_count`, `order_status`, `total`, `created_at`, `updated_at`) VALUES
+(1, 2, 17, 'Pending', 0, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(2, 2, 10, 'Pending', 0, '2022-01-28 05:05:19', '2022-01-28 05:05:19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders_data`
+--
+
+CREATE TABLE `orders_data` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `order_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `cat_id` int(11) DEFAULT NULL,
+  `cat_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size_id` int(11) DEFAULT NULL,
+  `size_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `value` int(11) DEFAULT NULL,
+  `price` bigint(20) DEFAULT NULL,
+  `gst` int(11) DEFAULT NULL,
+  `gst_amount` bigint(20) DEFAULT NULL,
+  `subtotal` bigint(20) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orders_data`
+--
+
+INSERT INTO `orders_data` (`id`, `order_id`, `cat_id`, `cat_name`, `product_id`, `product_name`, `size_id`, `size_name`, `value`, `price`, `gst`, `gst_amount`, `subtotal`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(2, 1, 1, 'Premium synthetic enamel', 2, 'Br white', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(3, 1, 1, 'Premium synthetic enamel', 3, 'snow white', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(4, 1, 1, 'Premium synthetic enamel', 10, 'Lemon yellow', 2, '100 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(5, 1, 2, 'Hi-gloss automotive paint(fast drying)', 44, 'Golden brown', 8, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(6, 1, 2, 'Hi-gloss automotive paint(fast drying)', 46, 'Golden yellow', 9, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(7, 1, 3, 'Aapple wood primers', 49, 'Pink wood primers', 11, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(8, 1, 4, 'Aapple hamertones & aluminium paints', 52, 'HT blue', 18, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(9, 1, 4, 'Aapple hamertones & aluminium paints', 53, 'Ht sliver ash', 17, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(10, 1, 6, 'Aapple furniture enamels', 60, 'Olive green 495', 27, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(11, 1, 7, 'Galaxy truck coating paints', 68, 'Phiroza blue', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(12, 1, 7, 'Galaxy truck coating paints', 77, 'Auto red', 30, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(13, 1, 7, 'Galaxy truck coating paints', 89, 'Sliver grey', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(14, 1, 9, 'Floor coat', 97, 'Yellow', 39, '1.5 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(15, 1, 10, 'Cool roof coat', 99, 'Cool roof cote', 44, '4 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(16, 1, 11, 'Crack past', 100, 'Crack past', 47, '1 KG', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(17, 1, 12, 'Acrylic putty', 101, 'Acrylic putty', 48, '1 KG', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
+(18, 2, 1, 'Premium synthetic enamel', 3, 'snow white', 4, '500 ML', 2, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
+(19, 2, 1, 'Premium synthetic enamel', 12, 'Phiroza blue', 2, '100 ML', 2, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
+(20, 2, 1, 'Premium synthetic enamel', 15, 'Royal blue', 5, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
+(21, 2, 1, 'Premium synthetic enamel', 24, 'Olive green', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
+(22, 2, 2, 'Hi-gloss automotive paint(fast drying)', 45, 'Lemon yellow', 9, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
+(23, 2, 3, 'Aapple wood primers', 49, 'Pink wood primers', 15, '20 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
+(24, 2, 7, 'Galaxy truck coating paints', 67, 'Rig spl yellow', 32, '4 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
+(25, 2, 7, 'Galaxy truck coating paints', 93, 'Lorry blue', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20');
 
 -- --------------------------------------------------------
 
@@ -390,7 +465,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `reg_id`, `email`, `password`, `user_role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'sds', 2, 'ravi@gmail.com', '$2y$10$z7LPsxtqmMHQuUJi/hpe3ewzf7ElRNKGkjOz4N5HlPEzJ7AeU/yDK', 'user', NULL, '2022-01-24 00:16:52', '2022-01-24 00:16:52');
+(1, 'sds', 2, 'ravi@gmail.com', '$2y$10$xXV1.vIAMRCqIB/Z1GhFYejwDgNvPJ2.Fh9uv7PaMoewQYp1xSIcq', 'user', NULL, '2022-01-25 06:54:48', '2022-01-25 06:54:48'),
+(2, 'sds', 3, 'saran@gmail.com', '$2y$10$LPHw6GCPwgr0.T4zeHWWRuzfg7bILStRhhvVMHSZ8xhKbxjbgq0kO', 'user', NULL, '2022-01-25 07:16:44', '2022-01-25 07:16:44'),
+(3, 'vfran', 8, 'kanism33@gmail.com', '$2y$10$/GMwbDWo4w/FwAz5iFX3y.U4rF00O5WN0rZixqmXBtDe15Nun69vm', 'user', NULL, '2022-01-25 07:18:25', '2022-01-25 07:18:25'),
+(5, 'ewr', 11, 'sasa@gmai.com', '$2y$10$YwzNe04/9wdn/.ke54XjDe3sLS1BvgaVuuiR/i/2VSjyknkavTeQi', 'user', NULL, '2022-01-25 07:21:33', '2022-01-25 07:21:33'),
+(6, 'ewr', 13, 'sas@gmai.com', '$2y$10$bNV3.YaRIfUIGO8O09L.9eoBjMfPneQ1fYERrLjqGZrA8OFg4B8Ge', 'user', NULL, '2022-01-25 07:31:13', '2022-01-25 07:31:13'),
+(7, 'aapple', 5, 'admin@gmail.com', '$2y$10$MY3tXY4GyaMS2gosh/YNKe4XSGRwvpHk9Pg6eGq0St3hdQ.4TsYqu', 'admin', NULL, '2022-01-27 05:01:03', '2022-01-27 05:01:03');
 
 --
 -- Indexes for dumped tables
@@ -413,6 +493,20 @@ ALTER TABLE `dealers`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_dealer_id_index` (`dealer_id`);
+
+--
+-- Indexes for table `orders_data`
+--
+ALTER TABLE `orders_data`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `orders_data_order_id_index` (`order_id`);
 
 --
 -- Indexes for table `personal_access_tokens`
@@ -469,7 +563,19 @@ ALTER TABLE `dealers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `orders_data`
+--
+ALTER TABLE `orders_data`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -499,7 +605,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
