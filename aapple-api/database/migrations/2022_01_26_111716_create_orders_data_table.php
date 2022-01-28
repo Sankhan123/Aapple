@@ -17,10 +17,15 @@ class CreateOrdersDataTable extends Migration
             $table->id();
             $table->bigInteger('order_id')->unsigned()->index()->nullable();
             $table->integer('cat_id')->nullable();
+            $table->string('cat_name')->nullable();
             $table->integer('product_id')->nullable();
+            $table->string('product_name')->nullable();
             $table->integer('size_id')->nullable();
+            $table->string('size_name')->nullable();
             $table->integer('value')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->integer('gst')->nullable();
+            $table->bigInteger('gst_amount')->nullable();
             $table->bigInteger('subtotal')->nullable();
             $table->timestamps();
         });

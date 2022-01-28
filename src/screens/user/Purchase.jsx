@@ -9,13 +9,9 @@ function Purchase() {
   const [cartData, setData] = useState([]);
   const [total, setTotal] = useState(0);
 
-  let dealer_id='';
-        if(sessionStorage.length){
-            const dealer_val = sessionStorage.getItem('user');
-            const dealer = JSON.parse(dealer_val);
-            dealer_id = dealer.user.reg_id; 
-        }
+  
   useEffect(() => {
+    
     async function getproducts() {
       try {
         const res = await axios.get(`${REACT_APP_API_URL}/get-products`, {
@@ -31,14 +27,20 @@ function Purchase() {
     }
     getproducts();
   }, []);
-let data = {
-  dealer_id : dealer_id,
-  order : cartData,
-  pro_count : total,
-  order_status : "Pending",
-}
+
   async function addOrder(){
-    console.log(data)
+    let dealer_id='';
+        if(sessionStorage.length){
+            const dealer_val = sessionStorage.getItem('user');
+            const dealer = JSON.parse(dealer_val);
+            dealer_id = dealer.user.reg_id; 
+        }
+    let data = {
+      dealer_id : dealer_id,
+      order : cartData,
+      pro_count : total,
+      order_status : "Pending",
+    }
     try{
       const response = await axios.post(`${REACT_APP_API_URL}/add-order`,data);
       if(response){
@@ -60,7 +62,6 @@ let data = {
         />
         ))}
       <div className="alert alert-secondary text-end">
-        <button>Submit</button>
         <button onClick={addOrder}>Submit</button>
         <span>Total Product : </span>
         <span>

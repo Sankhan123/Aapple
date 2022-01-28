@@ -15,10 +15,15 @@ class OrderData extends Model
         
         'order_id',
          'cat_id',
+         'cat_name',
           'product_id',
+          'product_name',
            'size_id',
+           'size_name',
             'value',
              'price',
+             'gst',
+             'gst_amount',
               'subtotal',
    ];
 

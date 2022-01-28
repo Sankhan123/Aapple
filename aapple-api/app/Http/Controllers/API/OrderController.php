@@ -17,17 +17,22 @@ class OrderController extends Controller
         $order->order_status = $request->input('order_status');
         $order->save();
         $order->id;
-        $data = $request->input('order');
+        if($order->id != ''){
+            $data = $request->input('order');
             foreach ($data as $order_data) {
                 $orders = new OrderData;
                 $orders->order_id = $order->id;
                 $orders->cat_id = $order_data['cat_id'];
+                $orders->cat_name = $order_data['cat_name'];
                 $orders->product_id = $order_data['product_id'];
+                $orders->product_name = $order_data['product_name'];
                 $orders->size_id = $order_data['size_id'];
+                $orders->size_name = $order_data['size_name'];
                 $orders->value = $order_data['value'];
                 $orders->save();
             }
         
+        }
 
         return response()->json([
             'status' => 200,
