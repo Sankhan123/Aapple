@@ -8,11 +8,11 @@ const UserDashboard = () => {
     <main >
       <div className="d-flex ">
         <Sidebar />
-         <section className="col bg-light">
+         <div className="col bg-light parent p-0">
           {location.pathname === "/user-dashboard" && <h1>User DashBoard</h1>}
           <Outlet />
          
-        </section>
+        </div>
       </div>
     </main>
   );

@@ -44,3 +44,20 @@
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
+.parent {
+  position: relative;
+}
+.back-drop {
+  margin: 0;
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0,0.7);
+  z-index: 1;
+}
+.text-custom {
+  color: #2B207F;
+}
+.cancel-btn {
+  
+}

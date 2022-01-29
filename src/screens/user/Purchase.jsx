@@ -3,12 +3,14 @@ import React from "react";
 import { useEffect, useState } from "react";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
+import Modal from "../../components/Modal";
 
 function Purchase() {
   const [purchaseData, setProducts] = useState(null);
   const [cartData, setData] = useState([]);
   const [total, setTotal] = useState(0);
   const [count, setCount] = useState(0);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     async function getproducts() {
@@ -177,7 +179,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   };
   return (
     <>
-      <section className="col">
+      <section className='px-2'>
         <div className="alert alert-primary" role="alert">
           {catagoryName}
         </div>
