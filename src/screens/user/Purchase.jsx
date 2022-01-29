@@ -51,10 +51,56 @@ function Purchase() {
       console.log(e);
     }
   }
-  console.log(cartData);
-  console.log(purchaseData);
   return (
     <>
+      {showModal && (
+        <Modal
+          setShowModal={setShowModal}
+          cartData={cartData}
+          addOrder={addOrder}
+        />
+      )}
+      <div className="alertt co display-7 text-center rounded-none px-4">
+        <h4>Purchase</h4>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              if (count > 0) {
+                setCount(count - 1);
+              } else {
+                setCount(purchaseData.length - 1);
+              }
+            }}
+          >
+            <i class="fas fa-caret-left"></i>
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary px-5"
+            onClick={() => {
+              setShowModal(true);
+            }}
+          >
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => {
+              if (count < purchaseData.length - 1) {
+                setCount(count + 1);
+              } else {
+                setCount(0);
+              }
+            }}
+          >
+            <i class="fas fa-caret-right"></i>
+          </button>
+        </div>
+        <h4>Total Product : {total}</h4>
+      </div>
       {purchaseData && (
         <PurchaseTable
           catagoryName={purchaseData[count].cat_name}
@@ -64,27 +110,6 @@ function Purchase() {
           setTotal={setTotal}
         />
       )}
-      <div className="alert alert-secondary text-end">
-        <button
-          onClick={() => {
-            setCount(count - 1);
-          }}
-        >
-          left
-        </button>
-        <button
-          onClick={() => {
-            setCount(count + 1);
-          }}
-        >
-          right
-        </button>
-        <button onClick={addOrder}>Submit</button>
-        <span>Total Product : </span>
-        <span>
-          <b>{total}</b>
-        </span>
-      </div>
     </>
   );
 }
@@ -157,7 +182,6 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   }
 
   const getValues = (product_id, size_id, cat_id) => {
-    console.log(product_id, size_id, cat_id, cartData, "deivaraj");
     if (cartData.length > 0) {
       let rowIndex = cartData.findIndex((rowData) => {
         if (
@@ -179,12 +203,12 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   };
   return (
     <>
-      <section className='px-2'>
-        <div className="alert alert-primary" role="alert">
+      <section >
+        <header className="alert alert-light text-center fw-bold fs-4 text-dark m-0" role="alert">
           {catagoryName}
-        </div>
-        <table className="table">
-          <thead>
+        </header>
+        <table className="table border">
+          <thead className="table-dark">
             <tr>
               <th scope="col">Product</th>
               {data &&

@@ -18,8 +18,10 @@ export default function OrderDetails() {
     let data = JSON.parse(JSON.stringify(rowData));
     const singleData = rowData.order_data.filter((rd) => { return id === rd.id })
     singleData[0]["gst"] = e.target.value
-    let calc = (singleData[0].price * (singleData[0].gst / 100)).toFixed(2)
-    singleData[0]["gst_amount"] = calc
+    let calc1 = (singleData[0].price * (singleData[0].gst / 100)).toFixed(2)
+    singleData[0]["gst_amount"] = parseFloat(calc1).toFixed(2);
+    let calc2 = parseFloat(singleData[0].price) + parseFloat(singleData[0]["gst_amount"])
+    singleData[0]["subtotal"] = calc2.toFixed(2);
     let rowIndex = rowData.order_data.findIndex((rd) => { return id === rd.id })
     data.order_data[rowIndex] = singleData[0]
     console.log(data)
@@ -78,7 +80,7 @@ export default function OrderDetails() {
                   <option value="35">35</option>
                 </select>  </td>
                 <td className="fw-bold">{data.gst_amount}</td>
-                <td className="fw-bold">{data.gst_amount}</td>
+                <td className="fw-bold">{data.subtotal}</td>
               </tr>
             </tbody>
           )
