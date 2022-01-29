@@ -51,9 +51,6 @@ function Purchase() {
     }
   }
 
-  const toggleModaltrue = () => {
-    setShowModal(true);
-  }
   return (
     <>
       {showModal && <Modal setShowModal={setShowModal} cartData={cartData}/>}
@@ -72,7 +69,7 @@ function Purchase() {
         <p>Loading ...</p>
       )}
       <div className="alert alert-light text-end">
-        <button className="btn btn-secondary mx-3" onClick={toggleModaltrue}>Cart</button>
+        <button className="btn btn-secondary mx-3" onClick={() => {setShowModal(true)}}>Cart</button>
         <button className="btn btn-secondary me-3" onClick={addOrder}>Submit</button>
         <span>Total Product : </span>
         <span>
