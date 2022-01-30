@@ -8,13 +8,14 @@ import REACT_APP_API_URL from "../../assets/header/env";
 const UserDashboard = () => {
   let location = useLocation();
   const [order, setOrder] = useState(null);
-  let dealer_id = "";
+  
+  useEffect(() => {
+    let dealer_id = "";
     if (sessionStorage.length) {
       const dealer_val = sessionStorage.getItem("user");
       const dealer = JSON.parse(dealer_val);
       dealer_id = dealer.user.reg_id;
     }
-  useEffect(() => {
     async function getOrders() {
       try {
         const res = await axios.get(`${REACT_APP_API_URL}/get-orders-id/${dealer_id}`, {
