@@ -2,6 +2,7 @@ const setTitle = (location) => {
     switch(location.pathname){
         case '/login':
             document.title = 'Login - Aapple Paints';
+            
             break;
         case '/register':
             document.title = 'Register - Aapple Paints';
@@ -31,7 +32,7 @@ const setTitle = (location) => {
             document.title = 'Product Panel - Aapple Paints';
             break;
         default:
-            document.title = 'React App';
+            document.title = '404 page';
             break;
     }
 }

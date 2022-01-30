@@ -2,37 +2,31 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 
 export default function OrderDetails() {
-
-
   let Location = useLocation();
   const data = Location.state;
   const [rowData, setRowData] = useState(data)
-  // console.log(data.order_data[0])
-
-
   const handleChange = (e, id) => {
-    let data = rowData
+    let data = JSON.parse(JSON.stringify(rowData));
     const singleData = rowData.order_data.filter((rd) => { return id === rd.id })
     singleData[0]["price"] = e.target.value
     let rowIndex = rowData.order_data.findIndex((rd) => { return id === rd.id })
     data.order_data[rowIndex] = singleData[0]
     setRowData(data)
+    console.log(rowData)
   }
-
   const dropDown = (e, id) => {
-    let data = rowData
+    let data = JSON.parse(JSON.stringify(rowData));
     const singleData = rowData.order_data.filter((rd) => { return id === rd.id })
     singleData[0]["gst"] = e.target.value
-    let calc = singleData[0].price * (singleData[0].gst / 100)
-    singleData[0]["gst_amount"] = calc
-    
+    let calc1 = (singleData[0].price * (singleData[0].gst / 100)).toFixed(2)
+    singleData[0]["gst_amount"] = parseFloat(calc1).toFixed(2);
+    let calc2 = parseFloat(singleData[0].price) + parseFloat(singleData[0]["gst_amount"])
+    singleData[0]["subtotal"] = calc2.toFixed(2);
     let rowIndex = rowData.order_data.findIndex((rd) => { return id === rd.id })
     data.order_data[rowIndex] = singleData[0]
     console.log(data)
     setRowData(data)
   }
-
-
 
   return (
 
@@ -86,13 +80,9 @@ export default function OrderDetails() {
                   <option value="35">35</option>
                 </select>  </td>
                 <td className="fw-bold">{data.gst_amount}</td>
-                <td className="fw-bold">10000</td>
-
+                <td className="fw-bold">{data.subtotal}</td>
               </tr>
             </tbody>
-
-
-
           )
           )
           }
