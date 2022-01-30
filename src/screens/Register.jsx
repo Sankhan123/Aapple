@@ -61,9 +61,6 @@ const Register = () => {
 
                     <div className="row">
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group ">
-                        {/* <label htmlFor="email">
-                          Email <span className="text-danger">*</span>
-                        </label> */}
                         <div>
                           <Field
                             type="text"
@@ -80,7 +77,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group ">
-                        {/* <label htmlFor="address">Address</label> */}
                         <Field
                           type="text"
                           name="address"
@@ -90,9 +86,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group  ">
-                        {/* <label htmlFor="password">
-                  Password <span className="text-danger">*</span>
-                </label> */}
                         <Field
                           type="password"
                           name="password"
@@ -107,7 +100,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="city">City</label> */}
                         <Field
                           type="text"
                           name="city"
@@ -117,7 +109,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="companyName">Company Name</label> */}
                         <Field
                           type="text"
                           name="company_name"
@@ -127,7 +118,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group ">
-                        {/* <label htmlFor="district">District</label> */}
                         <Field
                           type="text"
                           name="district"
@@ -137,9 +127,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="contactPerson">
-                  Contact Person Name <span className="text-danger">*</span>
-                </label> */}
                         <Field
                           type="text"
                           name="contact_person"
@@ -154,7 +141,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="state">State</label> */}
                         <Field
                           type="text"
                           name="state"
@@ -164,9 +150,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="gstNumber">
-                  GST Number <span className="text-danger">*</span>
-                </label> */}
                         <Field
                           type="text"
                           name="gst_number"
@@ -181,7 +164,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="zip">Zip</label> */}
                         <Field
                           type="text"
                           name="zip"
@@ -191,9 +173,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group ">
-                        {/* <label htmlFor="contactNumber">
-                  Contact Number <span className="text-danger">*</span>
-                </label> */}
                         <Field
                           type="text"
                           name="phone"
@@ -208,7 +187,6 @@ const Register = () => {
                       </div>
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
-                        {/* <label htmlFor="alternateNumber">Alternate Number</label> */}
                         <Field
                           type="text"
                           name="alternate_number"
