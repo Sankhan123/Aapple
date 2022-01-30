@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
 import Modal from "../../components/Modal";
+import { useNavigate } from 'react-router-dom';
 
 function Purchase() {
+  const Navi = useNavigate()
   const [purchaseData, setProducts] = useState(null);
   const [cartData, setData] = useState([]);
   const [total, setTotal] = useState(0);
@@ -46,10 +48,16 @@ function Purchase() {
       const response = await axios.post(`${REACT_APP_API_URL}/add-order`, data);
       if (response) {
         alert("Your order created successfully");
+        setShowModal(false);
+        Navi("/user-dashboard")
       }
     } catch (e) {
       console.log(e);
     }
+  }
+  function clearCart() {
+    setData([]);
+    setShowModal(false);
   }
   return (
     <>
@@ -58,11 +66,12 @@ function Purchase() {
           setShowModal={setShowModal}
           cartData={cartData}
           addOrder={addOrder}
+          clearCart={clearCart}
         />
       )}
       <div className="alertt co display-7 text-center rounded-none px-4">
         <h4>Purchase</h4>
-        <div class="btn-group" role="group" aria-label="Basic example">
+        <div className="btn-group" role="group" aria-label="Basic example">
           <button
             type="button"
             className="btn btn-primary"
@@ -74,7 +83,7 @@ function Purchase() {
               }
             }}
           >
-            <i class="fas fa-caret-left"></i>
+            <i className="fas fa-caret-left"></i>
           </button>
           <button
             type="button"
@@ -83,7 +92,7 @@ function Purchase() {
               setShowModal(true);
             }}
           >
-            <i class="fas fa-shopping-cart"></i>
+            <i className="fas fa-shopping-cart"></i>
           </button>
           <button
             type="button"
@@ -96,7 +105,7 @@ function Purchase() {
               }
             }}
           >
-            <i class="fas fa-caret-right"></i>
+            <i className="fas fa-caret-right"></i>
           </button>
         </div>
         <h4>Total Product : {total}</h4>
@@ -203,7 +212,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   };
   return (
     <>
-      <section >
+      <section>
         <header className="alert alert-light text-center fw-bold fs-4 text-dark m-0" role="alert">
           {catagoryName}
         </header>

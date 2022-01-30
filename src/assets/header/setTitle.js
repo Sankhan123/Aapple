@@ -32,7 +32,7 @@ const setTitle = (location) => {
             document.title = 'Product Panel - Aapple Paints';
             break;
         default:
-            document.title = '404 page';
+            document.title = "Aapple Paints";
             break;
     }
 }

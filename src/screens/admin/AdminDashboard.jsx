@@ -1,16 +1,17 @@
 import React from "react";
 import Sidebar from "../../components/AdminSidebar";
 import { Outlet, useLocation } from "react-router-dom";
-
+import AdminMain from "../../components/AdminMain";
 const AdminDashboard = () => {
   let location = useLocation();
   return (
-    <main className="">
+    <main>
       <div className="d-flex">
         <Sidebar />
-
-        {location.pathname === "/admin-dashboard" && <h1>Admin DashBoard</h1>}
+        <div className="col parent p-0 bg-admin">
+        {location.pathname === "/admin-dashboard" && <AdminMain />}
         <Outlet />
+        </div>
       </div>
     </main>
   );

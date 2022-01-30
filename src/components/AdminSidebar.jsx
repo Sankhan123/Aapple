@@ -45,7 +45,7 @@ async function logout(){
             <CDBSidebarMenuItem icon="tachometer-alt">Dashboard</CDBSidebarMenuItem>
               </NavLink>
               <NavLink to="./dealer-request">
-                <CDBSidebarMenuItem icon="table">Dealer Request</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem icon="user-circle">Dealer Request</CDBSidebarMenuItem>
               </NavLink>
               <NavLink to="./all-dealers">
                 <CDBSidebarMenuItem icon="users"> All Dealers</CDBSidebarMenuItem>
@@ -54,7 +54,7 @@ async function logout(){
                 <CDBSidebarMenuItem icon="shopping-cart">New Orders</CDBSidebarMenuItem>
               </NavLink>
               <NavLink to="./product-panel">
-                <CDBSidebarMenuItem icon="chart-line">Product Panel</CDBSidebarMenuItem>
+                <CDBSidebarMenuItem icon="cubes">Product Panel</CDBSidebarMenuItem>
               </NavLink>
             </CDBSidebarMenu>
           </CDBSidebarContent>
