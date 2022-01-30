@@ -17,10 +17,11 @@ class OrderController extends Controller
         $order->order_status = $request->input('order_status');
         $order->save();
         $order->id;
-        if($order->id != ''){
+        if($order->id != '' ){
             $data = $request->input('order');
             foreach ($data as $order_data) {
-                $orders = new OrderData;
+                if($order_data['value']!=''){
+                    $orders = new OrderData;
                 $orders->order_id = $order->id;
                 $orders->cat_id = $order_data['cat_id'];
                 $orders->cat_name = $order_data['cat_name'];
@@ -30,6 +31,8 @@ class OrderController extends Controller
                 $orders->size_name = $order_data['size_name'];
                 $orders->value = $order_data['value'];
                 $orders->save();
+                }
+                
             }
         
         }
@@ -39,7 +42,30 @@ class OrderController extends Controller
             'message' => 'Ordered successfully',
         ]);
      }
-
+     public function add_price(Request $request){
+            $orders = new OrderData;
+            $grant_total = 0;
+            $data = $request->input('order_data');
+            foreach ($data as $key=>$order_data) {
+                $grant_total += $data[$key]['subtotal'];
+                $user = OrderData::find($data[$key]['id']);
+                $user->price = $data[$key]['price'];
+                $user->subtotal = $data[$key]['subtotal'];
+                $user->gst_amount = $data[$key]['gst_amount'];
+                $user->gst = $data[$key]['gst'];
+                $user->save();
+            }
+            $order = new Order;
+            $list = Order::find($request->input('id'));
+            $list->total = $grant_total;
+            $list->order_status = "Processing";
+            $list->save();
+        
+        return response()->json([
+            'status' => 200,
+            'message' => 'Price added successfully',
+        ]);
+    }
      public function get_orders(){
        $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->get();
             return response()->json([
@@ -47,4 +73,15 @@ class OrderController extends Controller
                 'orders' => $getlist,
             ]);
      }
+     public function get_orders_by_id($id){
+        $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->where('dealer_id',$id)->get();
+        $process = Order::with('order_data')->with('dealer_data')->where('order_status','Processing')->where('dealer_id',$id)->get();
+        $complete = Order::with('order_data')->with('dealer_data')->where('order_status','Completed')->where('dealer_id',$id)->get();
+             return response()->json([
+                 'status' => 200,
+                 'orders' => $getlist,
+                 'process_orders'=>$process,
+                 'complete_orders'=>$complete,
+             ]);
+      }
 }

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('login', [ApiController::class, 'authenticate']);
 Route::post('/dealer-register',[DealerController::class,'register']);
 Route::post('/add-order',[OrderController::class,'add_order']);
+Route::post('/add-price',[OrderController::class,'add_price']);
 Route::put('/update-dealer/{id}',[DealerController::class,'update_dealer_status']);
 Route::delete('/delete-dealer/{id}',[DealerController::class,'delete_dealer']);
 
@@ -30,6 +31,7 @@ Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('/getcategory',[ProductController::class,'get_categry_list']);
     Route::get('get-products',[ProductController::class,'get_products']);
     Route::get('get-orders',[OrderController::class,'get_orders']);
+    Route::get('get-orders-id/{id}',[OrderController::class,'get_orders_by_id']);
    
 });
 
