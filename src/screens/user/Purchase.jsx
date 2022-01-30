@@ -203,7 +203,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   };
   return (
     <>
-      <section >
+      <section>
         <header className="alert alert-light text-center fw-bold fs-4 text-dark m-0" role="alert">
           {catagoryName}
         </header>
