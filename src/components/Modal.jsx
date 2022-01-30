@@ -1,4 +1,4 @@
-const Modal = ({ setShowModal, cartData, addOrder }) => {
+const Modal = ({ setShowModal, cartData, addOrder,clearCart }) => {
   return (
     <main className="back-drop p-3">
       <div className="text-end">
@@ -29,7 +29,7 @@ const Modal = ({ setShowModal, cartData, addOrder }) => {
             <tbody>
               {cartData && cartData.map((cartData,index) => {
                   return(
-                      <tr>
+                      <tr key={index}>
                           <td>{index + 1}</td>
                           <td>{cartData.cat_name}</td>
                           <td>{cartData.product_name}</td>
@@ -39,8 +39,10 @@ const Modal = ({ setShowModal, cartData, addOrder }) => {
                   )
               })}
             </tbody>
-          </table> 
-          <button className="btn btn-success fw-bold wit" onClick={addOrder}>Submit</button></>:<center className="mt-5 pt-5"><div className="no-alert text-center"><i className="fas fa-trash icon mt-4"></i> <h1 className="text-center h4 mt-3 text">No Products</h1></div></center> }
+          </table>
+          <div><button className="btn btn-success fw-bold wit me-1" onClick={addOrder}>Submit</button>
+          <button className="btn btn-danger fw-bold wit ms-1" onClick={clearCart}>Clear</button></div>
+          </>:<center className="mt-5 pt-5"><div className="no-alert text-center"><i className="fas fa-trash icon mt-4"></i> <h1 className="text-center h4 mt-3 text">No Products</h1></div></center> }
         </div>
         
       </section>

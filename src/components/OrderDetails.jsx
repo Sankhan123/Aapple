@@ -12,12 +12,13 @@ export default function OrderDetails() {
       return id === rd.id;
     });
     singleData[0]["price"] = e.target.value;
+    singleData[0]["subtotal"] = e.target.value;
     let rowIndex = rowData.order_data.findIndex((rd) => {
       return id === rd.id;
     });
     data.order_data[rowIndex] = singleData[0];
     setRowData(data);
-    console.log(rowData);
+    
   };
   const dropDown = (e, id) => {
     let data = JSON.parse(JSON.stringify(rowData));
@@ -34,10 +35,12 @@ export default function OrderDetails() {
       return id === rd.id;
     });
     data.order_data[rowIndex] = singleData[0];
-    console.log(data);
     setRowData(data);
   };
-
+  function handleSubmit() {
+    // post request
+    console.log(rowData.order_data);
+  }
   return (
     <>
       <div className="col">
@@ -100,6 +103,7 @@ export default function OrderDetails() {
             <i className="fas fa-arrow-left me-3"></i>
             <span className="me-3">Go Back</span>
           </Link>
+          <button className="btn btn-success px-5 ms-3" onClick={handleSubmit}>Submit</button>
         </div>
       </div>
     </>
