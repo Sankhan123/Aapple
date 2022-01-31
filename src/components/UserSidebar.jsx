@@ -42,18 +42,18 @@ export default function Sidebar() {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink to=".">
+            <NavLink to="/user-dashboard">
               <CDBSidebarMenuItem icon="tachometer-alt">
                 Dashboard
               </CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to="./purchase">
+            <NavLink to="/user-dashboard/purchase">
               <CDBSidebarMenuItem icon="shopping-cart">
                 Purchase
               </CDBSidebarMenuItem>
             </NavLink>
 
-            <NavLink to="./transaction">
+            <NavLink to="/user-dashboard/transaction">
               <CDBSidebarMenuItem icon="credit-card">
                 Transaction
               </CDBSidebarMenuItem>

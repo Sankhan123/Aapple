@@ -57,6 +57,10 @@
   color:rgb(255, 255, 255);
   font-size: 75px;
 }
+
+.cp{
+  cursor: pointer;
+}
 .text {
   color: white;
 }

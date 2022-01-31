@@ -11,15 +11,20 @@ export default function Tabel() {
  <Sidebar />
  
  <div className="col my-3">
+ <h5 className="alert co display-7  text-center">
+                Pending Order
+              </h5>
  <table className="table table-hover  border">
        <thead>
             <tr className="table-dark">
               
               <th scope="col">S.No </th>
               <th scope="col">Category</th>
+             
               <th scope="col">Product</th>
               
               <th scope="col">Size</th>
+              <th scope="col">Qty</th>
               
              
             </tr>
@@ -35,6 +40,7 @@ export default function Tabel() {
                   
                   <th scope="row">{subData.product_name}</th>
                   <td className="fw-bold">{subData.size_name}</td>
+                  <td className="fw-bold">{subData.value}</td>
                   
                  
                   

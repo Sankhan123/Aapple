@@ -7,7 +7,7 @@ export default function Uprocessing() {
 let Navigate = useNavigate()
 const navigateToData = (data) => {
 
-  Navigate(`/pending`, { state: data });
+  Navigate(`/user-dashboard/pending`, { state: data });
 };
   
   return (
@@ -47,7 +47,7 @@ const navigateToData = (data) => {
                   <td className="fw-bold">{data.pro_count}</td>
                   
                   
-                  <td className="fw-bold">Pending</td>
+                  <td className="fw-bold">{data.order_status}</td>
                   <td className="fw-bold">
                       <button onClick={()=>{navigateToData(data)}} className='btn btn-success btn-sm '>View
                       </button>
