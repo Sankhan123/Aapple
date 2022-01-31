@@ -34,7 +34,7 @@ export default  function Transaction() {
         if (res) {
           let data = res.data.dealer;
           setDealer(data);
-
+        
         }
       } catch (e) {
         console.log(e);

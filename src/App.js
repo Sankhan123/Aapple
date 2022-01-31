@@ -9,14 +9,14 @@ import {
   AllDealers,
   ProductPanel,
   DealerDetails,
-  OrderDetails,
+  OrderDetails,TransactionDetail
 } from "./screens/admin/adminRoutes";
 import {
   UserDashboard,
   Purchase,
   Transaction,
   Uorder,
-  Uprocessing,Ucomplete,Tabel,Process
+  Uprocessing,Ucomplete,Tabel,Process,Complete
 } from "./screens/user/userRoutes";
 import setTitle from "./assets/header/setTitle";
 
@@ -31,10 +31,12 @@ function App() {
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/data" element={<Tabel />} />
         <Route path="/pending" element={<Process />} />
+        <Route path="/complete" element={<Complete />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />}>
           <Route path="dealer-request" element={<DealerRequest />} />
+          <Route path="transaction" element={<TransactionDetail />} />
           <Route path="all-dealers" element={<AllDealers />}>
             <Route path=":id" element={<DealerDetails />} />
           </Route>

@@ -16,6 +16,7 @@ const AllDealers = () => {
       if(res){
         let trueData = res.data.ondealers;
       setUsers(trueData);
+    
         
       }
       }catch(e){
@@ -68,7 +69,12 @@ const AllDealers = () => {
 const Dealer = (props) => {
   let Navigate = useNavigate();
   const navigateToUser = () => {
+    
     Navigate(`${props.id}`, { state: props.userData });
+  };
+  const navigateToTrans = (data) => {
+
+    Navigate(`/admin-dashboard/transaction`, { state: data.transactions });
   };
 
  
@@ -83,7 +89,7 @@ const Dealer = (props) => {
         <button className=" fw-bold btn co btn-sm " onClick={navigateToUser}>
           Details
         </button>
-        <button className="fw-bold btn btn-success btn-sm"   >Transaction</button>
+        <button className="fw-bold btn btn-success btn-sm" onClick={()=>{navigateToTrans(props.userData)}}   >Transaction</button>
       </td>
     </tr>
   );
