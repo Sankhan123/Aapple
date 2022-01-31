@@ -28,4 +28,7 @@ class Dealer extends Model
                       'user_role',
                        'credit_amount',
     ];
+    public function transactions(){
+        return $this->hasMany(Transaction::class, 'dealer_id', 'id');
+    }
 }

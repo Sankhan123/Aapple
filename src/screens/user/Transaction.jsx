@@ -1,8 +1,11 @@
 import React from "react";
+import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import axios from "axios";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
 
 const SigninSchema = Yup.object().shape({
   mode: Yup.string()
@@ -13,7 +16,33 @@ const SigninSchema = Yup.object().shape({
 });
 
 export default  function Transaction() {
-  // let Navigate = useNavigate();
+  const [dealer,setDealer] = useState([]);
+   let Navigate = useNavigate();
+   let dealer_id = "";
+    if (sessionStorage.length) {
+      const dealer_val = sessionStorage.getItem("user");
+      const dealer = JSON.parse(dealer_val);
+      dealer_id = dealer.user.reg_id;
+    }
+  useEffect(() => {
+    
+    async function getDealer() {
+      try {
+        const res = await axios.get(`${REACT_APP_API_URL}/get-dealer-id/${dealer_id}`, {
+          headers: authHeader(),
+        });
+        if (res) {
+          let data = res.data.dealer;
+          setDealer(data);
+
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getDealer();
+  }, []);
+  
   return (
 
     <React.Fragment>
@@ -22,30 +51,23 @@ export default  function Transaction() {
           date: "",
           mode: "",
           payment: "",
+          dealer_id:dealer_id,
         }}
         validationSchema={SigninSchema}
-        onSubmit={(values) => {
+        onSubmit={async (values) => {
           console.log(values);
-          const REST_API_URL =
-            "http://localhost/Aapple/aapple-php/api/dealertransactions.php";
-
-          axios({
-            method: "post",
-            url: REST_API_URL,
-            data: {
-              ...values,
-            },
-            config: { headers: { "Content-Type": "application/json" } },
-          })
-            .then((response, props) => {
-              // HANDLE RESPONSE DATA
-              console.log(response);
-
-            })
-            .catch((error) => {
-              // HANDLE ERROR
-              console.log(error);
-            });
+          try {
+            const response = await axios.post(
+              `${REACT_APP_API_URL}/add-transaction`,
+              values
+            );
+            if (response.data.status === 200) {
+              alert(response.data.message);
+              Navigate("/user-dashboard");
+            }
+          } catch (err) {
+            console.log(err);
+          }
         }}
       >
         {({ errors, touched }) => (
@@ -55,11 +77,14 @@ export default  function Transaction() {
                 Dealer Transaction
               </h5>
               <div className="form-group row my-4">
-                <div className="col-lg-6 px-4 fw-bold col-md-6 col-sm-12">
-                  Dealer Name:
+                <div className="col-lg-6 px-4  col-md-6 col-sm-12">
+                  Dealer Name: <b>{dealer && dealer.company_name}</b>
                 </div>
-                <div className="col-lg-6 px-4 fw-bold pr-1 col-md-6 col-sm-12 text-right">
-                  Credit Balance : Rs.________________
+                <div className="col-lg-6 px-4 pr-1 col-md-6 col-sm-12 text-right">
+                { dealer && dealer.credit_amount >=0 ? ( <>
+                  Credit Balance : Rs. <b>{dealer.credit_amount}</b>
+                                </>):(<>Debit Balance : Rs. <b>{-(dealer.credit_amount)}</b></>) }
+                  
                 </div>
               </div>
 
@@ -113,7 +138,7 @@ export default  function Transaction() {
                         </div>
 
                         <div className="mt-3 text-center col-sm-12">
-                  <button type="submit" className="btn my-3 co">
+                  <button type="submit" className="btn my-3 co" >
                   SUBMIT
               </button>
                   </div>
