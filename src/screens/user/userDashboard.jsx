@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Outlet, useLocation,useNavigate ,Link} from "react-router-dom";
+import { Outlet, useLocation,useNavigate} from "react-router-dom";
 import Sidebar from "../../components/UserSidebar";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
@@ -106,7 +106,7 @@ const navToComplete =()=>{
           <div className="col mx-3">
              <div onClick={navToProcess} className="card shadow-sm">
                 <div className="custom-card second">
-                <i class="fas fa-tasks"></i>
+                <i className="fas fa-tasks"></i>
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">

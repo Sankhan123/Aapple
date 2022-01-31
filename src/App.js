@@ -10,14 +10,13 @@ import {
   ProductPanel,
   DealerDetails,
   OrderDetails,
-  TransactionDetails,
 } from "./screens/admin/adminRoutes";
 import {
   UserDashboard,
   Purchase,
   Transaction,
   Uorder,
-  Uprocessing,Ucomplete,
+  Uprocessing,Ucomplete,Tabel,Process
 } from "./screens/user/userRoutes";
 import setTitle from "./assets/header/setTitle";
 
@@ -30,6 +29,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/data" element={<Tabel />} />
+        <Route path="/pending" element={<Process />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />}>
@@ -37,11 +38,11 @@ function App() {
           <Route path="all-dealers" element={<AllDealers />}>
             <Route path=":id" element={<DealerDetails />} />
           </Route>
+          
           <Route path="new-orders" element={<NewOrders />} >
-          <Route path="new/:id" element={<TransactionDetails/>} />
           <Route path=":id" element={<OrderDetails />} />
           
-        
+         
           
             </Route>
           <Route path="product-panel" element={<ProductPanel />} />
@@ -49,7 +50,10 @@ function App() {
         <Route path="/user-dashboard" element={<UserDashboard />}>
           <Route path="purchase" element={<Purchase />} />
           <Route path="transaction" element={<Transaction />} />
-          <Route path="order" element={<Uorder />} />
+          <Route path="order" element={<Uorder />} >
+         
+          </Route>
+         
           <Route path="process" element={<Uprocessing />} />
           <Route path="complete" element={<Ucomplete />} />
         </Route>
