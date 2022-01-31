@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 28, 2022 at 11:47 AM
+-- Generation Time: Jan 31, 2022 at 08:53 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -85,8 +85,8 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 03:57:41', '2022-01-25 06:54:48'),
-(3, 'saran@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-01-25 07:16:44'),
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 100, '2021-12-09 03:57:41', '2022-01-31 01:53:11'),
+(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 3100, '2021-12-09 04:01:58', '2022-01-31 01:54:39'),
 (5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-27 05:01:03'),
 (8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-25 07:18:25'),
 (10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-25 07:20:25'),
@@ -120,7 +120,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (8, '2021_12_08_145252_create_products_table', 4),
 (10, '2022_01_25_070935_create_size_table', 5),
 (15, '2022_01_26_104701_create_orders_table', 6),
-(16, '2022_01_26_111716_create_orders_data_table', 6);
+(16, '2022_01_26_111716_create_orders_data_table', 6),
+(18, '2022_01_31_055035_create_transactions_table', 7);
 
 -- --------------------------------------------------------
 
@@ -143,8 +144,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `dealer_id`, `pro_count`, `order_status`, `total`, `created_at`, `updated_at`) VALUES
-(1, 2, 17, 'Pending', 0, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(2, 2, 10, 'Pending', 0, '2022-01-28 05:05:19', '2022-01-28 05:05:19');
+(1, 2, 4, 'Processing', 749, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
+(2, 2, 2, 'Processing', 200, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
+(3, 2, 3, 'Pending', 0, '2022-01-30 13:09:58', '2022-01-30 13:09:58');
 
 -- --------------------------------------------------------
 
@@ -175,31 +177,14 @@ CREATE TABLE `orders_data` (
 --
 
 INSERT INTO `orders_data` (`id`, `order_id`, `cat_id`, `cat_name`, `product_id`, `product_name`, `size_id`, `size_name`, `value`, `price`, `gst`, `gst_amount`, `subtotal`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(2, 1, 1, 'Premium synthetic enamel', 2, 'Br white', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(3, 1, 1, 'Premium synthetic enamel', 3, 'snow white', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(4, 1, 1, 'Premium synthetic enamel', 10, 'Lemon yellow', 2, '100 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(5, 1, 2, 'Hi-gloss automotive paint(fast drying)', 44, 'Golden brown', 8, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(6, 1, 2, 'Hi-gloss automotive paint(fast drying)', 46, 'Golden yellow', 9, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(7, 1, 3, 'Aapple wood primers', 49, 'Pink wood primers', 11, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(8, 1, 4, 'Aapple hamertones & aluminium paints', 52, 'HT blue', 18, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(9, 1, 4, 'Aapple hamertones & aluminium paints', 53, 'Ht sliver ash', 17, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(10, 1, 6, 'Aapple furniture enamels', 60, 'Olive green 495', 27, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(11, 1, 7, 'Galaxy truck coating paints', 68, 'Phiroza blue', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(12, 1, 7, 'Galaxy truck coating paints', 77, 'Auto red', 30, '500 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(13, 1, 7, 'Galaxy truck coating paints', 89, 'Sliver grey', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(14, 1, 9, 'Floor coat', 97, 'Yellow', 39, '1.5 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(15, 1, 10, 'Cool roof coat', 99, 'Cool roof cote', 44, '4 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(16, 1, 11, 'Crack past', 100, 'Crack past', 47, '1 KG', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(17, 1, 12, 'Acrylic putty', 101, 'Acrylic putty', 48, '1 KG', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:04:14', '2022-01-28 05:04:14'),
-(18, 2, 1, 'Premium synthetic enamel', 3, 'snow white', 4, '500 ML', 2, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
-(19, 2, 1, 'Premium synthetic enamel', 12, 'Phiroza blue', 2, '100 ML', 2, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
-(20, 2, 1, 'Premium synthetic enamel', 15, 'Royal blue', 5, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:19', '2022-01-28 05:05:19'),
-(21, 2, 1, 'Premium synthetic enamel', 24, 'Olive green', 3, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
-(22, 2, 2, 'Hi-gloss automotive paint(fast drying)', 45, 'Lemon yellow', 9, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
-(23, 2, 3, 'Aapple wood primers', 49, 'Pink wood primers', 15, '20 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
-(24, 2, 7, 'Galaxy truck coating paints', 67, 'Rig spl yellow', 32, '4 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20'),
-(25, 2, 7, 'Galaxy truck coating paints', 93, 'Lorry blue', 31, '1 LTR', 1, NULL, NULL, NULL, NULL, '2022-01-28 05:05:20', '2022-01-28 05:05:20');
+(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 5, 5, 105, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
+(2, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 4, '500 ML', 1, 100, 5, 5, 105, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
+(3, 1, 2, 'Hi-gloss automotive paint(fast drying)', 43, 'Br white', 9, '1 LTR', 1, 200, 12, 24, 224, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
+(4, 1, 2, 'Hi-gloss automotive paint(fast drying)', 44, 'Golden brown', 10, '4 LTR', 1, 300, 5, 15, 315, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
+(5, 2, 1, 'Premium synthetic enamel', 2, 'Br white', 2, '100 ML', 1, 100, NULL, NULL, 100, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
+(6, 2, 2, 'Hi-gloss automotive paint(fast drying)', 45, 'Lemon yellow', 9, '1 LTR', 1, 100, NULL, NULL, 100, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
+(7, 3, 3, 'Aapple wood primers', 48, 'White wood primers', 11, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-30 13:09:58', '2022-01-30 13:09:58'),
+(8, 3, 4, 'Aapple hamertones & aluminium paints', 52, 'HT blue', 18, '1 LTR', 2, NULL, NULL, NULL, NULL, '2022-01-30 13:09:58', '2022-01-30 13:09:58');
 
 -- --------------------------------------------------------
 
@@ -445,6 +430,33 @@ INSERT INTO `sizes` (`id`, `size_name`, `size_status`, `created_at`, `updated_at
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `dealer_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `mode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `before_transaction` bigint(20) NOT NULL DEFAULT 0,
+  `payment` bigint(20) NOT NULL DEFAULT 0,
+  `credit_balance` bigint(20) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `dealer_id`, `date`, `mode`, `before_transaction`, `payment`, `credit_balance`, `created_at`, `updated_at`) VALUES
+(1, 2, '2022-01-02', 'online', 250, 50, 200, '2022-01-31 01:51:46', '2022-01-31 01:51:46'),
+(2, 2, '2022-01-08', 'gpay', 200, 100, 100, '2022-01-31 01:53:11', '2022-01-31 01:53:11'),
+(3, 3, '2022-01-08', 'online', 3500, 400, 3100, '2022-01-31 01:54:39', '2022-01-31 01:54:39');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -466,7 +478,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `reg_id`, `email`, `password`, `user_role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'sds', 2, 'ravi@gmail.com', '$2y$10$xXV1.vIAMRCqIB/Z1GhFYejwDgNvPJ2.Fh9uv7PaMoewQYp1xSIcq', 'user', NULL, '2022-01-25 06:54:48', '2022-01-25 06:54:48'),
-(2, 'sds', 3, 'saran@gmail.com', '$2y$10$LPHw6GCPwgr0.T4zeHWWRuzfg7bILStRhhvVMHSZ8xhKbxjbgq0kO', 'user', NULL, '2022-01-25 07:16:44', '2022-01-25 07:16:44'),
+(2, 'Vvm', 3, 'saran@gmail.com', '$2y$10$LPHw6GCPwgr0.T4zeHWWRuzfg7bILStRhhvVMHSZ8xhKbxjbgq0kO', 'user', NULL, '2022-01-25 07:16:44', '2022-01-25 07:16:44'),
 (3, 'vfran', 8, 'kanism33@gmail.com', '$2y$10$/GMwbDWo4w/FwAz5iFX3y.U4rF00O5WN0rZixqmXBtDe15Nun69vm', 'user', NULL, '2022-01-25 07:18:25', '2022-01-25 07:18:25'),
 (5, 'ewr', 11, 'sasa@gmai.com', '$2y$10$YwzNe04/9wdn/.ke54XjDe3sLS1BvgaVuuiR/i/2VSjyknkavTeQi', 'user', NULL, '2022-01-25 07:21:33', '2022-01-25 07:21:33'),
 (6, 'ewr', 13, 'sas@gmai.com', '$2y$10$bNV3.YaRIfUIGO8O09L.9eoBjMfPneQ1fYERrLjqGZrA8OFg4B8Ge', 'user', NULL, '2022-01-25 07:31:13', '2022-01-25 07:31:13'),
@@ -537,6 +549,13 @@ ALTER TABLE `sizes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transactions_dealer_id_index` (`dealer_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -557,25 +576,25 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `dealers`
 --
 ALTER TABLE `dealers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders_data`
 --
 ALTER TABLE `orders_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -600,6 +619,12 @@ ALTER TABLE `size`
 --
 ALTER TABLE `sizes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

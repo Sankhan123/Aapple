@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use App\Models\Dealer;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -45,12 +46,22 @@ class DealerController extends Controller
 
         $dealer_requests = Dealer::where('user_role','=','user')->where('user_status','=','false')->get();
 
-        $dealer_list = Dealer::where('user_role','=','user')->where('user_status','=','true')->get();
+        $dealer_list = Dealer::with('transactions')->where('user_role','=','user')->where('user_status','=','true')->get();
 
         return response()->json([
             'status' => 200,
             'dealers' => $dealer_requests,
             'ondealers' => $dealer_list,
+        ]);
+    }
+
+    public function get_dealer_by_id($id){
+
+        $dealer_details = Dealer::select('id','company_name','credit_amount')->where('id',$id)->first();
+
+        return response()->json([
+            'status' => 200,
+            'dealer' => $dealer_details,
         ]);
     }
 
@@ -104,5 +115,35 @@ class DealerController extends Controller
         }
         
     }
+    public function add_transaction(Request $request){
+
+        $trans = new Transaction();
+        $trans->dealer_id = $request->input('dealer_id');
+        $trans->date = $request->input('date');
+        $trans->mode = $request->input('mode');
+        
+        $trans->payment = $request->input('payment');
+        $trans->save();
+        $trans->id;
+        if($trans->id){
+            $dealer = Dealer::find($request->input('dealer_id'));
+            
+            // Make sure you've got the Page model
+            if($dealer) {
+                $trans->before_transaction =  $dealer->credit_amount;
+                $trans->save();
+                $dealer->credit_amount -= $request->input('payment');
+                $dealer->save();
+                $trans->credit_balance =  $dealer->credit_amount;
+                $trans->save();
+                
+            }
+        }
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Transaction successfully',
+        ]);
+     }
 
 }
