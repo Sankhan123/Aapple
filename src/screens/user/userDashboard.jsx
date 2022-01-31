@@ -1,14 +1,30 @@
 import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation,useNavigate ,Link} from "react-router-dom";
 import Sidebar from "../../components/UserSidebar";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
 const UserDashboard = () => {
   let location = useLocation();
-  const [order, setOrder] = useState(null);
-  
+  const [order, setOrder] = useState([]);
+  let Navigate = useNavigate();
+
+
+ 
+  async function logout() {
+    try {
+      const res = await axios.get(`${REACT_APP_API_URL}/logout`, {
+        headers: authHeader(),
+      });
+      if (res) {
+        sessionStorage.removeItem("user");
+        Navigate("/");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  }
   useEffect(() => {
     let dealer_id = "";
     if (sessionStorage.length) {
@@ -22,9 +38,11 @@ const UserDashboard = () => {
           headers: authHeader(),
         });
         if (res) {
-          let data = res.data.orders;
+          let data = res.data;
 
           setOrder(data);
+
+        
         }
       } catch (e) {
         console.log(e);
@@ -32,13 +50,92 @@ const UserDashboard = () => {
     }
     getOrders();
   }, []);
+  
+
+
+const navToOrders =()=>{
   console.log(order)
+  Navigate(`order`, { state: order });
+}
+
+const navToProcess =()=>{
+  console.log(order)
+  Navigate(`process`, { state: order });
+}
+
+const navToComplete =()=>{
+  console.log(order)
+  Navigate(`complete`, { state: order });
+}
+
   return (
     <main >
       <div className="d-flex ">
         <Sidebar />
          <div className="col bg-light parent p-0">
-          {location.pathname === "/user-dashboard" && <h1>User DashBoard</h1>}
+          {location.pathname === "/user-dashboard" &&
+          (
+          <>
+              <div className="alertt  display-7 text-center rounded-none px-4 bg-white shadow-sm">
+        <h1 className="h4 m-0 text-custom fw-bolder">
+          SREE MURUGAN PAINTS COMPANY
+        </h1>
+        <button onClick={() => logout()} className="power-off">
+          <i className="fas fa-power-off power"></i>
+        </button>
+      </div>
+
+
+{order && order.length === 0 ? <></>:
+      <section className="container">
+        <div className="row mx-5 px-5 mt-5">
+          <div className="col me-3">
+          
+              <div onClick={navToOrders} className="card shadow-sm">
+                <div className="custom-card first">
+                  <i className="fas fa-user-circle"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                  Pending Orders : <span className="fw-bold fs-5">{order.orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+          <div className="col mx-3">
+             <div onClick={navToProcess} className="card shadow-sm">
+                <div className="custom-card second">
+                <i class="fas fa-tasks"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                  Processing Orders : <span className="fw-bold fs-5">{order.process_orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+          <div className="col mx-3">
+            
+              <div onClick={navToComplete} className="card shadow-sm">
+                <div className="custom-card third">
+                  <i className="fas fa-cubes"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                    Completed Orders : <span className="fw-bold fs-5">{order.complete_orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+        
+        </div>
+      </section>
+      }
+          </>)
+          }
           <Outlet />
          
         </div>

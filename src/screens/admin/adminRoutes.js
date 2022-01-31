@@ -5,5 +5,6 @@ import AllDealers from "./AllDealers";
 import ProductPanel from "./ProductPanel";
 import DealerDetails from "../../components/DealerDetails";
 import OrderDetails from "../../components/OrderDetails";
+import TransactionDetails from "./TransactionDetails";
 
-export { AdminDashboard, DealerRequest, NewOrders, AllDealers, ProductPanel, DealerDetails ,OrderDetails};
+export { AdminDashboard, DealerRequest, NewOrders, AllDealers, ProductPanel, DealerDetails ,OrderDetails ,TransactionDetails};

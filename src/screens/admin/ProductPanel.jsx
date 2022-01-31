@@ -28,9 +28,7 @@ const ProductPanel = () => {
 
   
     return <section className="container my-2">
-      {/* <h5 className="alert co fw-bold display-7  text-center">
-      Product Panel
-              </h5> */}
+    
        
         <table className="table border table-hover">
     <thead className="co ">

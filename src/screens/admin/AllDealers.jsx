@@ -70,6 +70,8 @@ const Dealer = (props) => {
   const navigateToUser = () => {
     Navigate(`${props.id}`, { state: props.userData });
   };
+
+ 
   return (
     <tr className=" pt-4 " >
       <th scope="row">{props.id}</th>
@@ -81,7 +83,10 @@ const Dealer = (props) => {
         <button className=" fw-bold btn co btn-sm " onClick={navigateToUser}>
           Details
         </button>
-        <button className="fw-bold btn btn-success btn-sm">Transaction</button>
+        <button className="fw-bold btn btn-success btn-sm"  onClick={()=>{
+          console.log(props.userData)
+           Navigate(    `new/${props.id}`, { state:props.userData });
+        }} >Transaction</button>
       </td>
     </tr>
   );
