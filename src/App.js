@@ -9,7 +9,8 @@ import {
   AllDealers,
   ProductPanel,
   DealerDetails,
-  OrderDetails
+  OrderDetails,
+  TransactionDetails,
 } from "./screens/admin/adminRoutes";
 import {
   UserDashboard,
@@ -35,7 +36,11 @@ function App() {
             <Route path=":id" element={<DealerDetails />} />
           </Route>
           <Route path="new-orders" element={<NewOrders />} >
+          <Route path="new/:id" element={<TransactionDetails/>} />
           <Route path=":id" element={<OrderDetails />} />
+          
+        
+          
             </Route>
           <Route path="product-panel" element={<ProductPanel />} />
         </Route>
