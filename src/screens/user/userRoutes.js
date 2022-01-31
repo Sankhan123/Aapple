@@ -5,8 +5,9 @@ import Uorder from "../../components/Uorders"
 import Uprocessing from "../../components/Uprocessing"
 import Ucomplete from "../../components/Ucomplete"
 import Tabel from "../../components/Tabel";
-import Process from '../../components/Process'
+import Process from '../../components/Process';
+import Complete from "../../components/Complete";
 
 
 
-export { UserDashboard, Purchase, Transaction ,Uorder,Uprocessing,Ucomplete,Tabel,Process};
+export { Complete,UserDashboard, Purchase, Transaction ,Uorder,Uprocessing,Ucomplete,Tabel,Process};

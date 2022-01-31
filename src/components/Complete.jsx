@@ -1,7 +1,7 @@
 import React from 'react';
 import Sidebar from "./UserSidebar";
-import { Outlet, useLocation} from "react-router-dom";
-function Process() {
+import { Outlet, useLocation ,} from "react-router-dom";
+function Complete() {
     let Location = useLocation();
     const data = Location.state;
     console.log(data)
@@ -84,4 +84,4 @@ function Process() {
     </>)
 }
 
-export default Process;
+export default Complete;
