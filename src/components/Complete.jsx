@@ -13,8 +13,6 @@ function Complete() {
             <Sidebar />
 
 
-
-
             <div className="col my-3">
             <h5 className="alert co display-7  text-center">
                 Processing Order
@@ -29,6 +27,7 @@ function Complete() {
                             <th scope="col">Product</th>
 
                             <th scope="col">Size</th>
+                            <th scope="col">Qty </th>
                             <th scope="col">Price </th>
                             <th scope="col">Gst </th>
                             <th scope="col">Gst Amount</th>
@@ -38,7 +37,7 @@ function Complete() {
                         </tr>
                     </thead>
 
-                    {data &&
+                    {data.order_data &&
                         data.order_data.map((subData, index) => (
                             <tbody key={index}>
                                 <tr className=" pt-4 ">
@@ -49,6 +48,7 @@ function Complete() {
                                     <th scope="row">{subData.product_name}</th>
                                     <td className="fw-bold">{subData.size_name}</td>
 
+                                    <td className="fw-bold">{subData.value}</td>
                                     <td className="fw-bold">{subData.price}</td>
 
                                     <td className="fw-bold">{subData.gst}</td>
@@ -70,10 +70,11 @@ function Complete() {
 
 
                 </table>
-                <div className="d-flex justify-content-between align-items-center">
-                <button className='ms-4 btn btn-success' >Submit</button>
-                <button className='ms-4 btn btn-danger' >Delete</button>
-                    <h5 className='me-4'>Total : {data.total}</h5>
+                
+                <div className="d-flex aling-items-center justify-content-between  text-center ">
+                
+               {data.total.length && <h5 className='me-3'>Total : <span className='fw-bold fs-4'>
+                 {data.total}  ₹ </span></h5>} 
                
                 </div>
                 

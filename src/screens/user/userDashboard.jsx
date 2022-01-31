@@ -91,7 +91,7 @@ const navToComplete =()=>{
         <div className="row mx-5 px-5 mt-5">
           <div className="col me-3">
           
-              <div onClick={navToOrders} className="card shadow-sm">
+              <div  onClick={navToOrders} className="cp card shadow-sm">
                 <div className="custom-card first">
                   <i className="fas fa-user-circle"></i>
                 </div>
@@ -104,7 +104,7 @@ const navToComplete =()=>{
             
           </div>
           <div className="col mx-3">
-             <div onClick={navToProcess} className="card shadow-sm">
+             <div onClick={navToProcess} className="card cp shadow-sm">
                 <div className="custom-card second">
                 <i className="fas fa-tasks"></i>
                 </div>
@@ -118,7 +118,7 @@ const navToComplete =()=>{
           </div>
           <div className="col mx-3">
             
-              <div onClick={navToComplete} className="card shadow-sm">
+              <div onClick={navToComplete} className="cp card shadow-sm">
                 <div className="custom-card third">
                   <i className="fas fa-cubes"></i>
                 </div>

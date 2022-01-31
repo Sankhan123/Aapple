@@ -10,7 +10,7 @@ export default function Uorders() {
 
   const navigateToData = (data) => {
 
-    Navigate(`/data`, { state: data });
+    Navigate(`/user-dashboard/order/data`, { state: data });
   };
   return (
       <>

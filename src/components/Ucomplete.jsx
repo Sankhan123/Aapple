@@ -6,8 +6,8 @@ export default function Ucomplete() {
   const data = Location.state;
 let Navigate = useNavigate()
 const navigateToData = (data) => {
-
-  Navigate(`/complete`, { state: data });
+console.log(data)
+  Navigate(`/user-dashboard/complete/cdata`, { state: data });
 };
   return (
     <>
@@ -35,8 +35,8 @@ const navigateToData = (data) => {
         </tr>
       </thead>
 {
-data.orders && 
-data.orders.map((data,index)=>(
+data.complete_orders && 
+data.complete_orders.map((data,index)=>(
     <tbody key={index}>
             <tr className=" pt-4 ">
               
@@ -46,7 +46,7 @@ data.orders.map((data,index)=>(
               <td className="fw-bold">{data.pro_count}</td>
               
               
-              <td className="fw-bold">Pending</td>
+              <td className="fw-bold">{data.order_status}</td>
               <td className="fw-bold">
                   <button onClick={()=>{navigateToData(data)}} className='btn btn-success btn-sm '>View</button>
                   

@@ -43,7 +43,7 @@ export default function OrderDetails() {
   async function handleSubmit() {
     // post request
     let datas = rowData;
-    console.log(datas);
+   
     try {
       const response = await axios.post(`${REACT_APP_API_URL}/add-price`, datas);
       if (response) {
@@ -90,7 +90,8 @@ export default function OrderDetails() {
                       type="number"
                       name={data.id}
                       min="0"
-                      max="100"
+                      
+                      required="required"
                       onChange={(e) => {
                         handleChange(e, data.id);
                       }}

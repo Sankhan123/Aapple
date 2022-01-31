@@ -29,9 +29,9 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/data" element={<Tabel />} />
-        <Route path="/pending" element={<Process />} />
-        <Route path="/complete" element={<Complete />} />
+        <Route path="/user-dashboard/order/data" element={<Tabel />} />
+        <Route path="/user-dashboard/pending" element={<Process />} />
+        <Route path="/user-dashboard/complete/cdata" element={<Complete />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />}>
