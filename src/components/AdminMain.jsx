@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import authHeader from "../assets/header/auth-header";
@@ -5,6 +6,26 @@ import REACT_APP_API_URL from "../assets/header/env";
 
 const AdminMain = () => {
   let Navigate = useNavigate();
+  const [datas,setData] = useState([]);
+
+  useEffect(() => {
+    
+    async function getReport() {
+      try {
+        const res = await axios.get(`${REACT_APP_API_URL}/get-report`, {
+          headers: authHeader(),
+        });
+        if (res) {
+          let data = res.data;
+          setData(data);
+
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getReport();
+  }, []);
   async function logout() {
     try {
       const res = await axios.get(`${REACT_APP_API_URL}/logout`, {
@@ -38,7 +59,7 @@ const AdminMain = () => {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    Dealers Request : <span className="fw-bold fs-5">00</span>{" "}
+                    Dealers Request : <span className="fw-bold fs-5">{datas.requests}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -52,7 +73,7 @@ const AdminMain = () => {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    New Orders : <span className="fw-bold fs-5">00</span>{" "}
+                    New Orders : <span className="fw-bold fs-5">{datas.orders}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -80,7 +101,7 @@ const AdminMain = () => {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    All Dealers : <span className="fw-bold fs-5">00</span>{" "}
+                    All Dealers : <span className="fw-bold fs-5">{datas.dealers}</span>{" "}
                   </h6>
                 </div>
               </div>

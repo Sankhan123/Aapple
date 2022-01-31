@@ -40,8 +40,7 @@ const NewOrders = () => {
                 <th scope="col">Sno</th>
                 <th scope="col">Date</th>
                 <th scope="col">Dealer</th>
-
-                <th scope="col">Order</th>
+                <th scope="col">Product Count</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>

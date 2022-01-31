@@ -24,10 +24,13 @@ Route::post('/add-transaction',[DealerController::class,'add_transaction']);
 Route::post('/add-price',[OrderController::class,'add_price']);
 Route::put('/update-dealer/{id}',[DealerController::class,'update_dealer_status']);
 Route::delete('/delete-dealer/{id}',[DealerController::class,'delete_dealer']);
+Route::post('/update-order',[OrderController::class,'update_order']);
+Route::delete('/delete-order/{id}',[OrderController::class,'delete_order']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('logout', [ApiController::class, 'logout']);
     Route::get('get_user', [ApiController::class, 'get_user']);
+    Route::get('/get-report',[DealerController::class,'get_report']);
     Route::get('/dealersrequest',[DealerController::class,'get_dealer_requests']);
     Route::get('/getcategory',[ProductController::class,'get_categry_list']);
     Route::get('get-products',[ProductController::class,'get_products']);

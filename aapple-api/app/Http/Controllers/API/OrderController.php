@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dealer;
 use App\Models\Order;
 use App\Models\OrderData;
 use Illuminate\Http\Request;
@@ -55,7 +56,6 @@ class OrderController extends Controller
                 $user->gst = $data[$key]['gst'];
                 $user->save();
             }
-            $order = new Order;
             $list = Order::find($request->input('id'));
             $list->total = $grant_total;
             $list->order_status = "Processing";
@@ -66,6 +66,39 @@ class OrderController extends Controller
             'message' => 'Price added successfully',
         ]);
     }
+    public function update_order(Request $request){
+       
+        $order = new Order();
+        $list = Order::find($request->input('id'));
+        if($list) {
+            $list->order_status = "Completed";
+            $list->save();
+            $total = OrderData::where('order_id',$request->input('id'))->sum('subtotal');
+            $dealer = Dealer::find($request->input('dealer_id'));
+            $dealer->credit_amount += $total;
+            $dealer->save();
+        }
+       
+        return response()->json([
+            'status' => 200,
+            'message' => 'Your order confirmed',
+        ]);
+    }
+
+    public function delete_order($id){
+
+        $order = Order::find($id)-> delete();
+        $order_data = OrderData::where('order_id','=',$id)-> delete();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Order deleted successfully',
+        ]);
+
+    }
+
+
+
      public function get_orders(){
        $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->get();
             return response()->json([

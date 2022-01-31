@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Mail\TestMail;
 use App\Models\Dealer;
+use App\Models\Order;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -52,6 +53,22 @@ class DealerController extends Controller
             'status' => 200,
             'dealers' => $dealer_requests,
             'ondealers' => $dealer_list,
+        ]);
+    }
+
+    public function get_report(){
+
+        $dealer_requests = Dealer::where('user_role','=','user')->where('user_status','=','false')->get();
+        $dealer_list = Dealer::where('user_role','=','user')->where('user_status','=','true')->get();
+        $orders_list = Order::where('order_status','=','Pending')->get();
+        $reqCount = $dealer_requests->count();
+        $dealerCount = $dealer_list->count();
+        $orderCount = $orders_list->count();
+        return response()->json([
+            'status' => 200,
+            'requests' => $reqCount,
+            'dealers' => $dealerCount,
+            'orders' => $orderCount,
         ]);
     }
 

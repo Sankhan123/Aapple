@@ -55,16 +55,21 @@ export default function OrderDetails() {
       console.log(e);
     }
   }
+  console.log(rowData.dealer_data[0])
   return (
     <>
-      <div className="col">
+      <div className="col ">
+      <div className="row mt-3 mb-2">
+      <h5 className="text-center">Dealer Name: <b>{rowData && rowData.dealer_data[0].company_name}</b> </h5>
+
+      </div>
         <table className="table table-hover  border">
           <thead>
             <tr className="table-dark">
               <th scope="col">Catagory </th>
               <th scope="col">Product</th>
               <th scope="col">Size</th>
-              <th scope="col">Value</th>
+              <th scope="col">Quantity</th>
               <th scope="col">Price</th>
               <th scope="col">Gst</th>
               <th scope="col">Gst Amount</th>
@@ -89,6 +94,7 @@ export default function OrderDetails() {
                       onChange={(e) => {
                         handleChange(e, data.id);
                       }}
+                      required
                     />
                   </td>
 

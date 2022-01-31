@@ -34,7 +34,7 @@ const ProductPanel = () => {
     <thead className="co ">
       <tr>
       <th scope="col">S.No</th>
-        <th scope="col">Product Name</th>
+        <th scope="col">Category</th>
         <th scope="col">Status</th>
       </tr>
     </thead>
