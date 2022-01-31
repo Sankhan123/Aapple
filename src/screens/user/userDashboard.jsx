@@ -1,15 +1,17 @@
 import React from "react";
-<<<<<<< HEAD
-import { Outlet, useLocation ,useNavigate} from "react-router-dom";
-import Sidebar from "../../components/UserSidebar";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation,useNavigate ,Link} from "react-router-dom";
+import Sidebar from "../../components/UserSidebar";
 import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
-
-
 const UserDashboard = () => {
   let location = useLocation();
+  const [order, setOrder] = useState([]);
   let Navigate = useNavigate();
+
+
+ 
   async function logout() {
     try {
       const res = await axios.get(`${REACT_APP_API_URL}/logout`, {
@@ -23,37 +25,6 @@ const UserDashboard = () => {
       console.log(e);
     }
   }
-
-
-  // const [order, setOrder] = useState(null);
-  // useEffect(() => {
-  //   async function getOrders() {
-  //     try {
-  //       const res = await axios.get(`${REACT_APP_API_URL}/get-orders`, {
-  //         headers: authHeader(),
-  //       });
-  //       if (res) {
-  //         let data = res.data.orders;
-
-  //         setOrder(data);
-  //       }
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   getOrders();
-  // }, []);
-=======
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Outlet, useLocation } from "react-router-dom";
-import Sidebar from "../../components/UserSidebar";
-import authHeader from "../../assets/header/auth-header";
-import REACT_APP_API_URL from "../../assets/header/env";
-const UserDashboard = () => {
-  let location = useLocation();
-  const [order, setOrder] = useState(null);
-  
   useEffect(() => {
     let dealer_id = "";
     if (sessionStorage.length) {
@@ -67,9 +38,11 @@ const UserDashboard = () => {
           headers: authHeader(),
         });
         if (res) {
-          let data = res.data.orders;
+          let data = res.data;
 
           setOrder(data);
+
+        
         }
       } catch (e) {
         console.log(e);
@@ -77,8 +50,24 @@ const UserDashboard = () => {
     }
     getOrders();
   }, []);
+  
+
+
+const navToOrders =()=>{
   console.log(order)
->>>>>>> 7b9bdfd7db3406e5a72060a685f91610e9f8450e
+  Navigate(`order`, { state: order });
+}
+
+const navToProcess =()=>{
+  console.log(order)
+  Navigate(`process`, { state: order });
+}
+
+const navToComplete =()=>{
+  console.log(order)
+  Navigate(`complete`, { state: order });
+}
+
   return (
     <main >
       <div className="d-flex ">
@@ -96,38 +85,55 @@ const UserDashboard = () => {
         </button>
       </div>
 
-{/* 
-      <section className="col">
-      {location.pathname === "/admin-dashboard/new-orders" && (
-        <div className="container my-3">
-          <h5 className="alert co fw-bold display-7  text-center">
-            New Orders
-          </h5>
-          <table className="table table-hover border">
-            <thead>
-              <tr className="table-dark">
-                <th scope="col">Sno</th>
-                <th scope="col">Date</th>
-                <th scope="col">Dealer</th>
 
-                <th scope="col">Order</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {order &&
-                order.map((data, index) => {
-                  return (
-                    <OrderDetail key={index + 1} order={data} id={index + 1} />
-                  );
-                })}
-            </tbody>
-          </table>
+{order && order.length === 0 ? <></>:
+      <section className="container">
+        <div className="row mx-5 px-5 mt-5">
+          <div className="col me-3">
+          
+              <div onClick={navToOrders} className="card shadow-sm">
+                <div className="custom-card first">
+                  <i className="fas fa-user-circle"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                  Pending Orders : <span className="fw-bold fs-5">{order.orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+          <div className="col mx-3">
+             <div onClick={navToProcess} className="card shadow-sm">
+                <div className="custom-card second">
+                <i class="fas fa-tasks"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                  Processing Orders : <span className="fw-bold fs-5">{order.process_orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+          <div className="col mx-3">
+            
+              <div onClick={navToComplete} className="card shadow-sm">
+                <div className="custom-card third">
+                  <i className="fas fa-cubes"></i>
+                </div>
+                <div className="card-body">
+                  <h6 className="card-subtitle text-muted">
+                    Completed Orders : <span className="fw-bold fs-5">{order.complete_orders.length}</span>{" "}
+                  </h6>
+                </div>
+              </div>
+            
+          </div>
+        
         </div>
-      )}
-
-      <Outlet />
-    </section> */}
+      </section>
+      }
           </>)
           }
           <Outlet />
