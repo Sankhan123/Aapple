@@ -1,9 +1,12 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import REACT_APP_API_URL from "../assets/header/env";
 
 export default function OrderDetails() {
   let Location = useLocation();
+  let Navi = useNavigate();
   const data = Location.state;
   const [rowData, setRowData] = useState(data);
   const handleChange = (e, id) => {
@@ -37,9 +40,20 @@ export default function OrderDetails() {
     data.order_data[rowIndex] = singleData[0];
     setRowData(data);
   };
-  function handleSubmit() {
+  async function handleSubmit() {
     // post request
-    console.log(rowData.order_data);
+    let datas = rowData;
+    console.log(datas);
+    try {
+      const response = await axios.post(`${REACT_APP_API_URL}/add-price`, datas);
+      if (response) {
+        alert("Price added successfully");
+        setRowData(data);
+        Navi("/admin-dashboard");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   }
   return (
     <>
@@ -87,9 +101,10 @@ export default function OrderDetails() {
                       }}
                     >
                       <option value="0">Gst</option>
+                      <option value="5">5</option>
+                      <option value="12">12</option>
                       <option value="18">18</option>
                       <option value="25">25</option>
-                      <option value="35">35</option>
                     </select>{" "}
                   </td>
                   <td className="fw-bold">{data.gst_amount}</td>

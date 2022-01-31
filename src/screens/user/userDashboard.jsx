@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import { Outlet, useLocation ,useNavigate} from "react-router-dom";
 import Sidebar from "../../components/UserSidebar";
 import axios from "axios";
@@ -42,6 +43,42 @@ const UserDashboard = () => {
   //   }
   //   getOrders();
   // }, []);
+=======
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import Sidebar from "../../components/UserSidebar";
+import authHeader from "../../assets/header/auth-header";
+import REACT_APP_API_URL from "../../assets/header/env";
+const UserDashboard = () => {
+  let location = useLocation();
+  const [order, setOrder] = useState(null);
+  
+  useEffect(() => {
+    let dealer_id = "";
+    if (sessionStorage.length) {
+      const dealer_val = sessionStorage.getItem("user");
+      const dealer = JSON.parse(dealer_val);
+      dealer_id = dealer.user.reg_id;
+    }
+    async function getOrders() {
+      try {
+        const res = await axios.get(`${REACT_APP_API_URL}/get-orders-id/${dealer_id}`, {
+          headers: authHeader(),
+        });
+        if (res) {
+          let data = res.data.orders;
+
+          setOrder(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getOrders();
+  }, []);
+  console.log(order)
+>>>>>>> 7b9bdfd7db3406e5a72060a685f91610e9f8450e
   return (
     <main >
       <div className="d-flex ">
