@@ -9,30 +9,31 @@ export default function OrderDetails() {
   let Navi = useNavigate();
   const data = Location.state;
   const [rowData, setRowData] = useState(data);
+
   const handleChange = (e, id) => {
     let data = JSON.parse(JSON.stringify(rowData));
     const singleData = rowData.order_data.filter((rd) => {
       return id === rd.id;
     });
     singleData[0]["price"] = e.target.value;
-    singleData[0]["subtotal"] = e.target.value;
+    singleData[0]["subtotal"] = singleData[0]['value'] * e.target.value;
     let rowIndex = rowData.order_data.findIndex((rd) => {
       return id === rd.id;
     });
     data.order_data[rowIndex] = singleData[0];
     setRowData(data);
-    
   };
+
   const dropDown = (e, id) => {
     let data = JSON.parse(JSON.stringify(rowData));
     const singleData = rowData.order_data.filter((rd) => {
       return id === rd.id;
     });
     singleData[0]["gst"] = e.target.value;
-    let calc1 = (singleData[0].price * (singleData[0].gst / 100)).toFixed(2);
+    let calc1 = (singleData[0]['subtotal'] * (singleData[0].gst / 100)).toFixed(2);
     singleData[0]["gst_amount"] = parseFloat(calc1).toFixed(2);
     let calc2 =
-      parseFloat(singleData[0].price) + parseFloat(singleData[0]["gst_amount"]);
+      parseFloat(singleData[0]['subtotal']) + parseFloat(singleData[0]["gst_amount"]);
     singleData[0]["subtotal"] = calc2.toFixed(2);
     let rowIndex = rowData.order_data.findIndex((rd) => {
       return id === rd.id;
@@ -40,6 +41,7 @@ export default function OrderDetails() {
     data.order_data[rowIndex] = singleData[0];
     setRowData(data);
   };
+
   async function handleSubmit() {
     // post request
     let datas = rowData;
@@ -55,7 +57,6 @@ export default function OrderDetails() {
       console.log(e);
     }
   }
-  console.log(rowData.dealer_data[0])
   return (
     <>
       <div className="col ">
@@ -90,12 +91,10 @@ export default function OrderDetails() {
                       type="number"
                       name={data.id}
                       min="0"
-                      
-                      required="required"
                       onChange={(e) => {
                         handleChange(e, data.id);
                       }}
-                      required
+                      required="required"
                     />
                   </td>
 

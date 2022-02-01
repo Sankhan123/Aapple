@@ -117,13 +117,14 @@ function Purchase() {
           cartData={cartData}
           setData={setData}
           setTotal={setTotal}
+          count={count}
         />
       )}
     </>
   );
 }
 
-function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
+function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}) {
   useEffect(() => {
     if (cartData.length > 0) {
       let total = 0;
@@ -213,8 +214,9 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal }) {
   return (
     <>
       <section>
-        <header className="alert alert-light text-center fw-bold fs-4 text-dark m-0" role="alert">
-          {catagoryName}
+        <header className="alert alert-light d-flex align-items-center fw-bold fs-4 text-dark m-0" role="alert">
+          <span className="flex-grow-1 text-center">{catagoryName}</span>
+          <span className="fs-6 fw-normal badge badge-info py-2">Page : {count + 1} of 12</span>
         </header>
         <table className="table border">
           <thead className="table-dark">
