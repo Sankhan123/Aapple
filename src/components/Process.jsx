@@ -1,60 +1,20 @@
 import React from 'react';
 import Sidebar from "./UserSidebar";
-import axios from "axios";
-import REACT_APP_API_URL from "../assets/header/env";
 
 
 
-import { Outlet, useLocation,useNavigate} from "react-router-dom"
+import { Outlet, useLocation} from "react-router-dom"
 
 
 function Process() {
     let Location = useLocation();
     const data = Location.state;
-    console.log(data)
-    let Navigate = useNavigate()
-   const accept = async()=>{
-    let val ={
-        id: data.id,
-        dealer_id: data.dealer_id,
-    
-    }
-       
-    try {
-        const response = await axios.post(
-          `${REACT_APP_API_URL}/update-order`,
-          val
-        );
-        if (response.data.status === 200) {
-          alert(response.data.message);
-          Navigate("/user-dashboard");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-   }
-   const decline = async()=>{
-    let orderId = data.id
-       
-    try {
-        const res = await axios.delete(
-          `${REACT_APP_API_URL}/delete-order/${orderId}`
-        );
-        if (res) {
-         alert("Order removed");
-        }
-      } catch (e) {
-        console.log(e);
-      }
-   }
+
     return (<>
         <div className="d-flex ">
 
 
-
             <Sidebar />
-
-
 
 
             <div className="col my-3">
@@ -95,7 +55,7 @@ function Process() {
                                     <td className="fw-bold">{subData.value}</td>
                                     <td className="fw-bold">{subData.price}</td>
 
-                                    <td className="fw-bold">{subData.gst}</td>
+                                    <td className="fw-bold">{subData.gst} %</td>
 
                                     <td className="fw-bold">{subData.gst_amount}</td>
 
@@ -115,10 +75,9 @@ function Process() {
 
                 </table>
                 
-                <div className="d-flex aling-items-center justify-content-between  text-center ">
-                <button onClick={accept} className=' btn btn-success wit fw-bold' >Accept  Payment</button>
-                <button onClick={ decline} className=' btn btn-danger  wit fw-bold' >Decline  Order</button>
-               {data.total.length && <h5 className='me-3'>Total : <span className='fw-bold fs-4'>
+                <div className="d-flex aling-items-center justify-content-between  text-right ">
+                
+               {data && <h5 className='me-3 '>Total : <span className='fw-bold fs-4'>
                  {data.total}  ₹ </span></h5>} 
                
                 </div>

@@ -60,7 +60,7 @@ function App() {
         </Route>
         <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard /></PrivateRoute>}>
           <Route path="purchase" element={<PrivateRoute><Purchase /></PrivateRoute>} />
-          {/* <Route path="transaction" element={<PrivateRoute><Transaction /></PrivateRoute>} /> */}
+          <Route path="transaction" element={<PrivateRoute><Transaction /></PrivateRoute>} />
           <Route path="order" element={<PrivateRoute><Uorder /></PrivateRoute>} >
          
           </Route>

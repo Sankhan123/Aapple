@@ -38,7 +38,7 @@ export default function History() {
  <Sidebar />
     <div className="col my-3">
   <h5 className="alert co display-7  text-center">
-               {dealer.company_name &&(dealer.company_name).toUpperCase()} - Transaction Details
+                Transaction Details
                </h5>
   <table className="table table-hover  border">
        <thead>
@@ -51,7 +51,7 @@ export default function History() {
               <th scope="col">Inward</th>
               <th scope="col">Outward</th>
 
-             <th scope="col">Balance</th>
+             <th scope="col">Credit Balance</th>
              
             </tr>
            </thead>

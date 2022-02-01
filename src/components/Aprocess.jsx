@@ -32,7 +32,6 @@ const navigateToData = (data) => {
 
   Navigate(`/admin-dashboard/process`, { state: data });
 };
-  console.log(datas)
   return (
       <>
        <div className="alertt m-0 display-7 text-center rounded-none px-4 bg-white shadow-sm">

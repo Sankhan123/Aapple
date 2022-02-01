@@ -81,7 +81,7 @@ const Dealer = (props) => {
     Navigate(`/admin-dashboard/transaction`, { state: data });
   };
 
- 
+ console.log(props.userData)
   return (
     <tr className="pt-4" >
       <th scope="row cp" onClick={navigateToUser}>{props.id}</th>

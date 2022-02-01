@@ -2,19 +2,20 @@ import React from 'react';
 import Sidebar from "./AdminSidebar";
 import axios from "axios";
 import REACT_APP_API_URL from "../assets/header/env";
-
+import { useState } from 'react';
 import { Outlet, useLocation,useNavigate} from "react-router-dom"
 
 
 function AdminProcess() {
+  const [invoice, setInvoice] = useState();
     let Location = useLocation();
     const data = Location.state;
-    console.log(data)
     let Navigate = useNavigate()
    const accept = async()=>{
     let val ={
         id: data.id,
         dealer_id: data.dealer_id,
+        invoice_no: invoice,
     
     }
        
@@ -25,7 +26,7 @@ function AdminProcess() {
         );
         if (response.data.status === 200) {
           alert(response.data.message);
-          Navigate("/user-dashboard");
+          Navigate("/admin-dashboard");
         }
       } catch (err) {
         console.log(err);
@@ -88,7 +89,7 @@ function AdminProcess() {
                                     <td className="fw-bold">{subData.value}</td>
                                     <td className="fw-bold">{subData.price}</td>
 
-                                    <td className="fw-bold">{subData.gst}</td>
+                                    <td className="fw-bold">{subData.gst} %</td>
 
                                     <td className="fw-bold">{subData.gst_amount}</td>
 
@@ -108,9 +109,10 @@ function AdminProcess() {
                 </table>
                 
                 <div className="d-flex aling-items-center justify-content-between  text-center ">
-                <button onClick={accept} className=' btn btn-success wit fw-bold' >Accept  Payment</button>
+                  <input type="text" placeholder="Enter invoice number" onChange={(e)=>{setInvoice(e.target.value)}}/>
+                <button onClick={accept} className=' btn btn-success wit fw-bold' >Dispatch</button>
                 <button onClick={ decline} className=' btn btn-danger  wit fw-bold' >Decline  Order</button>
-               {data.total.length && <h5 className='me-3'>Total : <span className='fw-bold fs-4'>
+               {data && <h5 className='me-3'>Total : <span className='fw-bold fs-4'>
                  {data.total}  ₹ </span></h5>} 
                
                 </div>

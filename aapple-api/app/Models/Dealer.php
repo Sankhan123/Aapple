@@ -31,4 +31,5 @@ class Dealer extends Model
     public function transactions(){
         return $this->hasMany(Transaction::class, 'dealer_id', 'id');
     }
+    
 }
