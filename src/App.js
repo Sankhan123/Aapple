@@ -39,7 +39,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
           <Route path="dealer-request" element={<ProtectedRoute><DealerRequest /></ProtectedRoute>} />
-          <Route path="transaction" element={<ProtectedRoute></ProtectedRoute>} />
+          <Route path="transaction" element={<ProtectedRoute><TransactionDetail/></ProtectedRoute>} />
           <Route path="all-dealers" element={<ProtectedRoute><AllDealers /></ProtectedRoute>}>
             <Route path=":id" element={<ProtectedRoute><DealerDetails /></ProtectedRoute>} />
           </Route>
