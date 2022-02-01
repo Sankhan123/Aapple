@@ -7,7 +7,10 @@ import {
   DealerRequest,
   NewOrders,
   AllDealers,
+  History,
   ProductPanel,
+  Aprocess,
+  AdminProcess,
   DealerDetails,
   OrderDetails,TransactionDetail
 } from "./screens/admin/adminRoutes";
@@ -36,12 +39,15 @@ function App() {
         <Route path="/user-dashboard/pending" element={<PrivateRoute><Process /></PrivateRoute>} />
         <Route path="/user-dashboard/complete/cdata" element={<PrivateRoute><Complete /></PrivateRoute>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admin-dashboard/transaction/history" element={<ProtectedRoute><History /></ProtectedRoute>} />
+        <Route path="/admin-dashboard/process" element={<ProtectedRoute><AdminProcess /></ProtectedRoute>} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin-dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}>
           <Route path="dealer-request" element={<ProtectedRoute><DealerRequest /></ProtectedRoute>} />
           <Route path="transaction" element={<ProtectedRoute><TransactionDetail/></ProtectedRoute>} />
           <Route path="all-dealers" element={<ProtectedRoute><AllDealers /></ProtectedRoute>}>
             <Route path=":id" element={<ProtectedRoute><DealerDetails /></ProtectedRoute>} />
+            <Route path="aprocess" element={<ProtectedRoute><Aprocess/></ProtectedRoute>} />
           </Route>
           
           <Route path="new-orders" element={<ProtectedRoute><NewOrders /></ProtectedRoute>} >
@@ -54,7 +60,7 @@ function App() {
         </Route>
         <Route path="/user-dashboard" element={<PrivateRoute><UserDashboard /></PrivateRoute>}>
           <Route path="purchase" element={<PrivateRoute><Purchase /></PrivateRoute>} />
-          <Route path="transaction" element={<PrivateRoute><Transaction /></PrivateRoute>} />
+          {/* <Route path="transaction" element={<PrivateRoute><Transaction /></PrivateRoute>} /> */}
           <Route path="order" element={<PrivateRoute><Uorder /></PrivateRoute>} >
          
           </Route>

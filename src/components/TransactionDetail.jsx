@@ -1,11 +1,10 @@
 import React from "react";
-import { useEffect, useState } from "react";
 import { Formik, Form, Field } from "formik";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import * as Yup from "yup";
-// import axios from "axios";
+ import axios from "axios";
 // import authHeader from "../../assets/header/auth-header";
-// import REACT_APP_API_URL from "../../assets/header/env";
+ import REACT_APP_API_URL from "../assets/header/env";
 
 
 const SigninSchema = Yup.object().shape({
@@ -17,33 +16,12 @@ const SigninSchema = Yup.object().shape({
 });
 
 export default  function TransactionDetail() {
-  const [dealer,setDealer] = useState([]);
+  let Location = useLocation();
+  const data = Location.state;
    let Navigate = useNavigate();
-   let dealer_id = "";
-    if (sessionStorage.length) {
-      const dealer_val = sessionStorage.getItem("user");
-      const dealer = JSON.parse(dealer_val);
-      dealer_id = dealer.user.reg_id;
-    }
-  // useEffect(() => {
-    
-  //   async function getDealer() {
-  //     try {
-  //       const res = await axios.get(`${REACT_APP_API_URL}/get-dealer-id/${dealer_id}`, {
-  //         headers: authHeader(),
-  //       });
-  //       if (res) {
-  //         let data = res.data.dealer;
-  //         setDealer(data);
-        
-  //       }
-  //     } catch (e) {
-  //       console.log(e);
-  //     }
-  //   }
-  //   getDealer();
-  // }, []);
-  
+   const navigateToHistory = () => {
+    Navigate(`/admin-dashboard/transaction/history`, { state: data.id });
+  };
   return (
 
     <React.Fragment>
@@ -52,24 +30,23 @@ export default  function TransactionDetail() {
           date: "",
           mode: "",
           payment: "",
-          dealer_id:dealer_id,
+          dealer_id:data.id,
         }}
         validationSchema={SigninSchema}
-        // onSubmit={async (values) => {
-        //   console.log(values);
-        //   try {
-        //     const response = await axios.post(
-        //       `${REACT_APP_API_URL}/add-transaction`,
-        //       values
-        //     );
-        //     if (response.data.status === 200) {
-        //       alert(response.data.message);
-        //       Navigate("/user-dashboard");
-        //     }
-        //   } catch (err) {
-        //     console.log(err);
-        //   }
-        // }}
+        onSubmit={async (values) => {
+          try {
+            const response = await axios.post(
+              `${REACT_APP_API_URL}/add-transaction`,
+              values
+            );
+            if (response.data.status === 200) {
+              alert(response.data.message);
+              Navigate(`/admin-dashboard/transaction/history`)
+            }
+          } catch (err) {
+            console.log(err);
+          }
+        }}
       >
         {({ errors, touched }) => (
           <Form>
@@ -77,15 +54,17 @@ export default  function TransactionDetail() {
               <h5 className="alert co display-7  text-center">
                 Dealer Transaction
               </h5>
-              <div className="form-group row my-4">
-                <div className="col-lg-6 px-4  col-md-6 col-sm-12">
-                  Dealer Name: <b>{dealer && dealer.company_name}</b>
+              <div className="form-group row my-4 d-flex align-items-center">
+                <div className="col-lg-4 px-4  col-md-6 col-sm-12">
+                  Dealer Name: <b>{data && data.company_name}</b>
                 </div>
-                <div className="col-lg-6 px-4 pr-1 col-md-6 col-sm-12 text-right">
-                { dealer && dealer.credit_amount >=0 ? ( <>
-                  Credit Balance : Rs. <b>{dealer.credit_amount}</b>
-                                </>):(<>Debit Balance : Rs. <b>{-(dealer.credit_amount)}</b></>) }
-                  
+                <div className="col-lg-4 px-4 pr-1 col-md-6 col-sm-12 text-center">
+                  { data && data.credit_amount >=0 ? ( <>
+                  Credit Balance : Rs. <b>{data.credit_amount}</b>
+                                </>):(<>Opening Balance : Rs. <b>{-(data.credit_amount)}</b></>) }              
+                </div>
+                <div className="col-lg-4 px-4 pr-1 col-md-6 col-sm-12 text-right">
+                 <button className="btn co" onClick={navigateToHistory}>Transaction History</button>             
                 </div>
               </div>
 
@@ -140,7 +119,7 @@ export default  function TransactionDetail() {
 
                         <div className="mt-3 text-center col-sm-12">
                   <button type="submit" className="btn my-3 co" >
-                  SUBMIT
+                  Submit
               </button>
                   </div>
 

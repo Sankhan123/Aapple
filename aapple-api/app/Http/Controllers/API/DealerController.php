@@ -74,7 +74,7 @@ class DealerController extends Controller
 
     public function get_dealer_by_id($id){
 
-        $dealer_details = Dealer::select('id','company_name','credit_amount')->where('id',$id)->first();
+        $dealer_details = Dealer::with('transactions')->where('id',$id)->first();
 
         return response()->json([
             'status' => 200,
@@ -138,8 +138,7 @@ class DealerController extends Controller
         $trans->dealer_id = $request->input('dealer_id');
         $trans->date = $request->input('date');
         $trans->mode = $request->input('mode');
-        
-        $trans->payment = $request->input('payment');
+        $trans->inward = $request->input('payment');
         $trans->save();
         $trans->id;
         if($trans->id){
@@ -147,13 +146,10 @@ class DealerController extends Controller
             
             // Make sure you've got the Page model
             if($dealer) {
-                $trans->before_transaction =  $dealer->credit_amount;
-                $trans->save();
                 $dealer->credit_amount -= $request->input('payment');
                 $dealer->save();
                 $trans->credit_balance =  $dealer->credit_amount;
                 $trans->save();
-                
             }
         }
 

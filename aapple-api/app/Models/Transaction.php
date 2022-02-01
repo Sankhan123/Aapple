@@ -17,8 +17,9 @@ class Transaction extends Model
         'dealer_id',
          'date',
           'mode',
-          'before_transaction',
-           'payment',
+          'invoice_no',
+           'inward',
+           'outward',
            'credit_balance',
    ];
 }
