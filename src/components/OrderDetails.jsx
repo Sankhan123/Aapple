@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import REACT_APP_API_URL from "../assets/header/env";
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 export default function OrderDetails() {
   let Location = useLocation();
@@ -56,6 +58,48 @@ export default function OrderDetails() {
     } catch (e) {
       console.log(e);
     }
+  }
+  function pdfExport() {
+    console.log("Saving report as pdf");
+    const unit = "pt";
+    const size = "A4"; // Use A1, A2, A3 or A4
+    const orientation = "landscape"; // portrait or landscape
+    const marginLeft = 40;
+    const doc = new jsPDF(orientation, unit, size);
+    doc.setFontSize(20);
+    const title = "Order Details"
+    const headers = [
+      [
+        "SNO",
+        "CATAGORY",
+        "PRODUCT",
+        "SIZE",
+        "QUANTITY",
+        "PRICE",
+        "GST",
+        "GST AMOUNT",
+        "NET PRICE",
+      ],
+    ];
+    const tableData = rowData.order_data.map((row, i) => [
+      i+1,
+      row.cat_name ? row.cat_name : "---",
+      row.product_name ? row.product_name : "---",
+      row.size_name ? row.size_name : "---",
+      row.value ? row.value : "---",
+      row.price ? row.price : "---",
+      row.gst ? row.gst : "---",
+      row.gst_amount ? row.gst_amount : "---",
+      row.subtotal ? row.subtotal : "---"
+    ]);
+    const tableContent = {
+      startY: 50,
+      head: headers,
+      body: tableData,
+    };
+    doc.text(title, marginLeft, 40);
+    doc.autoTable(tableContent);
+    doc.save("Order Details.pdf")
   }
   return (
     <>
@@ -125,6 +169,7 @@ export default function OrderDetails() {
             <span className="me-3">Go Back</span>
           </Link>
           <button className="btn btn-success px-5 ms-3" onClick={handleSubmit}>Submit</button>
+          <button className="btn btn-success px-5 ms-3" onClick={pdfExport}>Export as pdf</button>
         </div>
       </div>
     </>
