@@ -47,7 +47,7 @@ class DealerController extends Controller
 
         $dealer_requests = Dealer::where('user_role','=','user')->where('user_status','=','false')->get();
 
-        $dealer_list = Dealer::with('transactions')->where('user_role','=','user')->where('user_status','=','true')->get();
+        $dealer_list = Dealer::with('transactions')->where('user_role','=','user')->where('user_status','=','true')->withCount('process')->get();
 
         return response()->json([
             'status' => 200,
