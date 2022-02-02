@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from 'axios';
 import REACT_APP_API_URL from "../assets/header/env";
@@ -11,6 +11,25 @@ export default function OrderDetails() {
   let Navi = useNavigate();
   const data = Location.state;
   const [rowData, setRowData] = useState(data);
+  const [TotalAmt, setTotal] = useState({ totalPrice: 0, gstTotal: 0, netTotal: 0 });
+
+  useEffect(() => {
+    let totalPrice = 0;
+    let gstTotal = 0;
+    let netTotal = 0;
+    rowData.order_data.forEach(rowData => {
+      if(parseInt(rowData.subtotal) > 0) {
+        netTotal += parseInt(rowData.subtotal)
+      }
+      if(parseInt(rowData.price) > 0) {
+        totalPrice += parseInt(rowData.price)
+      }
+      if(parseInt(rowData.gst_amount) > 0) {
+        gstTotal += parseInt(rowData.gst_amount)
+      }
+    });
+    setTotal({totalPrice: totalPrice,gstTotal: gstTotal,netTotal: netTotal})
+  },[rowData])
 
   const handleChange = (e, id) => {
     let data = JSON.parse(JSON.stringify(rowData));
@@ -68,6 +87,7 @@ export default function OrderDetails() {
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(20);
     const title = "Order Details"
+    const totalAmt = TotalAmt;
     const headers = [
       [
         "SNO",
@@ -92,11 +112,23 @@ export default function OrderDetails() {
       row.gst_amount ? row.gst_amount : "---",
       row.subtotal ? row.subtotal : "---"
     ]);
+    tableData.push([
+      null,
+      null,
+      null,
+      null,
+      "Total Price",
+      totalAmt.totalPrice ? totalAmt.totalPrice : "===",
+      "GST + Net Total",
+      totalAmt.gstTotal ? totalAmt.gstTotal : "===",
+      totalAmt.netTotal ? totalAmt.netTotal : "==="
+    ])
     const tableContent = {
       startY: 50,
       head: headers,
       body: tableData,
     };
+    doc.setFontSize(12);
     doc.text(title, marginLeft, 40);
     doc.autoTable(tableContent);
     doc.save("Order Details.pdf")
@@ -170,6 +202,9 @@ export default function OrderDetails() {
           </Link>
           <button className="btn btn-success px-5 ms-3" onClick={handleSubmit}>Submit</button>
           <button className="btn btn-success px-5 ms-3" onClick={pdfExport}>Export as pdf</button>
+          <span className="mx-2">{TotalAmt.totalPrice}</span>
+          <span className="mx-2">{TotalAmt.gstTotal}</span>
+          <span className="mx-2">{TotalAmt.netTotal}</span>
         </div>
       </div>
     </>
