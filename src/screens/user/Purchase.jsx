@@ -56,8 +56,10 @@ function Purchase() {
     }
   }
   function clearCart() {
+    alert("Cart data cleared")
     setData([]);
     setShowModal(false);
+    Navi("/user-dashboard")
   }
   return (
     <>

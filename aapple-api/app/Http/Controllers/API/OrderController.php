@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Dealer;
 use App\Models\Order;
 use App\Models\OrderData;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -77,11 +78,19 @@ class OrderController extends Controller
             $dealer = Dealer::find($request->input('dealer_id'));
             $dealer->credit_amount += $total;
             $dealer->save();
+            $trans = new Transaction();
+            $trans->dealer_id = $request->input('dealer_id');
+            $trans->date = date('Y-m-d');
+            $trans->mode = "Invoice";
+            $trans->outward = $total;
+            $trans->invoice_no = $request->input('invoice_no');
+            $trans->credit_balance = $dealer->credit_amount;
+            $trans->save();
         }
        
         return response()->json([
             'status' => 200,
-            'message' => 'Your order confirmed',
+            'message' => 'Order confirmed',
         ]);
     }
 

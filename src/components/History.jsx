@@ -1,12 +1,13 @@
 import React from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import authHeader from "../../assets/header/auth-header";
-import REACT_APP_API_URL from "../../assets/header/env";
+import authHeader from "../assets/header/auth-header";
+import REACT_APP_API_URL from "../assets/header/env";
+import Sidebar from "./AdminSidebar";
 
 
-export default function Transaction() {
+export default function History() {
     const [dealer,setDealer] = useState([]);
 
     let Location = useLocation();
@@ -14,14 +15,8 @@ export default function Transaction() {
     useEffect(() => {
     
         async function getDealer() {
-            let dealer_id = "";
-            if (sessionStorage.length) {
-              const dealer_val = sessionStorage.getItem("user");
-              const dealer = JSON.parse(dealer_val);
-              dealer_id = dealer.user.reg_id;
-            }
             try {
-            const res = await axios.get(`${REACT_APP_API_URL}/get-dealer-id/${dealer_id}`, {
+            const res = await axios.get(`${REACT_APP_API_URL}/get-dealer-id/${data}`, {
                 headers: authHeader(),
             });
             if (res) {
@@ -36,18 +31,15 @@ export default function Transaction() {
         getDealer();
         }, []);
 
+        console.log(dealer)
   return (
     <>
+    <div className="d-flex ">
+ <Sidebar />
     <div className="col my-3">
   <h5 className="alert co display-7  text-center">
-               {dealer.company_name &&(dealer.company_name).toUpperCase()} - Transaction Details
+                Transaction Details
                </h5>
-                
-                <div className="col-lg-12 my-3 px-4 pr-1 col-md-6 col-sm-12 text-center">
-                  { dealer && dealer.credit_amount >=0 ? ( <>
-                  Credit Balance : Rs. <b>{dealer.credit_amount}</b>
-                                </>):(<>Opening Balance : Rs. <b>{-(dealer.credit_amount)}</b></>) }              
-              </div>
   <table className="table table-hover  border">
        <thead>
            <tr className="table-dark">
@@ -59,7 +51,7 @@ export default function Transaction() {
               <th scope="col">Inward</th>
               <th scope="col">Outward</th>
 
-             <th scope="col">Balance</th>
+             <th scope="col">Credit Balance</th>
              
             </tr>
            </thead>
@@ -91,6 +83,8 @@ export default function Transaction() {
             
 
           </table>
+          </div>
+          <Outlet />
           </div>
     </>
   )

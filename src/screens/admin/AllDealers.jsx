@@ -45,6 +45,7 @@ const AllDealers = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Address</th>
                   <th scope="col">Phone no</th>
+                  <th scope="col">Credit Balance</th>
                   <th  scope="col">Actions</th>
                 </tr>
               </thead>
@@ -67,29 +68,34 @@ const AllDealers = () => {
 };
 
 const Dealer = (props) => {
+  console.log(props);
   let Navigate = useNavigate();
   const navigateToUser = () => {
     
     Navigate(`${props.id}`, { state: props.userData });
   };
-  const navigateToTrans = (data) => {
-
-    Navigate(`/admin-dashboard/transaction`, { state: data.transactions });
+  const navigateToOrders = () => {
+    Navigate(`aprocess`, { state: props.userData.id });
   };
 
- 
+  const navigateToTrans = (data) => {
+    Navigate(`/admin-dashboard/transaction`, { state: data });
+  };
+
+ console.log(props.userData)
   return (
-    <tr className=" pt-4 " >
-      <th scope="row">{props.id}</th>
-      <td className="fw-bold">{props.userData.contact_person}</td>
-      <td className="fw-bold">{props.userData.email}</td>
-      <td className="fw-bold">{props.userData.address}</td>
-      <td className="fw-bold">{props.userData.phone}</td>
+    <tr className="pt-4" >
+      <th scope="row cp" onClick={navigateToUser}>{props.id}</th>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.company_name}</td>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.email}</td>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.address}</td>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.phone}</td>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.credit_amount}</td>
       <td className="d-flex text-center gap-4">
-        <button className=" fw-bold btn co btn-sm " onClick={navigateToUser}>
-          Details
+        <button className=" fw-bold btn co btn-sm " onClick={navigateToOrders}>
+          Process Orders
         </button>
-        <button className="fw-bold btn btn-success btn-sm" onClick={()=>{navigateToTrans(props.userData)}}   >Transaction</button>
+        <button className="fw-bold btn btn-success btn-sm" onClick={()=>{navigateToTrans(props.userData)}} >Transaction</button>
       </td>
     </tr>
   );

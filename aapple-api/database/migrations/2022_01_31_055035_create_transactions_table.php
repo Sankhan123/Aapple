@@ -18,8 +18,9 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('dealer_id')->unsigned()->index()->nullable();
             $table->date('date')->nullable();
             $table->string('mode')->nullable();
-            $table->bigInteger('before_transaction')->default(0);
-            $table->bigInteger('payment')->default(0);
+            $table->string('invoice_no')->nullable();
+            $table->bigInteger('inward')->default(0);
+            $table->bigInteger('outward')->default(0);
             $table->bigInteger('credit_balance')->default(0);
             $table->timestamps();
         });

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 31, 2022 at 08:53 AM
+-- Generation Time: Feb 02, 2022 at 06:19 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -85,9 +85,9 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 100, '2021-12-09 03:57:41', '2022-01-31 01:53:11'),
-(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 3100, '2021-12-09 04:01:58', '2022-01-31 01:54:39'),
-(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-27 05:01:03'),
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 700, '2021-12-09 03:57:41', '2022-02-01 12:24:29'),
+(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-01-31 01:54:39'),
+(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-31 03:56:45'),
 (8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-25 07:18:25'),
 (10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-25 07:20:25'),
 (11, 'sasa@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:39:00', '2022-01-25 07:21:33'),
@@ -121,7 +121,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (10, '2022_01_25_070935_create_size_table', 5),
 (15, '2022_01_26_104701_create_orders_table', 6),
 (16, '2022_01_26_111716_create_orders_data_table', 6),
-(18, '2022_01_31_055035_create_transactions_table', 7);
+(19, '2022_01_31_055035_create_transactions_table', 7);
 
 -- --------------------------------------------------------
 
@@ -144,9 +144,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `dealer_id`, `pro_count`, `order_status`, `total`, `created_at`, `updated_at`) VALUES
-(1, 2, 4, 'Processing', 749, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
-(2, 2, 2, 'Processing', 200, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
-(3, 2, 3, 'Pending', 0, '2022-01-30 13:09:58', '2022-01-30 13:09:58');
+(1, 2, 7, 'Completed', 489, '2022-02-01 12:11:54', '2022-02-01 12:16:02'),
+(2, 2, 2, 'Completed', 434, '2022-02-01 12:22:48', '2022-02-01 12:23:43');
 
 -- --------------------------------------------------------
 
@@ -177,14 +176,13 @@ CREATE TABLE `orders_data` (
 --
 
 INSERT INTO `orders_data` (`id`, `order_id`, `cat_id`, `cat_name`, `product_id`, `product_name`, `size_id`, `size_name`, `value`, `price`, `gst`, `gst_amount`, `subtotal`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 5, 5, 105, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
-(2, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 4, '500 ML', 1, 100, 5, 5, 105, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
-(3, 1, 2, 'Hi-gloss automotive paint(fast drying)', 43, 'Br white', 9, '1 LTR', 1, 200, 12, 24, 224, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
-(4, 1, 2, 'Hi-gloss automotive paint(fast drying)', 44, 'Golden brown', 10, '4 LTR', 1, 300, 5, 15, 315, '2022-01-30 12:37:50', '2022-01-30 12:40:04'),
-(5, 2, 1, 'Premium synthetic enamel', 2, 'Br white', 2, '100 ML', 1, 100, NULL, NULL, 100, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
-(6, 2, 2, 'Hi-gloss automotive paint(fast drying)', 45, 'Lemon yellow', 9, '1 LTR', 1, 100, NULL, NULL, 100, '2022-01-30 13:08:36', '2022-01-30 13:11:21'),
-(7, 3, 3, 'Aapple wood primers', 48, 'White wood primers', 11, '200 ML', 1, NULL, NULL, NULL, NULL, '2022-01-30 13:09:58', '2022-01-30 13:09:58'),
-(8, 3, 4, 'Aapple hamertones & aluminium paints', 52, 'HT blue', 18, '1 LTR', 2, NULL, NULL, NULL, NULL, '2022-01-30 13:09:58', '2022-01-30 13:09:58');
+(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
+(2, 1, 1, 'Premium synthetic enamel', 6, 'Midd buff', 5, '1 LTR', 1, 50, 12, 6, 56, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
+(3, 1, 1, 'Premium synthetic enamel', 7, 'Wild lilac', 6, '4 LTR', 2, 50, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
+(4, 1, 2, 'Hi-gloss automotive paint(fast drying)', 43, 'Br white', 9, '1 LTR', 2, 50, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
+(5, 1, 3, 'Aapple wood primers', 49, 'Pink wood primers', 13, '1 LTR', 1, 100, 18, 18, 118, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
+(6, 2, 1, 'Premium synthetic enamel', 1, 'Milk white', 2, '100 ML', 1, 200, 12, 24, 224, '2022-02-01 12:22:48', '2022-02-01 12:23:22'),
+(7, 2, 1, 'Premium synthetic enamel', 5, 'Royal ivory', 3, '200 ML', 1, 200, 5, 10, 210, '2022-02-01 12:22:48', '2022-02-01 12:23:22');
 
 -- --------------------------------------------------------
 
@@ -438,8 +436,9 @@ CREATE TABLE `transactions` (
   `dealer_id` bigint(20) UNSIGNED DEFAULT NULL,
   `date` date DEFAULT NULL,
   `mode` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `before_transaction` bigint(20) NOT NULL DEFAULT 0,
-  `payment` bigint(20) NOT NULL DEFAULT 0,
+  `invoice_no` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `inward` bigint(20) NOT NULL DEFAULT 0,
+  `outward` bigint(20) NOT NULL DEFAULT 0,
   `credit_balance` bigint(20) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -449,10 +448,11 @@ CREATE TABLE `transactions` (
 -- Dumping data for table `transactions`
 --
 
-INSERT INTO `transactions` (`id`, `dealer_id`, `date`, `mode`, `before_transaction`, `payment`, `credit_balance`, `created_at`, `updated_at`) VALUES
-(1, 2, '2022-01-02', 'online', 250, 50, 200, '2022-01-31 01:51:46', '2022-01-31 01:51:46'),
-(2, 2, '2022-01-08', 'gpay', 200, 100, 100, '2022-01-31 01:53:11', '2022-01-31 01:53:11'),
-(3, 3, '2022-01-08', 'online', 3500, 400, 3100, '2022-01-31 01:54:39', '2022-01-31 01:54:39');
+INSERT INTO `transactions` (`id`, `dealer_id`, `date`, `mode`, `invoice_no`, `inward`, `outward`, `credit_balance`, `created_at`, `updated_at`) VALUES
+(1, 2, '2022-02-01', 'Invoice', 'INV001', 0, 489, 489, '2022-02-01 12:16:02', '2022-02-01 12:16:02'),
+(2, 2, '2022-02-02', 'online', NULL, 100, 0, 389, '2022-02-01 12:19:49', '2022-02-01 12:19:49'),
+(3, 2, '2022-02-01', 'Invoice', 'iNV002', 0, 434, 823, '2022-02-01 12:23:43', '2022-02-01 12:23:43'),
+(4, 2, '2022-02-01', 'online', NULL, 123, 0, 700, '2022-02-01 12:24:29', '2022-02-01 12:24:29');
 
 -- --------------------------------------------------------
 
@@ -582,19 +582,19 @@ ALTER TABLE `dealers`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders_data`
 --
 ALTER TABLE `orders_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -624,13 +624,13 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

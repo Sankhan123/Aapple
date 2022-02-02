@@ -41,19 +41,19 @@ async function logout(){
   
           <CDBSidebarContent className="sidebar-content">
             <CDBSidebarMenu>
-              <NavLink to=".">
+              <NavLink to="/admin-dashboard">
             <CDBSidebarMenuItem icon="tachometer-alt">Dashboard</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink to="./dealer-request">
+              <NavLink to="/admin-dashboard/dealer-request">
                 <CDBSidebarMenuItem icon="user-circle">Dealer Request</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink to="./all-dealers">
+              <NavLink to="/admin-dashboard/all-dealers">
                 <CDBSidebarMenuItem icon="users"> All Dealers</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink to="./new-orders">
+              <NavLink to="/admin-dashboard/new-orders">
                 <CDBSidebarMenuItem icon="shopping-cart">New Orders</CDBSidebarMenuItem>
               </NavLink>
-              <NavLink to="./product-panel">
+              <NavLink to="/admin-dashboard/product-panel">
                 <CDBSidebarMenuItem icon="cubes">Product Panel</CDBSidebarMenuItem>
               </NavLink>
             </CDBSidebarMenu>
