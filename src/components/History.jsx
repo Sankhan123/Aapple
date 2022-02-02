@@ -31,7 +31,6 @@ export default function History() {
         getDealer();
         }, []);
 
-        console.log(dealer)
   return (
     <>
     <div className="d-flex ">

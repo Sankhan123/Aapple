@@ -41,7 +41,7 @@ export default  function TransactionDetail() {
             );
             if (response.data.status === 200) {
               alert(response.data.message);
-              Navigate(`/admin-dashboard`)
+              Navigate(`/admin-dashboard/transaction/history`, { state: data.id })
             }
           } catch (err) {
             console.log(err);
