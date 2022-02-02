@@ -48,17 +48,16 @@ export default function UserMain() {
       }
 
       const navToOrders =()=>{
-        console.log(order)
         Navigate(`order`, { state: order });
       }
       
       const navToProcess =()=>{
-        console.log(order)
+        
         Navigate(`process`, { state: order });
       }
       
       const navToComplete =()=>{
-        console.log(order)
+     
         Navigate(`complete`, { state: order });
       }
 

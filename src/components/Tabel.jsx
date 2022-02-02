@@ -5,7 +5,6 @@ import { Outlet, useLocation} from "react-router-dom";
 export default function Tabel() {
     let Location = useLocation();
     const data = Location.state;
-    console.log(data)
   return (
   <div className="d-flex ">
  <Sidebar />

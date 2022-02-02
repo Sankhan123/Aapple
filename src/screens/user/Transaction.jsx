@@ -1,5 +1,4 @@
 import React from 'react';
-import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import authHeader from "../../assets/header/auth-header";
@@ -8,9 +7,6 @@ import REACT_APP_API_URL from "../../assets/header/env";
 
 export default function Transaction() {
     const [dealer,setDealer] = useState([]);
-
-    let Location = useLocation();
-    const data = Location.state;
     useEffect(() => {
     
         async function getDealer() {
@@ -38,7 +34,7 @@ export default function Transaction() {
 
   return (
     <>
-    <div className="col my-3">
+    {dealer && <div className="col my-3">
   <h5 className="alert co display-7  text-center">
                {dealer.company_name &&(dealer.company_name).toUpperCase()} - Transaction Details
                </h5>
@@ -91,7 +87,7 @@ export default function Transaction() {
             
 
           </table>
-          </div>
+          </div>}
     </>
   )
 }

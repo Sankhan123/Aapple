@@ -1,4 +1,4 @@
-const Modal = ({ setShowModal, cartData, addOrder,clearCart,total }) => {
+const Modal = ({ setShowModal, cartData, addOrder, clearCart, total }) => {
   return (
     <main className="back-drop p-3">
       <div className="text-end">
@@ -16,42 +16,64 @@ const Modal = ({ setShowModal, cartData, addOrder,clearCart,total }) => {
           Cart <i className="fas fa-shopping-cart"></i>
         </h5>
         <div className="container">
-          {cartData.length !== 0 ? <><table className="table table-hover rounded border">
-            <thead className="table-dark">
-              <tr>
-                <th scope="col">Sno</th>
-                <th scope="col">Catagory</th>
-                <th scope="col">Product</th>
-                <th scope="col">Size</th>
-                <th scope="col">Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartData && cartData.map((cartData,index) => {
-                  return(
-                      <tr key={index}>
+          {cartData.length !== 0 ? (
+            <>
+              <table className="table table-hover rounded border">
+                <thead className="table-dark">
+                  <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Catagory</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Size</th>
+                    <th scope="col">Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {cartData &&
+                    cartData.map((cartData, index) => {
+                      return (
+                        <tr key={index}>
                           <td>{index + 1}</td>
                           <td>{cartData.cat_name}</td>
                           <td>{cartData.product_name}</td>
                           <td>{cartData.size_name}</td>
                           <td>{cartData.value}</td>
-                      </tr>
-                  )
-              })}
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td className="fw-bold">Total :</td>
-                <td className="fw-bold">{total}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div><button className="btn btn-success fw-bold wit me-1" onClick={addOrder}>Submit</button>
-          <button className="btn btn-danger fw-bold wit ms-1" onClick={clearCart}>Clear</button></div>
-          </>:<center className="mt-5 pt-5"><div className="no-alert text-center"><i className="fas fa-trash icon mt-4"></i> <h1 className="text-center h4 mt-3 text">No Products</h1></div></center> }
+                        </tr>
+                      );
+                    })}
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td className="fw-bold">Total :</td>
+                    <td className="fw-bold">{total}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div>
+                <button
+                  className="btn btn-success fw-bold wit me-1"
+                  onClick={addOrder}
+                >
+                  Submit
+                </button>
+                <button
+                  className="btn btn-danger fw-bold wit ms-1"
+                  onClick={clearCart}
+                >
+                  Clear
+                </button>
+              </div>
+            </>
+          ) : (
+            <center className="mt-5 pt-5">
+              <div className="no-alert text-center">
+                <i className="fas fa-trash icon mt-4"></i>{" "}
+                <h1 className="text-center h4 mt-3 text">No Products</h1>
+              </div>
+            </center>
+          )}
         </div>
-        
       </section>
     </main>
   );

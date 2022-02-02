@@ -10,6 +10,16 @@ import History from "../../components/History";
 import Aprocess from "../../components/Aprocess";
 import AdminProcess from "../../components/AdminProcess";
 
-
-
-export { AdminDashboard, DealerRequest, NewOrders, AdminProcess, Aprocess, AllDealers, ProductPanel, History, DealerDetails ,OrderDetails ,TransactionDetail};
+export {
+  AdminDashboard,
+  DealerRequest,
+  NewOrders,
+  AdminProcess,
+  Aprocess,
+  AllDealers,
+  ProductPanel,
+  History,
+  DealerDetails,
+  OrderDetails,
+  TransactionDetail,
+};

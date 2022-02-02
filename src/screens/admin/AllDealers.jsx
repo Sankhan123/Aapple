@@ -76,8 +76,6 @@ const Dealer = (props) => {
   const navigateToTrans = (data) => {
     Navigate(`/admin-dashboard/transaction`, { state: data });
   };
-
-  console.log(props.userData);
   return (
     <tr className="pt-4">
       <th scope="row cp" onClick={navigateToUser}>
@@ -101,7 +99,7 @@ const Dealer = (props) => {
       <td className="d-flex text-center gap-4">
         <button className=" fw-bold btn btn-light border-secondary btn-sm position-relative" onClick={navigateToOrders}>
           Process Orders
-          <span class="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger">
+          <span className="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger">
             {props.userData.process_count}
           </span>
         </button>

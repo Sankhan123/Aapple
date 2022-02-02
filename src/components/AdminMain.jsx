@@ -6,10 +6,9 @@ import REACT_APP_API_URL from "../assets/header/env";
 
 const AdminMain = () => {
   let Navigate = useNavigate();
-  const [datas,setData] = useState([]);
+  const [datas, setData] = useState([]);
 
   useEffect(() => {
-    
     async function getReport() {
       try {
         const res = await axios.get(`${REACT_APP_API_URL}/get-report`, {
@@ -18,7 +17,6 @@ const AdminMain = () => {
         if (res) {
           let data = res.data;
           setData(data);
-
         }
       } catch (e) {
         console.log(e);
@@ -52,35 +50,46 @@ const AdminMain = () => {
       <section className="container">
         <div className="row mx-5 px-5 mt-5">
           <div className="col me-3">
-            <Link to="/admin-dashboard/dealer-request" className="text-decoration-none">
+            <Link
+              to="/admin-dashboard/dealer-request"
+              className="text-decoration-none"
+            >
               <div className="card shadow-sm">
                 <div className="custom-card first">
                   <i className="fas fa-user-circle"></i>
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    Dealers Request : <span className="fw-bold fs-5">{datas.requests}</span>{" "}
+                    Dealers Request :{" "}
+                    <span className="fw-bold fs-5">{datas.requests}</span>{" "}
                   </h6>
                 </div>
               </div>
             </Link>
           </div>
           <div className="col mx-3">
-            <Link to="/admin-dashboard/new-orders" className="text-decoration-none">
+            <Link
+              to="/admin-dashboard/new-orders"
+              className="text-decoration-none"
+            >
               <div className="card shadow-sm">
                 <div className="custom-card second">
                   <i className="fas fa-shopping-cart"></i>
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    New Orders : <span className="fw-bold fs-5">{datas.orders}</span>{" "}
+                    New Orders :{" "}
+                    <span className="fw-bold fs-5">{datas.orders}</span>{" "}
                   </h6>
                 </div>
               </div>
             </Link>
           </div>
           <div className="col mx-3">
-            <Link to="/admin-dashboard/product-panel" className="text-decoration-none">
+            <Link
+              to="/admin-dashboard/product-panel"
+              className="text-decoration-none"
+            >
               <div className="card shadow-sm">
                 <div className="custom-card third">
                   <i className="fas fa-cubes"></i>
@@ -94,14 +103,18 @@ const AdminMain = () => {
             </Link>
           </div>
           <div className="col ms-3">
-            <Link to="/admin-dashboard/all-dealers" className="text-decoration-none">
+            <Link
+              to="/admin-dashboard/all-dealers"
+              className="text-decoration-none"
+            >
               <div className="card shadow-sm">
                 <div className="custom-card last">
                   <i className="fas fa-users"></i>
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    All Dealers : <span className="fw-bold fs-5">{datas.dealers}</span>{" "}
+                    All Dealers :{" "}
+                    <span className="fw-bold fs-5">{datas.dealers}</span>{" "}
                   </h6>
                 </div>
               </div>

@@ -1,70 +1,60 @@
-import React from 'react';
-import { useLocation ,useNavigate,Link} from "react-router-dom";
+import React from "react";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 export default function Uorders() {
-    let Location = useLocation();
-    const data = Location.state;
-  let Navigate = useNavigate()
-  
-
+  let Location = useLocation();
+  const data = Location.state;
+  let Navigate = useNavigate();
 
   const navigateToData = (data) => {
-
     Navigate(`/user-dashboard/order/data`, { state: data });
   };
   return (
-      <>
-        <div className="alertt  display-7 text-center rounded-none px-4 bg-white shadow-sm">
-        <h1 className="h4 m-0 text-custom fw-bolder">
-          Pending Orders
-        </h1>
+    <>
+      <div className="alertt  display-7 text-center rounded-none px-4 bg-white shadow-sm">
+        <h1 className="h4 m-0 text-custom fw-bolder">Pending Orders</h1>
         <Link to=".." className="btn text-center  btn-success">
-                <i className="fas fa-arrow-left me-3"></i>
-                
+          <i className="fas fa-arrow-left me-3"></i>
         </Link>
       </div>
-        <div className="col my-3">
+      <div className="col my-3">
         <table className="table table-hover  border">
-       <thead>
+          <thead>
             <tr className="table-dark">
-              
               <th scope="col">S.No </th>
               <th scope="col">Date</th>
               <th scope="col">Product</th>
-              
+
               <th scope="col">Progress</th>
-              
+
               <th scope="col">Action</th>
             </tr>
           </thead>
-{
-    data.orders && 
-    data.orders.map((data,index)=>(
-        <tbody key={index}>
+          {data.orders &&
+            data.orders.map((data, index) => (
+              <tbody key={index}>
                 <tr className=" pt-4 ">
-                  
                   <td className="fw-bold">{index + 1}</td>
-                  
-                  <th scope="row">{data.created_at.split('T')[0]}</th>
+
+                  <th scope="row">{data.created_at.split("T")[0]}</th>
                   <td className="fw-bold">{data.pro_count}</td>
-                  
-                  
+
                   <td className="fw-bold">Pending</td>
                   <td className="fw-bold">
-                      <button onClick={()=>{navigateToData(data)}} className='btn btn-success btn-sm '>View</button>
-                      
-                      </td>
-                  
-                  </tr>
-                  </tbody>
-    ))
-}
-
-                   
-
-          </table>
-          </div> 
-      
-      </>
+                    <button
+                      onClick={() => {
+                        navigateToData(data);
+                      }}
+                      className="btn btn-success btn-sm "
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+        </table>
+      </div>
+    </>
   );
 }

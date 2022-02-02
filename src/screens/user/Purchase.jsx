@@ -5,7 +5,6 @@ import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
 import Modal from "../../components/Modal";
 import { useNavigate } from 'react-router-dom';
-import { Toast } from "bootstrap";
 
 function Purchase() {
   const Navi = useNavigate()
@@ -97,7 +96,7 @@ function Purchase() {
             }}
           >
             <i className="fas fa-shopping-cart"></i>
-            <span class="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger badge-index">
+            <span className="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger badge-index">
             {cartData.length}
           </span>
           </button>
@@ -115,7 +114,7 @@ function Purchase() {
             <i className="fas fa-caret-right"></i>
           </button>
         </div>
-        <h4>Total Product : <span class="badge bg-info">{total}</span></h4>
+        <h4>Total Product : <span className="badge bg-info">{total}</span></h4>
       </div>
       {purchaseData && (
         <PurchaseTable
