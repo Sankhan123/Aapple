@@ -45,6 +45,7 @@ const AllDealers = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Address</th>
                   <th scope="col">Phone no</th>
+                  <th scope="col">Credit Balance</th>
                   <th  scope="col">Actions</th>
                 </tr>
               </thead>
@@ -89,6 +90,7 @@ const Dealer = (props) => {
       <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.email}</td>
       <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.address}</td>
       <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.phone}</td>
+      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.credit_amount}</td>
       <td className="d-flex text-center gap-4">
         <button className=" fw-bold btn co btn-sm " onClick={navigateToOrders}>
           Process Orders
