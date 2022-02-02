@@ -31,5 +31,7 @@ class Dealer extends Model
     public function transactions(){
         return $this->hasMany(Transaction::class, 'dealer_id', 'id');
     }
-    
+    public function process(){
+        return $this->hasMany(Order::class,'dealer_id','id')->where('order_status', 'Processing');
+    }
 }
