@@ -24,8 +24,8 @@ class CreateOrdersDataTable extends Migration
             $table->string('size_name')->nullable();
             $table->integer('value')->nullable();
             $table->bigInteger('price')->nullable();
-            $table->integer('gst')->nullable();
-            $table->bigInteger('gst_amount')->nullable();
+            $table->integer('gst')->default(0);
+            $table->bigInteger('gst_amount')->default(0);
             $table->bigInteger('subtotal')->nullable();
             $table->timestamps();
         });

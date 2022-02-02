@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2022 at 06:19 AM
+-- Generation Time: Feb 02, 2022 at 06:23 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -164,8 +164,8 @@ CREATE TABLE `orders_data` (
   `size_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `value` int(11) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
-  `gst` int(11) DEFAULT NULL,
-  `gst_amount` bigint(20) DEFAULT NULL,
+  `gst` int(11) NOT NULL DEFAULT 0,
+  `gst_amount` bigint(20) NOT NULL DEFAULT 0,
   `subtotal` bigint(20) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
