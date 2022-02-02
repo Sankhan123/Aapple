@@ -9,23 +9,20 @@ const AllDealers = () => {
   const [users, setUsers] = useState(null);
   let location = useLocation();
   useEffect(() => {
-
-    async function getdealers(){
-      try{
-        const res = await axios.get(`${REACT_APP_API_URL}/dealersrequest`,{ headers: authHeader() });
-      if(res){
-        let trueData = res.data.ondealers;
-      setUsers(trueData);
-    
-        
-      }
-      }catch(e){
+    async function getdealers() {
+      try {
+        const res = await axios.get(`${REACT_APP_API_URL}/dealersrequest`, {
+          headers: authHeader(),
+        });
+        if (res) {
+          let trueData = res.data.ondealers;
+          setUsers(trueData);
+        }
+      } catch (e) {
         console.log(e);
       }
-
     }
     getdealers();
-
   }, []);
 
   return (
@@ -33,10 +30,10 @@ const AllDealers = () => {
       {location.pathname === "/admin-dashboard/all-dealers" && (
         <section className="container my-3">
           <div className="container">
-          <h5 className="alert co fw-bold display-7  text-center">
-          All Dealers
-              </h5>
-           
+            <h5 className="alert co fw-bold display-7  text-center">
+              All Dealers
+            </h5>
+
             <table className="table table-hover  border">
               <thead>
                 <tr className="table-dark">
@@ -46,7 +43,7 @@ const AllDealers = () => {
                   <th scope="col">Address</th>
                   <th scope="col">Phone no</th>
                   <th scope="col">Credit Balance</th>
-                  <th  scope="col">Actions</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,10 +65,8 @@ const AllDealers = () => {
 };
 
 const Dealer = (props) => {
-  console.log(props);
   let Navigate = useNavigate();
   const navigateToUser = () => {
-    
     Navigate(`${props.id}`, { state: props.userData });
   };
   const navigateToOrders = () => {
@@ -81,21 +76,41 @@ const Dealer = (props) => {
   const navigateToTrans = (data) => {
     Navigate(`/admin-dashboard/transaction`, { state: data });
   };
-
- console.log(props.userData)
   return (
-    <tr className="pt-4" >
-      <th scope="row cp" onClick={navigateToUser}>{props.id}</th>
-      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.company_name}</td>
-      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.email}</td>
-      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.address}</td>
-      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.phone}</td>
-      <td className="fw-normal cp" onClick={navigateToUser}>{props.userData.credit_amount}</td>
+    <tr className="pt-4">
+      <th scope="row cp" onClick={navigateToUser}>
+        {props.id}
+      </th>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.company_name}
+      </td>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.email}
+      </td>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.address}
+      </td>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.phone}
+      </td>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.credit_amount}
+      </td>
       <td className="d-flex text-center gap-4">
-        <button className=" fw-bold btn co btn-sm " onClick={navigateToOrders}>
+        <button className=" fw-bold btn btn-light border-secondary btn-sm position-relative" onClick={navigateToOrders}>
           Process Orders
+          <span className="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger">
+            {props.userData.process_count}
+          </span>
         </button>
-        <button className="fw-bold btn btn-success btn-sm" onClick={()=>{navigateToTrans(props.userData)}} >Transaction</button>
+        <button
+          className="fw-bold btn btn-success btn-sm"
+          onClick={() => {
+            navigateToTrans(props.userData);
+          }}
+        >
+          Transaction
+        </button>
       </td>
     </tr>
   );

@@ -69,6 +69,7 @@ function Purchase() {
           cartData={cartData}
           addOrder={addOrder}
           clearCart={clearCart}
+          total={total}
         />
       )}
       <div className="alertt co display-7 text-center rounded-none px-4">
@@ -95,6 +96,9 @@ function Purchase() {
             }}
           >
             <i className="fas fa-shopping-cart"></i>
+            <span className="position-absolute top-0 start-100 badge-font translate-middle badge rounded-pill bg-danger badge-index">
+            {cartData.length}
+          </span>
           </button>
           <button
             type="button"
@@ -110,7 +114,7 @@ function Purchase() {
             <i className="fas fa-caret-right"></i>
           </button>
         </div>
-        <h4>Total Product : {total}</h4>
+        <h4>Total Product : <span className="badge bg-info">{total}</span></h4>
       </div>
       {purchaseData && (
         <PurchaseTable
@@ -218,7 +222,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
       <section>
         <header className="alert alert-light d-flex align-items-center fw-bold fs-4 text-dark m-0" role="alert">
           <span className="flex-grow-1 text-center">{catagoryName}</span>
-          <span className="fs-6 fw-normal badge badge-info py-2">Page : {count + 1} of 12</span>
+          <span className="fs-6 fw-normal badge last fw-bold py-2">Page : {count + 1} of 12</span>
         </header>
         <table className="table border">
           <thead className="table-dark">

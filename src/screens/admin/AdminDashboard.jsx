@@ -9,8 +9,8 @@ const AdminDashboard = () => {
       <div className="d-flex">
         <Sidebar />
         <div className="col m-0 parent p-0 bg-admin">
-        {location.pathname === "/admin-dashboard" && <AdminMain />}
-        <Outlet />
+          {location.pathname === "/admin-dashboard" && <AdminMain />}
+          <Outlet />
         </div>
       </div>
     </main>

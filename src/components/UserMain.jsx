@@ -48,17 +48,16 @@ export default function UserMain() {
       }
 
       const navToOrders =()=>{
-        console.log(order)
         Navigate(`order`, { state: order });
       }
       
       const navToProcess =()=>{
-        console.log(order)
+        
         Navigate(`process`, { state: order });
       }
       
       const navToComplete =()=>{
-        console.log(order)
+     
         Navigate(`complete`, { state: order });
       }
 
@@ -85,7 +84,7 @@ export default function UserMain() {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                  Pending Orders : <span className="fw-bold fs-5">{order.orders.length}</span>{" "}
+                  Pending Orders : <span className="fw-bold fs-5">{order && order.orders.length}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -98,7 +97,7 @@ export default function UserMain() {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                  Processing Orders : <span className="fw-bold fs-5">{order.process_orders.length}</span>{" "}
+                  Processing Orders : <span className="fw-bold fs-5">{order && order.process_orders.length}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -112,7 +111,7 @@ export default function UserMain() {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    Completed Orders : <span className="fw-bold fs-5">{order.complete_orders.length}</span>{" "}
+                    Completed Orders : <span className="fw-bold fs-5">{order && order.complete_orders.length}</span>{" "}
                   </h6>
                 </div>
               </div>
