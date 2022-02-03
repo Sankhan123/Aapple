@@ -54,8 +54,7 @@ export default function Transaction() {
               <th scope="col">Invoice</th>
               <th scope="col">Inward</th>
               <th scope="col">Outward</th>
-
-             <th scope="col">Balance</th>
+             <th scope="col">Payable Amount</th>
              
             </tr>
            </thead>
@@ -70,9 +69,9 @@ export default function Transaction() {
                   
                   <td className="fw-bold">{subData.mode}</td>
                   <td className="fw-bold">{subData.invoice_no ? subData.invoice_no:'-'}</td>
-                  <td className="fw-bold">{subData.inward}</td>
+                  
                   <td className="fw-bold">{subData.outward}</td>                  
-                 
+                  <td className="fw-bold">{subData.inward}</td>
                   <td className="fw-bold">{subData.credit_balance}</td>
                   
                  

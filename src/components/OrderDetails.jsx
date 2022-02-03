@@ -22,14 +22,14 @@ export default function OrderDetails() {
     let gstTotal = 0;
     let netTotal = 0;
     rowData.order_data.forEach((rowData) => {
-      if (parseInt(rowData.subtotal) > 0) {
-        netTotal += parseInt(rowData.subtotal);
+      if (parseFloat(rowData.subtotal) > 0) {
+        netTotal += parseFloat(rowData.subtotal);
       }
-      if (parseInt(rowData.price) > 0) {
-        totalPrice += parseInt(rowData.price);
+      if (parseFloat(rowData.price) > 0) {
+        totalPrice += parseFloat(rowData.price) * parseFloat(rowData.value);
       }
-      if (parseInt(rowData.gst_amount) > 0) {
-        gstTotal += parseInt(rowData.gst_amount);
+      if (parseFloat(rowData.gst_amount) > 0) {
+        gstTotal += parseFloat(rowData.gst_amount);
       }
     });
     setTotal({
@@ -134,8 +134,8 @@ export default function OrderDetails() {
       "Total Price",
       totalAmt.totalPrice ? totalAmt.totalPrice : "===",
       "GST + Net Total",
-      totalAmt.gstTotal ? totalAmt.gstTotal : "===",
-      totalAmt.netTotal ? totalAmt.netTotal : "===",
+      totalAmt.gstTotal ? Math.round(totalAmt.gstTotal) : "===",
+      totalAmt.netTotal ? Math.round(totalAmt.netTotal) : "===",
     ]);
     const tableContent = {
       startY: 50,
@@ -155,9 +155,9 @@ export default function OrderDetails() {
             Dealer Name: <b>{rowData && rowData.dealer_data[0].company_name}</b>{" "}
           </h5>
         </div>
-        <table className="table table-hover  border">
-          <thead>
-            <tr className="table-dark">
+        <table className="table table-hover border">
+          <thead className="table-dark">
+            <tr >
               <th scope="col">Catagory </th>
               <th scope="col">Product</th>
               <th scope="col">Size</th>
@@ -174,10 +174,10 @@ export default function OrderDetails() {
               <tbody key={index}>
                 <tr className=" pt-4 ">
                   <th scope="row">{data.cat_name}</th>
-                  <td className="fw-bold">{data.product_name}</td>
-                  <td className="fw-bold">{data.size_name}</td>
-                  <td className="fw-bold">{data.value}</td>
-                  <td className="fw-bold">
+                  <td >{data.product_name}</td>
+                  <td >{data.size_name}</td>
+                  <td >{data.value}</td>
+                  <td >
                     <input
                       type="number"
                       name={data.id}
@@ -189,7 +189,7 @@ export default function OrderDetails() {
                     />
                   </td>
 
-                  <td className="fw-bold">
+                  <td className="">
                     {" "}
                     <select
                       className="p-0"
@@ -204,11 +204,23 @@ export default function OrderDetails() {
                       <option value="25">25</option>
                     </select>{" "}
                   </td>
-                  <td className="fw-bold">{data.gst_amount}</td>
+                  <td className="">{data.gst_amount}</td>
                   <td className="fw-bold">{data.subtotal}</td>
                 </tr>
-              </tbody>
+                </tbody>
             ))}
+            <tbody>
+            <tr className="table-dark text-center">
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col"></th>
+              <th scope="col">Total :</th>
+              <th scope="col">{TotalAmt.totalPrice} ₹</th>
+              <th scope="col"></th>
+              <th scope="col">{Math.round(TotalAmt.gstTotal)} ₹</th>
+              <th scope="col">{Math.round(TotalAmt.netTotal)} ₹</th>
+            </tr>
+            </tbody>
         </table>
         <div className="my-4 text-center">
           <Link to=".." className="btn wit co  btn-danger">
@@ -221,9 +233,7 @@ export default function OrderDetails() {
           <button className="btn btn-success px-5 ms-3" onClick={pdfExport}>
             Export as pdf
           </button>
-          <span className="mx-2">{TotalAmt.totalPrice}</span>
-          <span className="mx-2">{TotalAmt.gstTotal}</span>
-          <span className="mx-2">{TotalAmt.netTotal}</span>
+          
         </div>
       </div>
     </>

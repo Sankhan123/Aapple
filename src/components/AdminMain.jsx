@@ -61,7 +61,7 @@ const AdminMain = () => {
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
                     Dealers Request :{" "}
-                    <span className="fw-bold fs-5">{datas.requests}</span>{" "}
+                    <span className="fw-bold fs-5">{datas && datas.requests}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -79,7 +79,7 @@ const AdminMain = () => {
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
                     New Orders :{" "}
-                    <span className="fw-bold fs-5">{datas.orders}</span>{" "}
+                    <span className="fw-bold fs-5">{datas && datas.orders}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -87,7 +87,7 @@ const AdminMain = () => {
           </div>
           <div className="col mx-3">
             <Link
-              to="/admin-dashboard/product-panel"
+              to="/admin-dashboard/all-dealers"
               className="text-decoration-none"
             >
               <div className="card shadow-sm">
@@ -96,7 +96,7 @@ const AdminMain = () => {
                 </div>
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
-                    Product Panel : <span className="fw-bold fs-5">12</span>{" "}
+                    Process Orders : <span className="fw-bold fs-5">{datas && datas.process_orders}</span>{" "}
                   </h6>
                 </div>
               </div>
@@ -114,7 +114,7 @@ const AdminMain = () => {
                 <div className="card-body">
                   <h6 className="card-subtitle text-muted">
                     All Dealers :{" "}
-                    <span className="fw-bold fs-5">{datas.dealers}</span>{" "}
+                    <span className="fw-bold fs-5">{datas && datas.dealers}</span>{" "}
                   </h6>
                 </div>
               </div>

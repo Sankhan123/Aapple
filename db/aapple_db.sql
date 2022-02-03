@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2022 at 06:23 AM
+-- Generation Time: Feb 03, 2022 at 06:40 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -85,8 +85,8 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 700, '2021-12-09 03:57:41', '2022-02-01 12:24:29'),
-(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-01-31 01:54:39'),
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 1647, '2021-12-09 03:57:41', '2022-02-02 23:52:10'),
+(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-02-02 06:13:35'),
 (5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-31 03:56:45'),
 (8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-25 07:18:25'),
 (10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-25 07:20:25'),
@@ -144,8 +144,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `dealer_id`, `pro_count`, `order_status`, `total`, `created_at`, `updated_at`) VALUES
-(1, 2, 7, 'Completed', 489, '2022-02-01 12:11:54', '2022-02-01 12:16:02'),
-(2, 2, 2, 'Completed', 434, '2022-02-01 12:22:48', '2022-02-01 12:23:43');
+(1, 2, 6, 'Completed', 1647, '2022-02-02 23:19:24', '2022-02-02 23:52:10'),
+(2, 2, 7, 'Processing', 1010, '2022-02-02 23:58:23', '2022-02-02 23:59:05');
 
 -- --------------------------------------------------------
 
@@ -165,8 +165,8 @@ CREATE TABLE `orders_data` (
   `value` int(11) DEFAULT NULL,
   `price` bigint(20) DEFAULT NULL,
   `gst` int(11) NOT NULL DEFAULT 0,
-  `gst_amount` bigint(20) NOT NULL DEFAULT 0,
-  `subtotal` bigint(20) DEFAULT NULL,
+  `gst_amount` float(10,2) NOT NULL DEFAULT 0.00,
+  `subtotal` float(10,2) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -176,13 +176,12 @@ CREATE TABLE `orders_data` (
 --
 
 INSERT INTO `orders_data` (`id`, `order_id`, `cat_id`, `cat_name`, `product_id`, `product_name`, `size_id`, `size_name`, `value`, `price`, `gst`, `gst_amount`, `subtotal`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
-(2, 1, 1, 'Premium synthetic enamel', 6, 'Midd buff', 5, '1 LTR', 1, 50, 12, 6, 56, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
-(3, 1, 1, 'Premium synthetic enamel', 7, 'Wild lilac', 6, '4 LTR', 2, 50, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
-(4, 1, 2, 'Hi-gloss automotive paint(fast drying)', 43, 'Br white', 9, '1 LTR', 2, 50, 5, 5, 105, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
-(5, 1, 3, 'Aapple wood primers', 49, 'Pink wood primers', 13, '1 LTR', 1, 100, 18, 18, 118, '2022-02-01 12:11:54', '2022-02-01 12:14:26'),
-(6, 2, 1, 'Premium synthetic enamel', 1, 'Milk white', 2, '100 ML', 1, 200, 12, 24, 224, '2022-02-01 12:22:48', '2022-02-01 12:23:22'),
-(7, 2, 1, 'Premium synthetic enamel', 5, 'Royal ivory', 3, '200 ML', 1, 200, 5, 10, 210, '2022-02-01 12:22:48', '2022-02-01 12:23:22');
+(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 222, 5, 11.10, 233.10, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
+(2, 1, 1, 'Premium synthetic enamel', 5, 'Royal ivory', 4, '500 ML', 2, 105, 12, 25.20, 235.20, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
+(3, 1, 1, 'Premium synthetic enamel', 12, 'Phiroza blue', 3, '200 ML', 3, 333, 18, 179.82, 1178.82, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
+(4, 2, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 18, 18.00, 118.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05'),
+(5, 2, 1, 'Premium synthetic enamel', 4, 'off white', 2, '100 ML', 2, 200, 5, 20.00, 420.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05'),
+(6, 2, 1, 'Premium synthetic enamel', 9, 'Golden yellow', 3, '200 ML', 4, 100, 18, 72.00, 472.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05');
 
 -- --------------------------------------------------------
 
@@ -452,7 +451,12 @@ INSERT INTO `transactions` (`id`, `dealer_id`, `date`, `mode`, `invoice_no`, `in
 (1, 2, '2022-02-01', 'Invoice', 'INV001', 0, 489, 489, '2022-02-01 12:16:02', '2022-02-01 12:16:02'),
 (2, 2, '2022-02-02', 'online', NULL, 100, 0, 389, '2022-02-01 12:19:49', '2022-02-01 12:19:49'),
 (3, 2, '2022-02-01', 'Invoice', 'iNV002', 0, 434, 823, '2022-02-01 12:23:43', '2022-02-01 12:23:43'),
-(4, 2, '2022-02-01', 'online', NULL, 123, 0, 700, '2022-02-01 12:24:29', '2022-02-01 12:24:29');
+(4, 2, '2022-02-01', 'online', NULL, 123, 0, 700, '2022-02-01 12:24:29', '2022-02-01 12:24:29'),
+(5, 2, '2022-02-02', 'online', NULL, 100, 0, 600, '2022-02-02 01:43:44', '2022-02-02 01:43:44'),
+(6, 2, '2022-02-02', 'asas', NULL, 250, 0, 350, '2022-02-02 01:50:02', '2022-02-02 01:50:02'),
+(7, 2, '2022-02-02', 'Invoice', 'inv8118', 0, 434, 784, '2022-02-02 04:23:35', '2022-02-02 04:23:35'),
+(8, 3, '2022-02-02', 'Invoice', 'INV 001', 0, 322, 322, '2022-02-02 06:13:35', '2022-02-02 06:13:35'),
+(9, 2, '2022-02-03', 'Invoice', 'Inv 001', 0, 1647, 1647, '2022-02-02 23:52:10', '2022-02-02 23:52:10');
 
 -- --------------------------------------------------------
 
@@ -594,7 +598,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `orders_data`
 --
 ALTER TABLE `orders_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -624,7 +628,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

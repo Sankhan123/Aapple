@@ -35,7 +35,7 @@ export default function Aprocess() {
   return (
     <>
       <div className="alertt m-0 display-7 text-center rounded-none px-4 bg-white shadow-sm">
-        <h1 className="h4 m-0 text-custom fw-bolder">Processing Orders</h1>
+        <h1 className="h4 m-0 text-custom fw-bolder">Processing Orders - { order.process_orders && order.process_orders[0].dealer_data[0].company_name} </h1>
         <Link to=".." className="btn text-center  btn-success">
           <i className="fas fa-arrow-left me-3"></i>
         </Link>

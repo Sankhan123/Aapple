@@ -6,7 +6,6 @@ export default function Ucomplete() {
   const data = Location.state;
   let Navigate = useNavigate();
   const navigateToData = (data) => {
-    console.log(data);
     Navigate(`/user-dashboard/complete/cdata`, { state: data });
   };
   return (
