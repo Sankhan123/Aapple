@@ -32,7 +32,7 @@ class DealerController extends Controller
 
         $details = [
             'title' => $request->input('email'),
-            'body' => 'This is for testing new dealer notifications'
+            'body' => 'New dealer request notification'
         ];
 
         Mail::to($request->input('email'))->send(new TestMail($details));

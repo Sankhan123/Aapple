@@ -1,6 +1,7 @@
 import React from 'react';
 import Sidebar from "./UserSidebar";
-
+import jsPDF from "jspdf";
+import "jspdf-autotable";
 
 
 import { Outlet, useLocation} from "react-router-dom"
@@ -12,6 +13,63 @@ function Process() {
     let totalPrice = 0;
     let totalGst= 0;
     let netTotal = 0;
+
+    function pdfExport() {
+        console.log("Saving report as pdf");
+        const unit = "pt";
+        const size = "A4"; // Use A1, A2, A3 or A4
+        const orientation = "landscape"; // portrait or landscape
+        const marginLeft = 40;
+        const doc = new jsPDF(orientation, unit, size);
+        doc.setFontSize(20);
+        const title = "Order Details";
+        const totalAmt = {totalPrice: totalPrice, gstTotal: totalGst, netTotal: netTotal};
+        const headers = [
+          [
+            "SNO",
+            "CATAGORY",
+            "PRODUCT",
+            "SIZE",
+            "QUANTITY",
+            "PRICE",
+            "GST",
+            "GST AMOUNT",
+            "NET PRICE",
+          ],
+        ];
+        const tableData = data.order_data.map((row, i) => [
+          i + 1,
+          row.cat_name ? row.cat_name : "---",
+          row.product_name ? row.product_name : "---",
+          row.size_name ? row.size_name : "---",
+          row.value ? row.value : "---",
+          row.price ? row.price : "---",
+          row.gst ? row.gst : "---",
+          row.gst_amount ? row.gst_amount : "---",
+          row.subtotal ? row.subtotal : "---",
+        ]);
+        tableData.push([
+          null,
+          null,
+          null,
+          null,
+          "Total Price",
+          totalAmt.totalPrice ? totalAmt.totalPrice : "===",
+          "GST + Net Total",
+          totalAmt.gstTotal ? Math.round(totalAmt.gstTotal) : "===",
+          totalAmt.netTotal ? Math.round(totalAmt.netTotal) : "===",
+        ]);
+        const tableContent = {
+          startY: 50,
+          head: headers,
+          body: tableData,
+        };
+        doc.setFontSize(12);
+        doc.text(title, marginLeft, 40);
+        doc.autoTable(tableContent);
+        doc.save("Order Details.pdf");
+      }
+
     return (<>
         <div className="d-flex ">
 
@@ -20,9 +78,17 @@ function Process() {
 
 
             <div className="col my-3">
-            <h5 className="alert co display-7  text-center">
-                Processing Order
-              </h5>
+                <div>
+                        <h5 className="alert co ">
+                        <span className='text-center col-6'>Processing Order</span>
+                        <span className='text-end'>
+                                <button onClick={pdfExport} className=" btn btn-info fw-bold">
+                                    Export As pdf
+                                </button></span>
+                        </h5>
+                   
+                </div>                
+              
             
                 <table className="table table-hover  border">
                     <thead>
@@ -90,7 +156,6 @@ function Process() {
                         </tr>
                     </tbody>
                 </table>
-                
                 
             </div>
             <Outlet />

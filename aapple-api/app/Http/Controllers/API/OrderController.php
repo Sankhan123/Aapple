@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\OrderData;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -61,6 +63,13 @@ class OrderController extends Controller
             $list->total = $grant_total;
             $list->order_status = "Processing";
             $list->save();
+
+            $details = [
+                'title' => $request->input('email'),
+                'body' => 'Your order no #'.$request->input('id').' amount is Rs.'.$grant_total.' (Status: Processing). Waiting for your call confirmation..', 
+            ];
+    
+            Mail::to($request->input('email'))->send(new TestMail($details));
         
         return response()->json([
             'status' => 200,
@@ -87,7 +96,12 @@ class OrderController extends Controller
             $trans->credit_balance = $dealer->credit_amount;
             $trans->save();
         }
-       
+        $details = [
+            'title' => $request->input('email'),
+            'body' => 'Your order no #'.$request->input('id').' amount is Rs.'.$total.' (Status: Confirmed)', 
+        ];
+
+        Mail::to($request->input('email'))->send(new TestMail($details));
         return response()->json([
             'status' => 200,
             'message' => 'Order confirmed',
