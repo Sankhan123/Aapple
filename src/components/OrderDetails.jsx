@@ -13,7 +13,7 @@ export default function OrderDetails() {
   const [rowData, setRowData] = useState(data);
   const [TotalAmt, setTotal] = useState({
     totalPrice: 0,
-    gstTotal: 0,
+    gstTotal: 0,  
     netTotal: 0,
   });
 
@@ -44,8 +44,22 @@ export default function OrderDetails() {
     const singleData = rowData.order_data.filter((rd) => {
       return id === rd.id;
     });
-    singleData[0]["price"] = e.target.value;
-    singleData[0]["subtotal"] = singleData[0]["value"] * e.target.value;
+    if (singleData[0].gst) {
+      singleData[0]["price"] = parseFloat(e.target.value);
+      singleData[0]["gst_amount"] =
+        (singleData[0]["value"] *
+          singleData[0]["price"] *
+          singleData[0]["gst"]) /
+        100;
+      singleData[0]["subtotal"] =
+        singleData[0]["value"] * parseFloat(e.target.value) +
+        singleData[0]["gst_amount"];
+    } else {
+      singleData[0]["price"] = parseFloat(e.target.value);
+      singleData[0]["subtotal"] =
+        singleData[0]["value"] * parseFloat(e.target.value);
+    }
+
     let rowIndex = rowData.order_data.findIndex((rd) => {
       return id === rd.id;
     });
@@ -58,15 +72,18 @@ export default function OrderDetails() {
     const singleData = rowData.order_data.filter((rd) => {
       return id === rd.id;
     });
-    singleData[0]["gst"] = e.target.value;
-    let calc1 = (singleData[0]["subtotal"] * (singleData[0].gst / 100)).toFixed(
-      2
-    );
-    singleData[0]["gst_amount"] = parseFloat(calc1).toFixed(2);
-    let calc2 =
-      parseFloat(singleData[0]["subtotal"]) +
-      parseFloat(singleData[0]["gst_amount"]);
-    singleData[0]["subtotal"] = calc2.toFixed(2);
+    let calc1 = 0
+    let calc2 = 0;
+    // assigning the gst value
+    singleData[0]["gst"] = parseFloat(e.target.value);
+    // calculating the gst amount
+    calc1 =
+      (singleData[0]["value"] * singleData[0]["price"] * singleData[0]["gst"]) /
+      100;
+    singleData[0]["gst_amount"] = Math.round(calc1 * 100)/100
+    // calculating the sub total
+    calc2 = (singleData[0]["value"] * singleData[0]["price"]) + singleData[0]["gst_amount"];
+    singleData[0]["subtotal"] = Math.round(calc2 * 100)/100
     let rowIndex = rowData.order_data.findIndex((rd) => {
       return id === rd.id;
     });
@@ -157,7 +174,7 @@ export default function OrderDetails() {
         </div>
         <table className="table table-hover border">
           <thead className="table-dark">
-            <tr >
+            <tr>
               <th scope="col">Catagory </th>
               <th scope="col">Product</th>
               <th scope="col">Size</th>
@@ -174,10 +191,10 @@ export default function OrderDetails() {
               <tbody key={index}>
                 <tr className=" pt-4 ">
                   <th scope="row">{data.cat_name}</th>
-                  <td >{data.product_name}</td>
-                  <td >{data.size_name}</td>
-                  <td >{data.value}</td>
-                  <td >
+                  <td>{data.product_name}</td>
+                  <td>{data.size_name}</td>
+                  <td>{data.value}</td>
+                  <td>
                     <input
                       type="number"
                       name={data.id}
@@ -207,9 +224,9 @@ export default function OrderDetails() {
                   <td className="">{data.gst_amount}</td>
                   <td className="fw-bold">{data.subtotal}</td>
                 </tr>
-                </tbody>
+              </tbody>
             ))}
-            <tbody>
+          <tbody>
             <tr className="table-dark text-center">
               <th scope="col"></th>
               <th scope="col"></th>
@@ -220,7 +237,7 @@ export default function OrderDetails() {
               <th scope="col">{Math.round(TotalAmt.gstTotal)} ₹</th>
               <th scope="col">{Math.round(TotalAmt.netTotal)} ₹</th>
             </tr>
-            </tbody>
+          </tbody>
         </table>
         <div className="my-4 text-center">
           <Link to=".." className="btn wit co  btn-danger">
@@ -233,7 +250,6 @@ export default function OrderDetails() {
           <button className="btn btn-success px-5 ms-3" onClick={pdfExport}>
             Export as pdf
           </button>
-          
         </div>
       </div>
     </>
