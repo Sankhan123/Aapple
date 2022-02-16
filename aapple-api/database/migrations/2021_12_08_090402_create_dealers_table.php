@@ -20,6 +20,7 @@ class CreateDealersTable extends Migration
             $table->string('company_name')->nullable();
             $table->string('gst_number')->nullable();
             $table->string('contact_person')->nullable();
+            $table->string('aadhaar_number')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('district')->nullable();

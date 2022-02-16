@@ -125,3 +125,19 @@
 .badge-index {
   z-index: 1;
 }
+.cus-sb {
+  background-color: #e84d0d;
+  color: rgb(255, 255, 255);
+  height: 100vh;  
+  margin: 0 !important;
+  padding-left: 0 !important;
+}
+.custom-sb {
+  font-weight: 500;
+  padding: 9px 2px;
+}
+.custom-sb:hover {
+  background-color: rgb(255, 255, 255);
+  font-weight: 500;
+  color: #000000;
+}

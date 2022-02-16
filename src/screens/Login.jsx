@@ -33,7 +33,10 @@ const Login = () => {
               data
             );
 
-            if (response) {
+            if (response.data.status===201) {
+              alert(response.data.message);
+              Navigate("/login");
+            }else{
               alert("Login Success");
               sessionStorage.setItem("user", JSON.stringify(response.data));
               if (response.data.user.user_role === "admin") {
@@ -43,7 +46,7 @@ const Login = () => {
               }
             }
           } catch (e) {
-            alert(" Invalid username or password");
+            alert("Invalid username password");
           }
         }}
       >

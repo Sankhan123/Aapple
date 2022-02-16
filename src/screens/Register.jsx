@@ -14,6 +14,10 @@ const SignupSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   contact_person: Yup.string().required("Required"),
   phone: Yup.string().required("Required"),
+  aadhaar_number: Yup.string()
+  .min(12, "Too Short! Aadhaar must be 12 characters")
+  .max(12, "Too Long!")
+  .required("Required"),
 });
 
 const Register = () => {
@@ -34,6 +38,7 @@ const Register = () => {
           state: "",
           zip: "",
           alternate_number: "",
+          aadhaar_number: "",
         }}
         validationSchema={SignupSchema}
         onSubmit={async (values) => {
@@ -174,7 +179,7 @@ const Register = () => {
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group ">
                         <Field
-                          type="text"
+                          type="number"
                           name="phone"
                           className="form-control"
                           placeholder="Contact Number *"
@@ -188,12 +193,27 @@ const Register = () => {
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
                         <Field
-                          type="text"
+                          type="number"
                           name="alternate_number"
                           className={"form-control"}
                           placeholder="Alternate Number"
                         />
                       </div>
+
+                      <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
+                        <Field
+                          type="number"
+                          name="aadhaar_number"
+                          className={"form-control"}
+                          placeholder="Aadhaar Number *"
+                        />
+                        {errors.aadhaar_number && touched.aadhaar_number ? (
+                          <div className="help-block text-danger">
+                            {errors.aadhaar_number}
+                          </div>
+                        ) : null}
+                      </div>
+
                       <div className="col-12 text-center">
                         <button
                           type="submit"

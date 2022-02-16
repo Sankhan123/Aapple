@@ -24,6 +24,7 @@ class Dealer extends Model
                   'zip',
                    'phone',
                     'alternate_number',
+                    'aadhaar_number',
                      'user_status',
                       'user_role',
                        'credit_amount',

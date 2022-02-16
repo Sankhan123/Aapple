@@ -5,6 +5,7 @@ import authHeader from "../../assets/header/auth-header";
 import REACT_APP_API_URL from "../../assets/header/env";
 import Modal from "../../components/Modal";
 import { useNavigate } from 'react-router-dom';
+import PurchaseDashboard from "./PurchaseDashboard";
 
 function Purchase() {
   const Navi = useNavigate()
@@ -72,6 +73,7 @@ function Purchase() {
           total={total}
         />
       )}
+
       <div className="alertt co display-7 text-center rounded-none px-4">
         <h4>Purchase</h4>
         <div className="btn-group" role="group" aria-label="Basic example">
@@ -116,7 +118,25 @@ function Purchase() {
         </div>
         <h4>Total Product : <span className="badge bg-info">{total}</span></h4>
       </div>
-      {purchaseData && (
+      <div className="container-fluid">
+        <div className="row">
+        <div className="col-3 pl-0">
+          <div className="sticky-top p-2 cus-sb">
+        {purchaseData &&  purchaseData.map((catData,i)=>(
+          <PurchaseDashboard 
+          key={i}
+          index={i}
+          setCount={setCount}
+          catList={catData.cat_name}
+          />
+        ))
+        
+        }
+        </div>
+        </div>
+        
+        <div className="col">
+        {purchaseData && purchaseData[count] && (
         <PurchaseTable
           catagoryName={purchaseData[count].cat_name}
           data={purchaseData[count]}
@@ -126,6 +146,9 @@ function Purchase() {
           count={count}
         />
       )}
+        </div>
+        </div>
+      </div>
     </>
   );
 }
@@ -219,7 +242,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
   };
   return (
     <>
-      <section>
+      <div>
         <header className="alert alert-light d-flex align-items-center fw-bold fs-4 text-dark m-0" role="alert">
           <span className="flex-grow-1 text-center">{catagoryName}</span>
           <span className="fs-6 fw-normal badge last fw-bold py-2">Page : {count + 1} of 12</span>
@@ -270,7 +293,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
               })}
           </tbody>
         </table>
-      </section>
+      </div>
     </>
   );
 }

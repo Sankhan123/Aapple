@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dealer;
 use JWTAuth;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,6 +14,14 @@ class ApiController extends Controller
 {
     public function authenticate(Request $request)
     {
+        $login_request = Dealer::where('email','=',$request->input('email'))->where('password','=',$request->input('password'))->where('user_status','=','false')->count();
+
+        if ($login_request) { 
+            return response()->json([
+                'status' => 201,
+                'message' => "You can't login because your request is pending. Please wait for admin approval or Contact admin",
+            ]);
+        }
         $credentials = $request->only('email', 'password');
 
         //valid credential

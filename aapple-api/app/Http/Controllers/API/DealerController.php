@@ -15,11 +15,19 @@ class DealerController extends Controller
 {
     public function register(Request $request){
         $dealer = new Dealer;
+        $exits_dealer = Dealer::where('email',$request->input('email'))->count();
+        if($exits_dealer){
+            return response()->json([
+                'status' => 200,
+                'message' => 'Your Account already exists, Go to login..!',
+            ]);
+        }
         $dealer->email = $request->input('email');
         $dealer->password = $request->input('password');
         $dealer->company_name = $request->input('company_name');
         $dealer->gst_number = $request->input('gst_number');
         $dealer->contact_person = $request->input('contact_person');
+        $dealer->aadhaar_number = $request->input('aadhaar_number');
         $dealer->address = $request->input('address');
         $dealer->city = $request->input('city');
         $dealer->district = $request->input('district');
