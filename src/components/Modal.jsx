@@ -1,4 +1,4 @@
-const Modal = ({ setShowModal, cartData, addOrder, clearCart, total }) => {
+const Modal = ({ setShowModal, cartData, addOrder,load, clearCart, total }) => {
   return (
     <main className="back-drop p-3">
       <div className="text-end">
@@ -51,12 +51,17 @@ const Modal = ({ setShowModal, cartData, addOrder, clearCart, total }) => {
                 </tbody>
               </table>
               <div>
-                <button
+              {load ? <button
                   className="btn btn-success fw-bold wit me-1"
                   onClick={addOrder}
                 >
                   Submit
-                </button>
+                </button>: <button
+                  className="btn btn-success fw-bold wit me-1"
+                >
+                 Generating...
+                </button>  }
+                
                 <button
                   className="btn btn-danger fw-bold wit ms-1"
                   onClick={clearCart}

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import PurchaseDashboard from "./PurchaseDashboard";
 
 function Purchase() {
+  const [load , setLoad ] = useState(true); 
   const Navi = useNavigate()
   const [purchaseData, setProducts] = useState(null);
   const [cartData, setData] = useState([]);
@@ -33,6 +34,7 @@ function Purchase() {
   }, []);
 
   async function addOrder() {
+    setLoad(!load)
     let dealer_id = "";
     if (sessionStorage.length) {
       const dealer_val = sessionStorage.getItem("user");
@@ -45,14 +47,17 @@ function Purchase() {
       pro_count: total,
       order_status: "Pending",
     };
+    
     try {
       const response = await axios.post(`${REACT_APP_API_URL}/add-order`, data);
+      setLoad(!load);
       if (response) {
-        alert("Your order created successfully");
+        alert(response.data.message);
         setShowModal(false);
         Navi("/user-dashboard")
       }
     } catch (e) {
+      alert("Something went wrong..!")
       console.log(e);
     }
   }
@@ -62,10 +67,12 @@ function Purchase() {
     setShowModal(false);
     Navi("/user-dashboard")
   }
+  
   return (
     <>
       {showModal && (
         <Modal
+          load={load}
           setShowModal={setShowModal}
           cartData={cartData}
           addOrder={addOrder}
@@ -158,6 +165,9 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
     if (cartData.length > 0) {
       let total = 0;
       cartData.forEach((rowData) => {
+        if(isNaN(rowData.value)){
+          rowData.value = 0;
+        }
         total += rowData.value;
       });
       setTotal(total);

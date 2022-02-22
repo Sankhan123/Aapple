@@ -13,42 +13,43 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function add_order(Request $request){
-
-        $order = new Order;
-        $order->dealer_id = $request->input('dealer_id');
-        $latestOrder = Order::orderBy('created_at','DESC')->first();
-        if($latestOrder){
-            $prev_id = $latestOrder->id;
-            }else{
-                $prev_id = 0;
-            }
-        
-        $order->order_nr = '#'.str_pad($prev_id+1, 6, "0", STR_PAD_LEFT);
-        $order->pro_count = $request->input('pro_count');
-        $order->order_status = $request->input('order_status');
-        $order->save();
-        $order->id;
-        if($order->id != '' ){
-            $data = $request->input('order');
-            foreach ($data as $order_data) {
-                if($order_data['value']!=''){
-                    $orders = new OrderData;
-                $orders->order_id = $order->id;
-                $orders->cat_id = $order_data['cat_id'];
-                $orders->cat_name = $order_data['cat_name'];
-                $orders->product_id = $order_data['product_id'];
-                $orders->product_name = $order_data['product_name'];
-                $orders->size_id = $order_data['size_id'];
-                $orders->size_name = $order_data['size_name'];
-                $orders->value = $order_data['value'];
-                $orders->save();
+    public function add_order(Request $request)
+    {
+        if($request->input('pro_count')>0){
+            $order = new Order;
+            $order->dealer_id = $request->input('dealer_id');
+            $latestOrder = Order::orderBy('created_at','DESC')->first();
+            if($latestOrder){
+                $prev_id = $latestOrder->id;
+                }else{
+                    $prev_id = 0;
                 }
-                
+            
+            $order->order_nr = '#'.str_pad($prev_id+1, 6, "0", STR_PAD_LEFT);
+            $order->pro_count = $request->input('pro_count');
+            $order->order_status = $request->input('order_status');
+            $order->save();
+            $order->id;
+            if($order->id != '' ){
+                $data = $request->input('order');
+                foreach ($data as $order_data) {
+                    if($order_data['value']!=''){
+                        $orders = new OrderData;
+                    $orders->order_id = $order->id;
+                    $orders->cat_id = $order_data['cat_id'];
+                    $orders->cat_name = $order_data['cat_name'];
+                    $orders->product_id = $order_data['product_id'];
+                    $orders->product_name = $order_data['product_name'];
+                    $orders->size_id = $order_data['size_id'];
+                    $orders->size_name = $order_data['size_name'];
+                    $orders->value = $order_data['value'];
+                    $orders->save();
+                    }
+                    
+                }
+            
             }
-        
-        }
-//------------------order notification----------------------//
+            //------------------order notification----------------------//
 
         $get_data = Dealer::where('id', $request->input('dealer_id'))->get();
         $reg_id = $get_data[0]['id'];
@@ -59,7 +60,7 @@ class OrderController extends Controller
         $details = [
             'title' => "New Order Found",
             'subject' => 'One order was made on Aapple Paints',
-            'body' => 'Dealer: '.$name. 'Mobile: '.$mobile.' Please Check Order',
+            'body' => 'Dealer: '.$name. ' Mobile: '.$mobile.'. Please Check Order.',
         ];
         Mail::to("kanism33@gmail.com")->send(new TestMail($details));
 
@@ -75,8 +76,16 @@ class OrderController extends Controller
 //---------------------------//
         return response()->json([
             'status' => 200,
-            'message' => 'Ordered successfully',
+            'message' => 'Your order created successfully',
         ]);
+        }else{
+            return response()->json([
+                'status' => 200,
+                'message' => 'Order cannot create',
+            ]);
+        }
+
+
      }
      public function add_price(Request $request){
             $orders = new OrderData;
