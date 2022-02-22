@@ -23,10 +23,9 @@ export default function Uprocessing() {
             <tr className="table-dark">
               <th scope="col">S.No </th>
               <th scope="col">Date</th>
+              <th scope="col">OrderNo</th>
               <th scope="col">Product</th>
-
               <th scope="col">Progress</th>
-
               <th scope="col">Action</th>
             </tr>
           </thead>
@@ -37,8 +36,8 @@ export default function Uprocessing() {
                   <td className="fw-bold">{index + 1}</td>
 
                   <th scope="row">{data.created_at.split("T")[0]}</th>
+                  <td className="fw-bold">{data.order_nr}</td>
                   <td className="fw-bold">{data.pro_count}</td>
-
                   <td className="fw-bold">{data.order_status}</td>
                   <td className="fw-bold">
                     <button

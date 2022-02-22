@@ -36,7 +36,7 @@ export default function Transaction() {
     <>
     {dealer && <div className="col my-3">
   <h5 className="alert co display-7  text-center">
-               {dealer.company_name &&(dealer.company_name).toUpperCase()} - Transaction Details
+               {dealer.contact_person &&(dealer.contact_person).toUpperCase()} - Transaction Details
                </h5>
                 
                 <div className="col-lg-12 my-3 px-4 pr-1 col-md-6 col-sm-12 text-center">

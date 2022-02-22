@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2022 at 06:40 AM
+-- Generation Time: Feb 22, 2022 at 06:22 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -47,8 +47,8 @@ INSERT INTO `categories` (`id`, `cat_name`, `sizes`, `created_at`, `updated_at`)
 (5, 'Aapple metal primers', '3,4,5,7,9', NULL, NULL),
 (6, 'Aapple furniture enamels', '4,5,7,9', NULL, NULL),
 (7, 'Galaxy truck coating paints', '4,5,7,9', NULL, NULL),
-(8, 'Multi wall primer water base', '5,6,7,9', NULL, NULL),
-(9, 'Floor coat', '5,6,7,8,9', NULL, NULL),
+(8, 'Multi wall primer water base', '4,5,7,8,9', NULL, NULL),
+(9, 'Floor coat', '4,5,7,8,9', NULL, NULL),
 (10, 'Cool roof coat', '5,7,8,9', NULL, NULL),
 (11, 'Crack past', '10', NULL, NULL),
 (12, 'Acrylic putty', '10,11', NULL, NULL);
@@ -66,6 +66,7 @@ CREATE TABLE `dealers` (
   `company_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gst_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contact_person` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `aadhaar_number` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `district` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -84,14 +85,9 @@ CREATE TABLE `dealers` (
 -- Dumping data for table `dealers`
 --
 
-INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 1647, '2021-12-09 03:57:41', '2022-02-02 23:52:10'),
-(3, 'saran@gmail.com', 'ravi123', 'Vvm', 'sdsds', 'dsds', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 04:01:58', '2022-02-02 06:13:35'),
-(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-31 03:56:45'),
-(8, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:29:54', '2022-01-25 07:18:25'),
-(10, 'kanism33@gmail.com', '123456654', 'vfran', '345de3e', 'san', 'ert', 'gfd', 'fgh', 'sdfg', 'hgf', '4568765324', '34565346565', 'true', 'user', 0, '2021-12-22 00:34:15', '2022-01-25 07:20:25'),
-(11, 'sasa@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'true', 'user', 0, '2021-12-22 00:39:00', '2022-01-25 07:21:33'),
-(13, 'sas@gmai.com', 'asasas', 'ewr', 'rte', 'ertr', 'rerttre', 'tre', 'ewr', 'rewt', 'erttr', '345665', NULL, 'false', 'user', 0, '2021-12-22 00:47:34', '2022-01-25 07:31:13');
+INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `aadhaar_number`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', '2147483647', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 2920, '2021-12-09 03:57:41', '2022-02-19 01:13:37'),
+(5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', '2147483647', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-31 03:56:45');
 
 -- --------------------------------------------------------
 
@@ -131,6 +127,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `order_nr` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `dealer_id` bigint(20) UNSIGNED DEFAULT NULL,
   `pro_count` int(11) DEFAULT NULL,
   `order_status` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -138,14 +135,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `dealer_id`, `pro_count`, `order_status`, `total`, `created_at`, `updated_at`) VALUES
-(1, 2, 6, 'Completed', 1647, '2022-02-02 23:19:24', '2022-02-02 23:52:10'),
-(2, 2, 7, 'Processing', 1010, '2022-02-02 23:58:23', '2022-02-02 23:59:05');
 
 -- --------------------------------------------------------
 
@@ -170,18 +159,6 @@ CREATE TABLE `orders_data` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders_data`
---
-
-INSERT INTO `orders_data` (`id`, `order_id`, `cat_id`, `cat_name`, `product_id`, `product_name`, `size_id`, `size_name`, `value`, `price`, `gst`, `gst_amount`, `subtotal`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 222, 5, 11.10, 233.10, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
-(2, 1, 1, 'Premium synthetic enamel', 5, 'Royal ivory', 4, '500 ML', 2, 105, 12, 25.20, 235.20, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
-(3, 1, 1, 'Premium synthetic enamel', 12, 'Phiroza blue', 3, '200 ML', 3, 333, 18, 179.82, 1178.82, '2022-02-02 23:19:24', '2022-02-02 23:47:57'),
-(4, 2, 1, 'Premium synthetic enamel', 1, 'Milk white', 1, '50 ML', 1, 100, 18, 18.00, 118.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05'),
-(5, 2, 1, 'Premium synthetic enamel', 4, 'off white', 2, '100 ML', 2, 200, 5, 20.00, 420.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05'),
-(6, 2, 1, 'Premium synthetic enamel', 9, 'Golden yellow', 3, '200 ML', 4, 100, 18, 72.00, 472.00, '2022-02-02 23:58:23', '2022-02-02 23:59:05');
 
 -- --------------------------------------------------------
 
@@ -376,12 +353,12 @@ INSERT INTO `size` (`id`, `cat_id`, `size_name`, `size_status`, `created_at`, `u
 (31, 7, '1 LTR', 1, NULL, NULL),
 (32, 7, '4 LTR', 1, NULL, NULL),
 (33, 7, '20 LTR', 1, NULL, NULL),
-(34, 8, '1 LTR', 1, NULL, NULL),
-(35, 8, '1.5 LTR', 1, NULL, NULL),
+(34, 8, '500 ML', 1, NULL, NULL),
+(35, 8, '1 LTR', 1, NULL, NULL),
 (36, 8, '4 LTR', 1, NULL, NULL),
-(37, 8, '20 LTR', 1, NULL, NULL),
-(38, 9, '1 LTR', 1, NULL, NULL),
-(39, 9, '1.5 LTR', 1, NULL, NULL),
+(37, 8, '10 LTR', 1, NULL, NULL),
+(38, 9, '500 ML', 1, NULL, NULL),
+(39, 9, '1 LTR', 1, NULL, NULL),
 (40, 9, '4 LTR', 1, NULL, NULL),
 (41, 9, '10 LTR', 1, NULL, NULL),
 (42, 9, '20 LTR', 1, NULL, NULL),
@@ -391,7 +368,8 @@ INSERT INTO `size` (`id`, `cat_id`, `size_name`, `size_status`, `created_at`, `u
 (46, 10, '20 LTR', 1, NULL, NULL),
 (47, 11, '1 KG', 1, NULL, NULL),
 (48, 12, '1 KG', 1, NULL, NULL),
-(49, 12, '5 KG', 1, NULL, NULL);
+(49, 12, '5 KG', 1, NULL, NULL),
+(50, 8, '20 LTR', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -443,21 +421,6 @@ CREATE TABLE `transactions` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `transactions`
---
-
-INSERT INTO `transactions` (`id`, `dealer_id`, `date`, `mode`, `invoice_no`, `inward`, `outward`, `credit_balance`, `created_at`, `updated_at`) VALUES
-(1, 2, '2022-02-01', 'Invoice', 'INV001', 0, 489, 489, '2022-02-01 12:16:02', '2022-02-01 12:16:02'),
-(2, 2, '2022-02-02', 'online', NULL, 100, 0, 389, '2022-02-01 12:19:49', '2022-02-01 12:19:49'),
-(3, 2, '2022-02-01', 'Invoice', 'iNV002', 0, 434, 823, '2022-02-01 12:23:43', '2022-02-01 12:23:43'),
-(4, 2, '2022-02-01', 'online', NULL, 123, 0, 700, '2022-02-01 12:24:29', '2022-02-01 12:24:29'),
-(5, 2, '2022-02-02', 'online', NULL, 100, 0, 600, '2022-02-02 01:43:44', '2022-02-02 01:43:44'),
-(6, 2, '2022-02-02', 'asas', NULL, 250, 0, 350, '2022-02-02 01:50:02', '2022-02-02 01:50:02'),
-(7, 2, '2022-02-02', 'Invoice', 'inv8118', 0, 434, 784, '2022-02-02 04:23:35', '2022-02-02 04:23:35'),
-(8, 3, '2022-02-02', 'Invoice', 'INV 001', 0, 322, 322, '2022-02-02 06:13:35', '2022-02-02 06:13:35'),
-(9, 2, '2022-02-03', 'Invoice', 'Inv 001', 0, 1647, 1647, '2022-02-02 23:52:10', '2022-02-02 23:52:10');
-
 -- --------------------------------------------------------
 
 --
@@ -482,10 +445,6 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `reg_id`, `email`, `password`, `user_role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'sds', 2, 'ravi@gmail.com', '$2y$10$xXV1.vIAMRCqIB/Z1GhFYejwDgNvPJ2.Fh9uv7PaMoewQYp1xSIcq', 'user', NULL, '2022-01-25 06:54:48', '2022-01-25 06:54:48'),
-(2, 'Vvm', 3, 'saran@gmail.com', '$2y$10$LPHw6GCPwgr0.T4zeHWWRuzfg7bILStRhhvVMHSZ8xhKbxjbgq0kO', 'user', NULL, '2022-01-25 07:16:44', '2022-01-25 07:16:44'),
-(3, 'vfran', 8, 'kanism33@gmail.com', '$2y$10$/GMwbDWo4w/FwAz5iFX3y.U4rF00O5WN0rZixqmXBtDe15Nun69vm', 'user', NULL, '2022-01-25 07:18:25', '2022-01-25 07:18:25'),
-(5, 'ewr', 11, 'sasa@gmai.com', '$2y$10$YwzNe04/9wdn/.ke54XjDe3sLS1BvgaVuuiR/i/2VSjyknkavTeQi', 'user', NULL, '2022-01-25 07:21:33', '2022-01-25 07:21:33'),
-(6, 'ewr', 13, 'sas@gmai.com', '$2y$10$bNV3.YaRIfUIGO8O09L.9eoBjMfPneQ1fYERrLjqGZrA8OFg4B8Ge', 'user', NULL, '2022-01-25 07:31:13', '2022-01-25 07:31:13'),
 (7, 'aapple', 5, 'admin@gmail.com', '$2y$10$MY3tXY4GyaMS2gosh/YNKe4XSGRwvpHk9Pg6eGq0St3hdQ.4TsYqu', 'admin', NULL, '2022-01-27 05:01:03', '2022-01-27 05:01:03');
 
 --
@@ -580,7 +539,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `dealers`
 --
 ALTER TABLE `dealers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -592,13 +551,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `orders_data`
 --
 ALTER TABLE `orders_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -616,7 +575,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT for table `sizes`
@@ -628,13 +587,13 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT for table `transactions`
 --
 ALTER TABLE `transactions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables

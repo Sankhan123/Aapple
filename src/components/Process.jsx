@@ -22,7 +22,7 @@ function Process() {
         const marginLeft = 40;
         const doc = new jsPDF(orientation, unit, size);
         doc.setFontSize(20);
-        const title = "Order Details";
+        const title = data && 'Order Details '+data.order_nr;
         const totalAmt = {totalPrice: totalPrice, gstTotal: totalGst, netTotal: netTotal};
         const headers = [
           [
@@ -80,7 +80,8 @@ function Process() {
             <div className="col my-3">
                 <div>
                         <h5 className="alert co ">
-                        <span className='text-center col-6'>Processing Order</span>
+                        <span className='text-center col-6'>Processing Order {data &&
+                        data.order_nr}</span>
                         <span className='text-end'>
                                 <button onClick={pdfExport} className=" btn btn-info fw-bold">
                                     Export As pdf

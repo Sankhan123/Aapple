@@ -39,8 +39,9 @@ const NewOrders = () => {
               <tr className="table-dark">
                 <th scope="col">Sno</th>
                 <th scope="col">Date</th>
+                <th scope="col">OrderNo</th>
                 <th scope="col">Dealer</th>
-                <th scope="col">Product Count</th>
+                <th scope="col">Product Qty</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>

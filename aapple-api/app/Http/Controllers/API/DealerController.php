@@ -39,10 +39,17 @@ class DealerController extends Controller
         $dealer->save();
 
         $details = [
-            'title' => $request->input('email'),
-            'body' => 'New dealer request notification'
+            'title' => "New Dealer Found",
+            'subject' => $request->input('email'),
+            'body' => 'New dealer registered on Aapple Paints. This dealer waiting for your approval, Hurry Up!'
         ];
+        Mail::to("kanism33@gmail.com")->send(new TestMail($details));
 
+        $details = [
+            'title' => "Account Created",
+            'subject' => 'Your dealer request has been sent',
+            'body' => 'Your password for Aapple paints:'.$request->input('password').'. Now you cannot login, please wait for admin approval. Thank you!'
+        ];
         Mail::to($request->input('email'))->send(new TestMail($details));
 
         return response()->json([
@@ -98,13 +105,19 @@ class DealerController extends Controller
         $update_status = Dealer::where("id", $id)->update(["user_status" => "true"]);
         $get_data = Dealer::where('id', $id)->get();
         $reg_id = $get_data[0]['id'];
-        $name = $get_data[0]['company_name'];
+        $name = $get_data[0]['contact_person'];
         $email = $get_data[0]['email'];
         $password = $get_data[0]['password'];
-
         $user = User::create(array_merge(
             ['reg_id' => $reg_id, 'name' => $name, 'email' => $email,'password' => bcrypt($password)]
         ));
+        
+        $details = [
+            'title' => "Login Request Accepted",
+            'subject' => 'Your login request has been accepted by Aapple Paints',
+            'body' => 'Now you can login. Click here: http://aapplepaints.com/my-account/'
+        ];
+        Mail::to($email)->send(new TestMail($details));
 
         return response()->json([
             'status' => 200,

@@ -9,7 +9,8 @@ export default function OrderDetail({ order, id }) {
     <tr className=" pt-4 ">
       <th scope="row">{id}</th>
       <td className="fw-bold">{order.created_at.split("T")[0]}</td>
-      <td className="fw-bold">{order.dealer_data[0].company_name}</td>
+      <td className="fw-bold">{order.order_nr}</td>
+      <td className="fw-bold">{order.dealer_data[0].contact_person}</td>
       <td className="fw-bold">{order.pro_count}</td>
 
       <td className="d-flex text-center gap-4">

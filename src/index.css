@@ -69,6 +69,7 @@
 .cart {
   position: relative;
 }
+
 .alertt {
   display: flex;
   padding: 16px 0;
@@ -131,10 +132,13 @@
   height: 100vh;  
   margin: 0 !important;
   padding-left: 0 !important;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 }
 .custom-sb {
   font-weight: 500;
-  padding: 9px 2px;
+  padding: 7px 2px;
 }
 .custom-sb:hover {
   background-color: rgb(255, 255, 255);

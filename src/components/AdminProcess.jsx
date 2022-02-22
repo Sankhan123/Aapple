@@ -58,7 +58,7 @@ function AdminProcess() {
     const marginLeft = 40;
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(20);
-    const title = "Order Details";
+    const title = data && data.dealer_data[0].contact_person+" [ "+data.order_nr+" ] - Order Details";
     const totalAmt = {totalPrice: totalPrice, gstTotal: totalGst, netTotal: netTotal};
     const headers = [
       [
@@ -105,13 +105,14 @@ function AdminProcess() {
     doc.autoTable(tableContent);
     doc.save("Order Details.pdf");
   }
+  console.log(data)
   return (
     <>
       <div className="d-flex ">
         <Sidebar />
 
         <div className="col my-3">
-          <h5 className="alert co display-7  text-center">Processing Order</h5>
+          <h5 className="alert co display-7  text-center">Processing Order Details - { data && data.dealer_data[0].contact_person} [ {data && data.order_nr} ] </h5>
 
           <table className="table table-hover  border">
             <thead>

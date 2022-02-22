@@ -37,7 +37,7 @@ export default function History() {
         <Sidebar />
         <div className="col my-3">
           <h5 className="alert co display-7  text-center">
-            Transaction Details
+            {data && dealer.contact_person} - Transaction Details
           </h5>
           <table className="table table-hover  border">
             <thead>

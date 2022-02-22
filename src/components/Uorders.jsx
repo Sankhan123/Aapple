@@ -23,7 +23,8 @@ export default function Uorders() {
             <tr className="table-dark">
               <th scope="col">S.No </th>
               <th scope="col">Date</th>
-              <th scope="col">Product</th>
+              <th scope="col">OrderNo</th>
+              <th scope="col">Qty</th>
 
               <th scope="col">Progress</th>
 
@@ -37,6 +38,7 @@ export default function Uorders() {
                   <td className="fw-bold">{index + 1}</td>
 
                   <th scope="row">{data.created_at.split("T")[0]}</th>
+                  <td className="fw-bold">{data.order_nr}</td>
                   <td className="fw-bold">{data.pro_count}</td>
 
                   <td className="fw-bold">Pending</td>

@@ -121,7 +121,7 @@ function Purchase() {
       <div className="container-fluid">
         <div className="row">
         <div className="col-3 pl-0">
-          <div className="sticky-top p-2 cus-sb">
+          <div className="p-2 cus-sb">
         {purchaseData &&  purchaseData.map((catData,i)=>(
           <PurchaseDashboard 
           key={i}

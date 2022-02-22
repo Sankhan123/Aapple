@@ -40,6 +40,7 @@ const AllDealers = () => {
                   <th scope="col">Sno</th>
                   <th scope="col">Name</th>
                   <th scope="col">Email</th>
+                  <th scope="col">Aadhaar</th>
                   <th scope="col">Address</th>
                   <th scope="col">Phone no</th>
                   <th scope="col">Credit Balance</th>
@@ -82,10 +83,13 @@ const Dealer = (props) => {
         {props.id}
       </th>
       <td className="fw-normal cp" onClick={navigateToUser}>
-        {props.userData.company_name}
+        {props.userData.contact_person}
       </td>
       <td className="fw-normal cp" onClick={navigateToUser}>
         {props.userData.email}
+      </td>
+      <td className="fw-normal cp" onClick={navigateToUser}>
+        {props.userData.aadhaar_number}
       </td>
       <td className="fw-normal cp" onClick={navigateToUser}>
         {props.userData.address}

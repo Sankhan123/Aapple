@@ -1,8 +1,10 @@
 import REACT_APP_API_URL from "../assets/header/env";
 import axios from "axios";
+import { useNavigate } from 'react-router';
 
 const DealerInvites = ({ id, data, setRequests, requests }) => {
   // updating state on click for accept and decline
+  let navigate = useNavigate();
   const filteringState = (id, requests) => {
     let filteredData = requests.filter((request) => {
       return request.id !== id;
@@ -19,7 +21,8 @@ const DealerInvites = ({ id, data, setRequests, requests }) => {
         `${REACT_APP_API_URL}/update-dealer/${updateId}`
       );
       if (res) {
-        console.log("New dealer added");
+        alert("New dealer added");
+        navigate('/admin-dashboard');
       }
     } catch (e) {
       console.log(e);

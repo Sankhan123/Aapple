@@ -117,7 +117,7 @@ export default function OrderDetails() {
     const marginLeft = 40;
     const doc = new jsPDF(orientation, unit, size);
     doc.setFontSize(20);
-    const title = "Order Details";
+    const title =  rowData && 'Order Details '+rowData.order_nr;
     const totalAmt = TotalAmt;
     const headers = [
       [
@@ -169,7 +169,7 @@ export default function OrderDetails() {
       <div className="col ">
         <div className="row mt-3 mb-2">
           <h5 className="text-center">
-            Dealer Name: <b>{rowData && rowData.dealer_data[0].company_name}</b>{" "}
+            Dealer Name: <b>{rowData && rowData.dealer_data[0].contact_person + '['+rowData.order_nr+']'}</b>{" "}
           </h5>
         </div>
         <table className="table table-hover border">

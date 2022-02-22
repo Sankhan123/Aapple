@@ -11,7 +11,8 @@ export default function Tabel() {
  
  <div className="col my-3">
  <h5 className="alert co display-7  text-center">
-                Pending Order
+                Pending Order - {data &&
+            data.order_nr}
               </h5>
  <table className="table table-hover  border">
        <thead>

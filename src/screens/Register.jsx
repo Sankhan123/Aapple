@@ -15,8 +15,6 @@ const SignupSchema = Yup.object().shape({
   contact_person: Yup.string().required("Required"),
   phone: Yup.string().required("Required"),
   aadhaar_number: Yup.string()
-  .min(12, "Too Short! Aadhaar must be 12 characters")
-  .max(12, "Too Long!")
   .required("Required"),
 });
 
@@ -202,7 +200,7 @@ const Register = () => {
 
                       <div className="mt-3 col-md-6 col-sm-12 col-lg-6 form-group">
                         <Field
-                          type="number"
+                          type="text"
                           name="aadhaar_number"
                           className={"form-control"}
                           placeholder="Aadhaar Number *"

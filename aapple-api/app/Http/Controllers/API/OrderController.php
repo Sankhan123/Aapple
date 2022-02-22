@@ -17,6 +17,14 @@ class OrderController extends Controller
 
         $order = new Order;
         $order->dealer_id = $request->input('dealer_id');
+        $latestOrder = Order::orderBy('created_at','DESC')->first();
+        if($latestOrder){
+            $prev_id = $latestOrder->id;
+            }else{
+                $prev_id = 0;
+            }
+        
+        $order->order_nr = '#'.str_pad($prev_id+1, 6, "0", STR_PAD_LEFT);
         $order->pro_count = $request->input('pro_count');
         $order->order_status = $request->input('order_status');
         $order->save();
@@ -40,7 +48,31 @@ class OrderController extends Controller
             }
         
         }
+//------------------order notification----------------------//
 
+        $get_data = Dealer::where('id', $request->input('dealer_id'))->get();
+        $reg_id = $get_data[0]['id'];
+        $name = $get_data[0]['contact_person'];
+        $email = $get_data[0]['email'];
+        $mobile = $get_data[0]['phone'];
+
+        $details = [
+            'title' => "New Order Found",
+            'subject' => 'One order was made on Aapple Paints',
+            'body' => 'Dealer: '.$name. 'Mobile: '.$mobile.' Please Check Order',
+        ];
+        Mail::to("kanism33@gmail.com")->send(new TestMail($details));
+
+        $get_data = Order::where('id', $order->id)->get();
+        $order_nr = $get_data[0]['order_nr'];
+        $details = [
+            'title' => "Your order created",
+            'subject' => 'Your order no: '.$order_nr,
+            'body' => 'Order Status : Pending.'
+        ];
+        Mail::to($email)->send(new TestMail($details));
+
+//---------------------------//
         return response()->json([
             'status' => 200,
             'message' => 'Ordered successfully',
@@ -64,12 +96,20 @@ class OrderController extends Controller
             $list->order_status = "Processing";
             $list->save();
 
+            $get_data = Order::where('id', $request->input('id'))->get();
+            $order_nr = $get_data[0]['order_nr'];
+            $dealer_id = $get_data[0]['dealer_id'];
+
+            $user_data = Dealer::where('id', $dealer_id)->get();
+            $email = $user_data[0]['email'];
+
             $details = [
-                'title' => $request->input('email'),
-                'body' => 'Your order no #'.$request->input('id').' amount is Rs.'.$grant_total.' (Status: Processing). Waiting for your call confirmation..', 
+                'title' => 'New quote details',
+                'subject' => 'Order status : Processing',
+                'body' => 'Your order no: '.$order_nr.' of amount is Rs.'.$grant_total.'. Check quote details for your aapple paints account. Waiting for your call confirmation..', 
             ];
     
-            Mail::to($request->input('email'))->send(new TestMail($details));
+            Mail::to($email)->send(new TestMail($details));
         
         return response()->json([
             'status' => 200,
@@ -96,12 +136,22 @@ class OrderController extends Controller
             $trans->credit_balance = $dealer->credit_amount;
             $trans->save();
         }
-        $details = [
-            'title' => $request->input('email'),
-            'body' => 'Your order no #'.$request->input('id').' amount is Rs.'.$total.' (Status: Confirmed)', 
-        ];
+        
+        $get_data = Order::where('id', $request->input('id'))->get();
+            $order_nr = $get_data[0]['order_nr'];
+            $dealer_id = $get_data[0]['dealer_id'];
 
-        Mail::to($request->input('email'))->send(new TestMail($details));
+            $user_data = Dealer::where('id', $dealer_id)->get();
+            $email = $user_data[0]['email'];
+
+            $details = [
+                'title' => 'Invoice generated for your order: '.$order_nr,
+                'subject' => 'Order status : Completed',
+                'body' => 'Your Invoice No: '.$request->input('invoice_no').'. Your order will delivered soon.. Further quories please contact Aapple Paints. Thank you..! ', 
+            ];
+    
+            Mail::to($email)->send(new TestMail($details));
+
         return response()->json([
             'status' => 200,
             'message' => 'Order confirmed',

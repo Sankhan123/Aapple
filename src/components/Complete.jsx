@@ -13,7 +13,7 @@ function Complete() {
         <Sidebar />
 
         <div className="col my-3">
-          <h5 className="alert co display-7  text-center">Complete Order</h5>
+          <h5 className="alert co display-7  text-center">{data && data.order_nr} - Complete Orders Details</h5>
 
           <table className="table table-hover  border">
             <thead>

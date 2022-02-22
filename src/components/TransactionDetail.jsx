@@ -54,7 +54,7 @@ export default function TransactionDetail() {
               </h5>
               <div className="form-group row my-4 d-flex align-items-center">
                 <div className="col-lg-4 px-4  col-md-6 col-sm-12">
-                  Dealer Name: <b>{data && data.company_name}</b>
+                  Dealer Name: <b>{data && data.contact_person}</b>
                 </div>
                 <div className="col-lg-4 px-4 pr-1 col-md-6 col-sm-12 text-center">
                   {data && data.credit_amount >= 0 ? (
