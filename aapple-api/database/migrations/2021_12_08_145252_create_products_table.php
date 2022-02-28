@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->foreign('cat_id')->references('id')->on('categories')->onUpdate('cascade')->onDelete('cascade');
             $table->string('product_name')->nullable();
             $table->integer('product_status')->default(1);
+            $table->string('nil_sizes')->nullable();
             $table->timestamps();
         });
     }

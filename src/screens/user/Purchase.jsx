@@ -182,6 +182,7 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
     sizeName,
     catagoryName
   ) {
+      
     let data = JSON.parse(JSON.stringify(cartData));
     if (data.length === 0) {
       data.push({
@@ -270,11 +271,28 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
           <tbody>
             {data &&
               data.product.map((pro, index) => {
+                if(pro.nil_sizes!=null){
+                  var nilSizes = pro.nil_sizes;
+                nilSizes = nilSizes.split(",");
+                }
+                
                 return (
                   <tr key={index}>
                     <th scope="row">{pro.product_name}</th>
                     {data &&
                       data.size.map((size, index) => {
+                        function checkSize(s){
+                          if(nilSizes){
+                            var sta;
+                            sta = nilSizes.includes(s);
+                            if(sta){
+                              return "disabled";
+                            }else{
+                              return "";
+                            }
+                            
+                          }
+                        }
                         return (
                           <td key={index}>
                             <input
@@ -294,6 +312,8 @@ function PurchaseTable({ catagoryName, data, cartData, setData, setTotal, count}
                                 );
                               }}
                               value={getValues(pro.id, size.id, pro.cat_id)}
+                              disabled ={checkSize(size.size_name)}
+                              
                             />
                           </td>
                         );

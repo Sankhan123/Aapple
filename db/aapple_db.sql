@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2022 at 06:22 AM
+-- Generation Time: Feb 28, 2022 at 12:17 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -40,18 +40,18 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `cat_name`, `sizes`, `created_at`, `updated_at`) VALUES
-(1, 'Premium synthetic enamel', '1,2,3,4,5,7,9', NULL, NULL),
-(2, 'Hi-gloss automotive paint(fast drying)', '4,5,7', NULL, NULL),
-(3, 'Aapple wood primers', '3,4,5,7,9', NULL, NULL),
-(4, 'Aapple hamertones & aluminium paints', '3,4,5,7,9', NULL, NULL),
-(5, 'Aapple metal primers', '3,4,5,7,9', NULL, NULL),
-(6, 'Aapple furniture enamels', '4,5,7,9', NULL, NULL),
-(7, 'Galaxy truck coating paints', '4,5,7,9', NULL, NULL),
-(8, 'Multi wall primer water base', '4,5,7,8,9', NULL, NULL),
-(9, 'Floor coat', '4,5,7,8,9', NULL, NULL),
-(10, 'Cool roof coat', '5,7,8,9', NULL, NULL),
-(11, 'Crack past', '10', NULL, NULL),
-(12, 'Acrylic putty', '10,11', NULL, NULL);
+(1, 'Premium synthetic enamel', '1,2,3,4,5,6,8', NULL, NULL),
+(2, 'Hi-gloss automotive paint(fast drying)', '4,5,6', NULL, NULL),
+(3, 'Aapple wood primers', '3,4,5,6,8', NULL, NULL),
+(4, 'Aapple hamertones & aluminium paints', '3,4,5,6,8', NULL, NULL),
+(5, 'Aapple metal primers', '3,4,5,6,8', NULL, NULL),
+(6, 'Aapple furniture enamels', '4,5,6,8', NULL, NULL),
+(7, 'Galaxy truck coating paints', '4,5,6,8', NULL, NULL),
+(8, 'Multi wall primer water base', '4,5,6,7,8', NULL, NULL),
+(9, 'Floor coat', '4,5,6,7,8', NULL, NULL),
+(10, 'Cool roof coat', '5,6,7,8', NULL, NULL),
+(11, 'Crack past', '9', NULL, NULL),
+(12, 'Acrylic putty', '9,10,11,12', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -86,7 +86,7 @@ CREATE TABLE `dealers` (
 --
 
 INSERT INTO `dealers` (`id`, `email`, `password`, `company_name`, `gst_number`, `contact_person`, `aadhaar_number`, `address`, `city`, `district`, `state`, `zip`, `phone`, `alternate_number`, `user_status`, `user_role`, `credit_amount`, `created_at`, `updated_at`) VALUES
-(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', '2147483647', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 2920, '2021-12-09 03:57:41', '2022-02-19 01:13:37'),
+(2, 'ravi@gmail.com', 'ravi123', 'sds', 'sdsds', 'dsds', '2147483647', 'sdsdsd', 'dssds', 'dsdsd', 'dsds', 'sdsds', 'sdsdsd', 'sdsds', 'true', 'user', 0, '2021-12-09 03:57:41', '2022-02-19 01:13:37'),
 (5, 'admin@gmail.com', 'admin123', 'aapple', '12312ss', 'sri murugan', '2147483647', 'asaa', 'dsds', 'sasd', 'sdss', 'dsd', '34343543545', '4545453535', 'true', 'admin', 0, '2021-12-09 04:04:54', '2022-01-31 03:56:45');
 
 -- --------------------------------------------------------
@@ -189,6 +189,7 @@ CREATE TABLE `products` (
   `cat_id` bigint(20) UNSIGNED DEFAULT NULL,
   `product_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_status` int(11) NOT NULL DEFAULT 1,
+  `nil_sizes` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -197,108 +198,113 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `cat_id`, `product_name`, `product_status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Milk white', 1, NULL, NULL),
-(2, 1, 'Br white', 1, NULL, NULL),
-(3, 1, 'snow white', 1, NULL, NULL),
-(4, 1, 'off white', 1, NULL, NULL),
-(5, 1, 'Royal ivory', 1, NULL, NULL),
-(6, 1, 'Midd buff', 1, NULL, NULL),
-(7, 1, 'Wild lilac', 1, NULL, NULL),
-(8, 1, 'Wild purple', 1, NULL, NULL),
-(9, 1, 'Golden yellow', 1, NULL, NULL),
-(10, 1, 'Lemon yellow', 1, NULL, NULL),
-(11, 1, 'Rig spl yellow', 1, NULL, NULL),
-(12, 1, 'Phiroza blue', 1, NULL, NULL),
-(13, 1, 'Sky blue', 1, NULL, NULL),
-(14, 1, 'Oxford blue', 1, NULL, NULL),
-(15, 1, 'Royal blue', 1, NULL, NULL),
-(16, 1, 'Satin blue', 1, NULL, NULL),
-(17, 1, 'Bright blue', 1, NULL, NULL),
-(18, 1, 'Mint green', 1, NULL, NULL),
-(19, 1, 'Bus green', 1, NULL, NULL),
-(20, 1, 'Deep green', 1, NULL, NULL),
-(21, 1, 'Cascade green', 1, NULL, NULL),
-(22, 1, 'Pista', 1, NULL, NULL),
-(23, 1, 'Water green', 1, NULL, NULL),
-(24, 1, 'Olive green', 1, NULL, NULL),
-(25, 1, 'Pale rose', 1, NULL, NULL),
-(26, 1, 'Deep orange', 1, NULL, NULL),
-(27, 1, 'Signal red', 1, NULL, NULL),
-(28, 1, 'Po red', 1, NULL, NULL),
-(29, 1, 'Auto red', 1, NULL, NULL),
-(30, 1, 'Magenta', 1, NULL, NULL),
-(31, 1, 'Cherry', 1, NULL, NULL),
-(32, 1, 'Mahogany', 1, NULL, NULL),
-(33, 1, 'Smoke grey', 1, NULL, NULL),
-(34, 1, 'Tata smoke grey', 1, NULL, NULL),
-(35, 1, 'Black', 1, NULL, NULL),
-(36, 1, 'Truck brown', 1, NULL, NULL),
-(37, 1, 'Golden brown', 1, NULL, NULL),
-(38, 1, 'Asian brown', 1, NULL, NULL),
-(39, 1, 'Dark brown', 1, NULL, NULL),
-(40, 1, 'Black board black enamel', 1, NULL, NULL),
-(41, 1, 'Irish cream', 1, NULL, NULL),
-(42, 2, 'Milk white', 1, NULL, NULL),
-(43, 2, 'Br white', 1, NULL, NULL),
-(44, 2, 'Golden brown', 1, NULL, NULL),
-(45, 2, 'Lemon yellow', 1, NULL, NULL),
-(46, 2, 'Golden yellow', 1, NULL, NULL),
-(47, 2, 'Irish cream', 1, NULL, NULL),
-(48, 3, 'White wood primers', 1, NULL, NULL),
-(49, 3, 'Pink wood primers', 1, NULL, NULL),
-(50, 3, 'Synthetic clear varnis', 1, NULL, NULL),
-(51, 4, 'HT EM green', 1, NULL, NULL),
-(52, 4, 'HT blue', 1, NULL, NULL),
-(53, 4, 'Ht sliver ash', 1, NULL, NULL),
-(54, 4, 'Aluminium paints', 1, NULL, NULL),
-(55, 5, 'Skps grey primers', 1, NULL, NULL),
-(56, 5, 'Red oxide metal primers', 1, NULL, NULL),
-(57, 5, 'Zinc chromate yellow primers', 1, NULL, NULL),
-(58, 6, 'FR red', 1, NULL, NULL),
-(59, 6, 'Olive green 236', 1, NULL, NULL),
-(60, 6, 'Olive green 495', 1, NULL, NULL),
-(61, 6, 'Silver grey', 1, NULL, NULL),
-(62, 6, 'Nickel grey', 1, NULL, NULL),
-(63, 7, 'Milk white', 1, NULL, NULL),
-(64, 7, 'Br white', 1, NULL, NULL),
-(65, 7, 'Golden yellow', 1, NULL, NULL),
-(66, 7, 'Lemon yellow', 1, NULL, NULL),
-(67, 7, 'Rig spl yellow', 1, NULL, NULL),
-(68, 7, 'Phiroza blue', 1, NULL, NULL),
-(69, 7, 'Oxfors blue', 1, NULL, NULL),
-(70, 7, 'Royal blue', 1, NULL, NULL),
-(71, 7, 'Mint green', 1, NULL, NULL),
-(72, 7, 'Bus green', 1, NULL, NULL),
-(73, 7, 'Deep green', 1, NULL, NULL),
-(74, 7, 'Deep orange', 1, NULL, NULL),
-(75, 7, 'Single red', 1, NULL, NULL),
-(76, 7, 'Po red', 1, NULL, NULL),
-(77, 7, 'Auto red', 1, NULL, NULL),
-(78, 7, 'Smoke grey', 1, NULL, NULL),
-(79, 7, 'Tata smoke grey', 1, NULL, NULL),
-(80, 7, 'black', 1, NULL, NULL),
-(81, 7, 'Truck brown', 1, NULL, NULL),
-(82, 7, 'Golden brown', 1, NULL, NULL),
-(83, 7, 'Asian brown', 1, NULL, NULL),
-(84, 7, 'Irish cream', 1, NULL, NULL),
-(85, 7, 'Da grey', 1, NULL, NULL),
-(86, 7, 'Dlx da grey', 1, NULL, NULL),
-(87, 7, 'Spl da grey', 1, NULL, NULL),
-(88, 7, 'Nickel grey', 1, NULL, NULL),
-(89, 7, 'Sliver grey', 1, NULL, NULL),
-(90, 7, 'C&p white', 1, NULL, NULL),
-(91, 7, 'Japan black', 1, NULL, NULL),
-(92, 7, 'Red oxide primer', 1, NULL, NULL),
-(93, 7, 'Lorry blue', 1, NULL, NULL),
-(94, 7, 'Matt black', 1, NULL, NULL),
-(95, 8, 'Primer', 1, NULL, NULL),
-(96, 9, 'Bright green', 1, NULL, NULL),
-(97, 9, 'Yellow', 1, NULL, NULL),
-(98, 9, 'Green yellow', 1, NULL, NULL),
-(99, 10, 'Cool roof cote', 1, NULL, NULL),
-(100, 11, 'Crack past', 1, NULL, NULL),
-(101, 12, 'Acrylic putty', 1, NULL, NULL);
+INSERT INTO `products` (`id`, `cat_id`, `product_name`, `product_status`, `nil_sizes`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Milk white', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(2, 1, 'Br white', 1, NULL, NULL, NULL),
+(3, 1, 'Snow white', 1, '50 ML,100 ML', NULL, NULL),
+(4, 1, 'Off white', 1, '50 ML,100 ML', NULL, NULL),
+(5, 1, 'Royal ivory', 1, NULL, NULL, NULL),
+(6, 1, 'Midd buff', 1, '50 ML,100 ML', NULL, NULL),
+(7, 1, 'Wild lilac', 1, '50 ML,100 ML', NULL, NULL),
+(8, 1, 'Wild purple', 1, '50 ML,100 ML', NULL, NULL),
+(9, 1, 'Golden yellow', 1, NULL, NULL, NULL),
+(10, 1, 'Lemon yellow', 1, NULL, NULL, NULL),
+(11, 1, 'Rig spl yellow', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(12, 1, 'Phiroza blue', 1, NULL, NULL, NULL),
+(13, 1, 'Sky blue', 1, NULL, NULL, NULL),
+(14, 1, 'Oxford blue', 1, NULL, NULL, NULL),
+(15, 1, 'Royal blue', 1, NULL, NULL, NULL),
+(16, 1, 'Satin blue', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(17, 1, 'Bright blue', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(18, 1, 'Mint green', 1, NULL, NULL, NULL),
+(19, 1, 'Bus green', 1, NULL, NULL, NULL),
+(20, 1, 'Deep green', 1, NULL, NULL, NULL),
+(21, 1, 'Cascade green', 1, NULL, NULL, NULL),
+(22, 1, 'Pista', 1, NULL, NULL, NULL),
+(23, 1, 'Water green', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(24, 1, 'Olive green', 1, NULL, NULL, NULL),
+(25, 1, 'Pale rose', 1, '50 ML,100 ML', NULL, NULL),
+(26, 1, 'Deep orange', 1, NULL, NULL, NULL),
+(27, 1, 'Signal red', 1, NULL, NULL, NULL),
+(28, 1, 'Po red', 1, NULL, NULL, NULL),
+(29, 1, 'Auto red', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(30, 1, 'Magenta', 1, '50 ML,100 ML', NULL, NULL),
+(31, 1, 'Cherry', 1, NULL, NULL, NULL),
+(32, 1, 'Mahogany', 1, '50 ML,100 ML', NULL, NULL),
+(33, 1, 'Smoke grey', 1, NULL, NULL, NULL),
+(34, 1, 'Tata smoke grey', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(35, 1, 'Black', 1, NULL, NULL, NULL),
+(36, 1, 'Truck brown', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(37, 1, 'Golden brown', 1, NULL, NULL, NULL),
+(38, 1, 'Asian brown', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(39, 1, 'Dark brown', 1, NULL, NULL, NULL),
+(40, 1, 'Black board black enamel', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(41, 1, 'Irish cream', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(42, 2, 'Milk white', 1, NULL, NULL, NULL),
+(43, 2, 'Br white', 1, NULL, NULL, NULL),
+(44, 2, 'Golden brown', 1, NULL, NULL, NULL),
+(45, 2, 'Lemon yellow', 1, NULL, NULL, NULL),
+(46, 2, 'Golden yellow', 1, NULL, NULL, NULL),
+(47, 2, 'Irish cream', 1, NULL, NULL, NULL),
+(48, 3, 'White wood primers', 1, NULL, NULL, NULL),
+(49, 3, 'Pink wood primers', 1, NULL, NULL, NULL),
+(50, 3, 'Synthetic clear varnis', 1, NULL, NULL, NULL),
+(51, 4, 'HT EM green', 1, NULL, NULL, NULL),
+(52, 4, 'HT blue', 1, NULL, NULL, NULL),
+(53, 4, 'Ht sliver ash', 1, NULL, NULL, NULL),
+(54, 4, 'Aluminium paints', 1, NULL, NULL, NULL),
+(55, 5, 'SKPS grey primers', 1, NULL, NULL, NULL),
+(56, 5, 'Red oxide metal primers', 1, NULL, NULL, NULL),
+(57, 5, 'Zinc chromate yellow primers', 1, NULL, NULL, NULL),
+(58, 6, 'FR red', 1, NULL, NULL, NULL),
+(59, 6, 'Olive green 236', 1, NULL, NULL, NULL),
+(60, 6, 'Olive green 495', 1, NULL, NULL, NULL),
+(61, 6, 'Silver grey', 1, NULL, NULL, NULL),
+(62, 6, 'Nickel grey', 1, NULL, NULL, NULL),
+(63, 7, 'Milk white', 1, NULL, NULL, NULL),
+(64, 7, 'Br white', 1, NULL, NULL, NULL),
+(65, 7, 'Golden yellow', 1, NULL, NULL, NULL),
+(66, 7, 'Lemon yellow', 1, NULL, NULL, NULL),
+(67, 7, 'Rig spl yellow', 1, NULL, NULL, NULL),
+(68, 7, 'Phiroza blue', 1, NULL, NULL, NULL),
+(69, 7, 'Oxfors blue', 1, NULL, NULL, NULL),
+(70, 7, 'Royal blue', 1, NULL, NULL, NULL),
+(71, 7, 'Mint green', 1, NULL, NULL, NULL),
+(72, 7, 'Bus green', 1, NULL, NULL, NULL),
+(73, 7, 'Deep green', 1, NULL, NULL, NULL),
+(74, 7, 'Deep orange', 1, NULL, NULL, NULL),
+(75, 7, 'Single red', 1, NULL, NULL, NULL),
+(76, 7, 'Po red', 1, NULL, NULL, NULL),
+(77, 7, 'Auto red', 1, NULL, NULL, NULL),
+(78, 7, 'Smoke grey', 1, NULL, NULL, NULL),
+(79, 7, 'Tata smoke grey', 1, NULL, NULL, NULL),
+(80, 7, 'black', 1, NULL, NULL, NULL),
+(81, 7, 'Truck brown', 1, NULL, NULL, NULL),
+(82, 7, 'Golden brown', 1, NULL, NULL, NULL),
+(83, 7, 'Asian brown', 1, NULL, NULL, NULL),
+(84, 7, 'Irish cream', 1, NULL, NULL, NULL),
+(85, 7, 'Da grey', 1, NULL, NULL, NULL),
+(86, 7, 'Dlx da grey', 1, NULL, NULL, NULL),
+(87, 7, 'Spl da grey', 1, NULL, NULL, NULL),
+(88, 7, 'Nickel grey', 1, NULL, NULL, NULL),
+(89, 7, 'Sliver grey', 1, NULL, NULL, NULL),
+(90, 7, 'C&p white', 1, NULL, NULL, NULL),
+(91, 7, 'Japan black', 1, NULL, NULL, NULL),
+(92, 7, 'Red oxide primer', 1, NULL, NULL, NULL),
+(93, 7, 'Lorry blue', 1, NULL, NULL, NULL),
+(94, 7, 'Matt black', 1, NULL, NULL, NULL),
+(95, 8, 'Primer', 1, NULL, NULL, NULL),
+(96, 9, 'Bright green', 1, NULL, NULL, NULL),
+(97, 9, 'Yellow', 1, NULL, NULL, NULL),
+(98, 9, 'Green yellow', 1, NULL, NULL, NULL),
+(99, 10, 'Cool roof cote', 1, NULL, NULL, NULL),
+(100, 11, 'Crack past', 1, NULL, NULL, NULL),
+(101, 12, 'Acrylic putty', 1, NULL, NULL, NULL),
+(102, 1, 'SPL DA grey', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(103, 1, 'Silver grey', 1, '50 ML,100 ML', NULL, NULL),
+(104, 1, 'Nickel grey', 1, '50 ML,100 ML,200 ML', NULL, NULL),
+(105, 5, 'SKPS white primers', 1, NULL, NULL, NULL),
+(106, 8, 'Unimax(Economic pack)', 1, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -369,7 +375,9 @@ INSERT INTO `size` (`id`, `cat_id`, `size_name`, `size_status`, `created_at`, `u
 (47, 11, '1 KG', 1, NULL, NULL),
 (48, 12, '1 KG', 1, NULL, NULL),
 (49, 12, '5 KG', 1, NULL, NULL),
-(50, 8, '20 LTR', 1, NULL, NULL);
+(50, 8, '20 LTR', 1, NULL, NULL),
+(51, 12, '10 KG', 1, NULL, NULL),
+(52, 12, '20 KG', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -395,12 +403,13 @@ INSERT INTO `sizes` (`id`, `size_name`, `size_status`, `created_at`, `updated_at
 (3, '200 ML', 1, NULL, NULL),
 (4, '500 ML', 1, NULL, NULL),
 (5, '1 LTR', 1, NULL, NULL),
-(6, '1.5 LTR', 1, NULL, NULL),
-(7, '4 LTR', 1, NULL, NULL),
-(8, '10 LTR', 1, NULL, NULL),
-(9, '20 LTR', 1, NULL, NULL),
-(10, '1 KG', 1, NULL, NULL),
-(11, '5 KG', 1, NULL, NULL);
+(6, '4 LTR', 1, NULL, NULL),
+(7, '10 LTR', 1, NULL, NULL),
+(8, '20 LTR', 1, NULL, NULL),
+(9, '1 KG', 1, NULL, NULL),
+(10, '5 KG', 1, NULL, NULL),
+(11, '10 KG', 1, NULL, NULL),
+(12, '20 KG', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -569,19 +578,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `size`
 --
 ALTER TABLE `size`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `transactions`

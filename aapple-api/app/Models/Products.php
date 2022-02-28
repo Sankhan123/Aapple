@@ -14,5 +14,6 @@ class Products extends Model
         'cat_id',
          'product_name',
           'product_status',
+          'nil_sizes',
     ];
 }
