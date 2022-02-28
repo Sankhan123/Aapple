@@ -43,7 +43,7 @@ class DealerController extends Controller
             'subject' => $request->input('email'),
             'body' => 'New dealer registered on Aapple Paints. This dealer waiting for your approval, Hurry Up!'
         ];
-        Mail::to("kanism33@gmail.com")->send(new TestMail($details));
+        Mail::to("aapplepaints@gmail.com")->send(new TestMail($details));
 
         $details = [
             'title' => "Account Created",

@@ -62,7 +62,7 @@ class OrderController extends Controller
             'subject' => 'One order was made on Aapple Paints',
             'body' => 'Dealer: '.$name. ' Mobile: '.$mobile.'. Please Check Order.',
         ];
-        Mail::to("kanism33@gmail.com")->send(new TestMail($details));
+        Mail::to("aapplepaints@gmail.com")->send(new TestMail($details));
 
         $get_data = Order::where('id', $order->id)->get();
         $order_nr = $get_data[0]['order_nr'];
