@@ -11,6 +11,8 @@ import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import authHeader from "../assets/header/auth-header";
 import REACT_APP_API_URL from "../assets/header/env";
+import logo from "../assets/img/aapple.jpg";
+
 
 export default function Sidebar() {
   const Navigate = useNavigate();
@@ -44,6 +46,13 @@ export default function Sidebar() {
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
+        <NavLink to="/admin-dashboard">
+            <CDBSidebarMenuItem>
+              <div className="logo mb-2">
+                <img src={logo} width="200" height="70" />
+              </div>
+              </CDBSidebarMenuItem>
+            </NavLink>
           <CDBSidebarMenu>
             <NavLink to="/user-dashboard">
               <CDBSidebarMenuItem icon="tachometer-alt">

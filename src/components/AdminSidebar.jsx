@@ -10,6 +10,7 @@ import axios from "axios";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import authHeader from "../assets/header/auth-header";
 import REACT_APP_API_URL from "../assets/header/env";
+import logo from "../assets/img/aapple.jpg";
 
 const Sidebar = () => {
   let Navigate = useNavigate();
@@ -30,6 +31,7 @@ const Sidebar = () => {
 
   return (
     <div className="sticky-top" style={{ display: "flex", height: "100vh" }}>
+      
       <CDBSidebar textColor="#fff" backgroundColor="#2B207F">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <Link
@@ -43,6 +45,13 @@ const Sidebar = () => {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
+            <NavLink to="/admin-dashboard">
+            <CDBSidebarMenuItem>
+              <div className="logo mb-2">
+                <img src={logo} width="200" height="70" />
+              </div>
+              </CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to="/admin-dashboard">
               <CDBSidebarMenuItem icon="tachometer-alt">
                 Dashboard
