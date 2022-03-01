@@ -47,7 +47,7 @@ const Register = () => {
             );
             if (response.data.status === 200) {
               alert(response.data.message);
-              Navigate("/login");
+              Navigate("/");
             }
           } catch (err) {
             console.log(err);
@@ -224,7 +224,7 @@ const Register = () => {
                       <div className="text-center py-3 fw-bold">
                         <p>
                           Already have an account?{" "}
-                          <Link to="/login"> Login</Link>
+                          <Link to="/"> Login</Link>
                         </p>
                       </div>
                     </div>

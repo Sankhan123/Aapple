@@ -17,7 +17,7 @@ function ProtectedRoute({ children }) {
     if (auth) {
       const decodedJwt = parseJwt(auth.token);
       if (decodedJwt.exp * 1000 < Date.now()) {
-        Navi("/login");
+        Navi("/");
       }
     }
     role = auth.user.user_role;
@@ -27,7 +27,7 @@ function ProtectedRoute({ children }) {
       alert("You are not admin!!!");
     }
   }, []);
-  return auth && role === "admin" ? children : <Navigate to="/login" />;
+  return auth && role === "admin" ? children : <Navigate to="/" />;
 }
 
 export default ProtectedRoute;

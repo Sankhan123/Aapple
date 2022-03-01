@@ -179,8 +179,6 @@ class OrderController extends Controller
 
     }
 
-
-
      public function get_orders(){
        $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->get();
             return response()->json([
@@ -188,6 +186,8 @@ class OrderController extends Controller
                 'orders' => $getlist,
             ]);
      }
+
+
      public function get_orders_by_id($id){
         $getlist = Order::with('order_data')->with('dealer_data')->where('order_status','Pending')->where('dealer_id',$id)->get();
         $process = Order::with('order_data')->with('dealer_data')->where('order_status','Processing')->where('dealer_id',$id)->get();
@@ -199,4 +199,21 @@ class OrderController extends Controller
                  'complete_orders'=>$complete,
              ]);
       }
+      public function get_order_val($id){
+          $result = [];
+        $getlist = OrderData::where('order_id',$id)->get();
+
+            foreach ($getlist as $key => $rowData) {
+                $result[$rowData['product_id']]['order_id'] = $rowData['order_id'];
+                $result[$rowData['product_id']]['product_id'] = $rowData['product_id'];
+                $result[$rowData['product_id']]['category'] = $rowData['cat_name'];
+                $result[$rowData['product_id']]['product_name'] = $rowData['product_name'];
+                $result[$rowData['product_id']]['size'][$rowData['size_name']] = $rowData['value'];
+            }
+             return response()->json([
+                 'status' => 200,
+                 'orders' => $result,
+             ]);
+      }
+
 }

@@ -18,7 +18,7 @@ function PrivateRoute({ children }) {
     if (auth) {
       const decodedJwt = parseJwt(auth.token);
       if (decodedJwt.exp * 1000 < Date.now()) {
-        Navi("/login");
+        Navi("/");
       }
     }
     role = auth.user.user_role;
@@ -28,7 +28,7 @@ function PrivateRoute({ children }) {
       alert("You are not authorized!!! Please login");
     }
   }, []);
-  return auth && role === "user" ? children : <Navigate to="/login" />;
+  return auth && role === "user" ? children : <Navigate to="/" />;
 }
 
 export default PrivateRoute;

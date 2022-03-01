@@ -1,6 +1,6 @@
 const setTitle = (location) => {
   switch (location.pathname) {
-    case "/login":
+    case "/":
       document.title = "Login - Aapple Paints";
 
       break;

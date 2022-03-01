@@ -80,7 +80,7 @@ const Sidebar = () => {
 
         <CDBSidebarFooter className="mb-5">
           <NavLink
-            to="/login"
+            to="/"
             style={{
               textDecoration: "none",
               color: "white",

@@ -5,11 +5,15 @@ import axios from "axios";
 import REACT_APP_API_URL from "../assets/header/env";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import authHeader from "../assets/header/auth-header";
 
 export default function OrderDetails() {
   let Location = useLocation();
   let Navi = useNavigate();
   const data = Location.state;
+  const staticSizes = ['50 ML','100 ML','200 ML','500 ML','1 LTR','4 LTR','10 LTR','20 LTR','1 KG','5 KG','10 KG','20 KG'];
+  const [getOrder, setOrder] = useState([]);
   const [rowData, setRowData] = useState(data);
   const [TotalAmt, setTotal] = useState({
     totalPrice: 0,
@@ -18,6 +22,25 @@ export default function OrderDetails() {
   });
 
   useEffect(() => {
+
+    async function getOrders() {
+      try {
+        const res = await axios.get(
+          `${REACT_APP_API_URL}/get-val-id/${rowData.id}`,
+          {
+            headers: authHeader(),
+          }
+        );
+        if (res) {
+          let data = Object.values(res.data.orders);
+          setOrder(data);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    getOrders();
+
     let totalPrice = 0;
     let gstTotal = 0;
     let netTotal = 0;
@@ -167,6 +190,47 @@ export default function OrderDetails() {
   return (
     <>
       <div className="col ">
+        <div>
+          <div>
+            <table className="table table-stripped none" id="demo">
+            
+               <thead>
+                <tr>
+                  <td>Category</td>
+                  <td>Products</td>
+                  <td>50 ML</td>
+                  <td>100 ML</td>
+                  <td>200 ML</td>
+                  <td>500 ML</td>
+                  <td>1 LTR</td>
+                  <td>4 LTR</td>
+                  <td>10 LTR</td>
+                  <td>20 LTR</td>
+                  <td>1 KG</td>
+                  <td>5 KG</td>
+                  <td>10 KG</td>
+                  <td>20 KG</td>
+                </tr>
+              </thead> 
+              {getOrder && getOrder.map((data,index) => (
+              <tbody key={index}>
+                <tr className=" pt-4 ">
+                  <th scope="row">{data.category}</th>
+                  <th scope="row">{data.product_name}</th>
+                  {staticSizes.map((size,i)=>{
+                    let getSizes = Object.keys(data.size);
+                    let exactSize = getSizes.filter(getsize=>(getsize===size));
+                    return(
+                      <td key={i}>{data.size[exactSize[0]]==null ? '-':data.size[exactSize[0]]}</td>
+                    )
+                  })}
+                </tr>
+                </tbody>
+                  ))}
+            </table>
+            
+          </div>
+        </div>
         <div className="row mt-3 mb-2">
           <h5 className="text-center">
             Dealer Name: <b>{rowData && rowData.dealer_data[0].contact_person + '['+rowData.order_nr+']'}</b>{" "}
@@ -185,7 +249,7 @@ export default function OrderDetails() {
               <th scope="col">Total</th>
             </tr>
           </thead>
-
+          
           {rowData.order_data &&
             rowData.order_data.map((data, index) => (
               <tbody key={index}>
@@ -250,6 +314,13 @@ export default function OrderDetails() {
           <button className="btn btn-success px-5 ms-3" onClick={pdfExport}>
             Export as pdf
           </button>
+          <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="btn btn-success px-5 ms-3"
+                    table="demo"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"/>
         </div>
       </div>
     </>

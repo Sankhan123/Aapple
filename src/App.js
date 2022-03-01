@@ -39,7 +39,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Login />} />
         <Route
           path="/user-dashboard/order/data"
           element={
@@ -64,7 +64,6 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="/login" element={<Login />} />
         <Route
           path="/admin-dashboard/transaction/history"
           element={

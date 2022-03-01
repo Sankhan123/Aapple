@@ -35,7 +35,7 @@ const Login = () => {
 
             if (response.data.status===201) {
               alert(response.data.message);
-              Navigate("/login");
+              Navigate("/");
             }else{
               alert("Login Success");
               sessionStorage.setItem("user", JSON.stringify(response.data));
