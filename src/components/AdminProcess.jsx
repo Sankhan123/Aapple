@@ -105,7 +105,6 @@ function AdminProcess() {
     doc.autoTable(tableContent);
     doc.save("Order Details.pdf");
   }
-  console.log(data)
   return (
     <>
       <div className="d-flex ">
